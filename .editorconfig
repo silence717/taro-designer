@@ -1,0 +1,21 @@
+# editorconfig.org
+root = true
+
+[**]
+# Unix-style newlines with a newline ending every file
+end_of_line = lf
+insert_final_newline = true
+max_line_length = 0
+
+# 去除行尾空白字符
+trim_trailing_whitespace = true
+
+# 编码格式
+charset = utf-8
+
+# 项目中采用tab作为代码缩进样式
+indent_style = tab
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false

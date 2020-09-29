@@ -1,0 +1,27 @@
+.idea/
+.nyc_output/
+.DS_Store
+
+# Dependency directories
+node_modules/
+package-lock.json
+yarn.lock
+
+# log
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+
+# webpack default dist folder
+dist/
