@@ -51,3 +51,23 @@ webpack.config.js // webpack基础配置
 ### TODO
 1. router使用
 2. 完善点的demo
+
+## 参考文章
+
+可视化页面编辑器的架构设计： https://juejin.im/post/6877372444613722119
+
+如何实现H5可视化编辑器的实时预览和真机扫码预览功能：https://juejin.im/post/6876751431374929934
+
+
+拖拽：https://github.com/react-dnd/react-dnd
+
+
+nextjs + nest.js 构建页面可视化编辑器： https://github.com/fantasticit/ramiko
+
+基于 React 的可视化编辑平台实践：https://juejin.im/post/6844904008855846926
+
+json-schema ：https://json-schema.org/understanding-json-schema/index.html
+
+css in js 方案 Glamor，渲染 HTML 的同时，也可以提取对应的 CSS
+
+页面可视化搭建工具前生今世：https://zhuanlan.zhihu.com/p/37171897
