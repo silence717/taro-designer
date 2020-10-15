@@ -5,9 +5,9 @@
  */
 
  // 标记连接本地环境或者其它
-const isLocal = true;
+const isLocal = false;
 const host = '127.0.0.1';
-const port = 3000;
+const port = 4000;
 
 const target = isLocal ? `http://${host}:${port}` : '';
 

@@ -1,16 +1,25 @@
-.main {
+html, body, main {
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper {
 	display: flex;
-	flex-direction: column;
-    justify-content: center;
+    flex-direction: column;
 	align-items: center;
+	height: 100%;
+}
 
-	.user {
-		display: flex;
-    	flex-direction: row;
-	}
 
-	img {
-		width: 150px;
-		height: 150px;
+.container {
+	display: flex;
+	flex-direction: row;
+    justify-content: space-around;
+	width: 100%;
+	height: 100%;
+
+	> section {
+		height: 98%;
+		border-right: 1px solid #d9d9d9;
 	}
 }
