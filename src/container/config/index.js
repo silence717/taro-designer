@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer }  from 'mobx-react';
 import { action, computed }  from 'mobx';
-import { Button, Field, Form, Input, Select } from 'cloud-react';
+import { Button, Field, Form, Input, Select, Tips } from 'cloud-react';
 import store from '../store';
 
 import './style.less';
@@ -56,17 +56,23 @@ class Config extends Component {
 			<section className="config">
 				<header>属性配置区</header>
 				<div>
-					<Button size="small">删除此元素</Button>
-					<Form field={this.field} layout="horizontal" labelCol={{ span: 3 }} style={{ marginTop: '10px' }}>
-						{
-							this.currentConfig && this.currentConfig.props.map((item, index) => (
-								<Form.Item key={index} label={item.label}>
-									{ this.renderByType(item) }
-								</Form.Item>
-							))
-						}
-					</Form>
+					{ this.currentConfig ?
+						<>
+							<Button size="small">删除此元素</Button>
+							<Form field={this.field} layout="horizontal" labelCol={{ span: 3 }} style={{ marginTop: '10px' }}>
+								{
+									this.currentConfig.props.map((item, index) => (
+										<Form.Item key={index} label={item.label}>
+											{ this.renderByType(item) }
+										</Form.Item>
+									))
+								}
+							</Form>
+						</>
+						: <Tips msg="请选择要编辑的元素" type="major" />
+					}
 				</div>
+
 			</section>
 		)
 	}

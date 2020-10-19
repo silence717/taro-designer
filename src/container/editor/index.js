@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react';
 import { observer } from 'mobx-react';
 import { action, computed, observable } from 'mobx';
 
-import Button from '../../components/Button';
+import Components from '../../components';
 
 import  store from '../store';
 
@@ -24,14 +24,16 @@ class Editor extends Component {
 	}
 
 	@action.bound
-	handleClick(event) {
-		console.log(event, event.currentTarget);
-		store.setCurrentType('Button');
-		store.setCurrentProps({
-			text: '按钮一枚',
-			theme: 'primary',
-			size: 'large'
-		});
+	handleClick({ id, type, config }) {
+		console.log(id);
+		store.setCurrentType(type);
+		store.setCurrentProps(config);
+	}
+
+	renderContent() {
+		const { id, type, config } = store.pageData;
+		const RootComponet = Components[type];
+		return <RootComponet id={id} {...config} {...store.currentProps} onClick={() => this.handleClick({ id, type, config }) } />;
 	}
 
 	render () {
@@ -41,7 +43,7 @@ class Editor extends Component {
 				<div>
 					{ this.isShowPlaceholder && <div className="tips">设计区，可拖拽左侧元素到此处，单击元素可编辑属性，蓝色虚线框可放置子组件</div> }
 					<div className="draggable" ref={this.ref}>
-						<Button onClick={this.handleClick} componentname="Button" {...store.currentProps} />
+						{ this.renderContent() }
 					</div>
 				</div>
 			</section>
