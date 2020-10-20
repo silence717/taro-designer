@@ -1,0 +1,22 @@
+{
+	"type": "View",
+	"name": "view布局",
+	"canPlace": true,
+	"props": {
+		"style": {
+			"minHeight": "200px"
+		}
+	},
+	"config": [
+		{
+			"key": "style",
+			"childs": [
+				{
+					"key": "margin",
+					"type": "Input",
+					"label": "外边距"
+				}
+			]
+		}
+	]
+}

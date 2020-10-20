@@ -1,7 +1,7 @@
 {
 	"type": "Button",
 	"name": "按钮",
-	"props": [
+	"config": [
 		{
 			"key": "text",
 			"type": "Input",

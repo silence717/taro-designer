@@ -22,9 +22,14 @@ class Config extends Component {
 		return null;
 	}
 
+	findCurrentPropsById() {
+		// todo 递归查找当前存储的 id 与 当前页面数据中的 id 进行匹配，然后收集表单中的数据，更新对应的 props
+	}
+
 	@action.bound
 	handleFormChange() {
 		const values = this.filed.getValues();
+		// todo 递归查找当前存储的 id 与 当前页面数据中的 id 进行匹配，然后收集表单中的数据，更新对应的 props
 		store.setCurrentProps(values);
 	}
 
@@ -50,6 +55,14 @@ class Config extends Component {
 		}
 	}
 
+	renderContent() {
+		return this.currentConfig.config.map((item, index) => (
+			<Form.Item key={index} label={item.label}>
+				{ this.renderByType(item) }
+			</Form.Item>
+		))
+	}
+
 	render() {
 
 		return (
@@ -60,13 +73,7 @@ class Config extends Component {
 						<>
 							<Button size="small">删除此元素</Button>
 							<Form field={this.field} layout="horizontal" labelCol={{ span: 3 }} style={{ marginTop: '10px' }}>
-								{
-									this.currentConfig.props.map((item, index) => (
-										<Form.Item key={index} label={item.label}>
-											{ this.renderByType(item) }
-										</Form.Item>
-									))
-								}
+								{ this.renderContent() }
 							</Form>
 						</>
 						: <Tips msg="请选择要编辑的元素" type="major" />

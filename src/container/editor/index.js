@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
-import { observer } from 'mobx-react';
 import { action, computed, observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 import Components from '../../components';
 
@@ -24,28 +24,38 @@ class Editor extends Component {
 	}
 
 	@action.bound
-	handleClick({ id, type, config }) {
-		console.log(id);
+	handleClick({ id, type }) {
+		store.setCurrentId(id);
 		store.setCurrentType(type);
-		store.setCurrentProps(config);
 	}
 
-	renderContent() {
-		const { id, type, config } = store.pageData;
-		const RootComponet = Components[type];
-		return <RootComponet id={id} {...config} {...store.currentProps} onClick={() => this.handleClick({ id, type, config }) } />;
+	renderContent(data) {
+
+		const { id, type, props, childrens } = data;
+		const CurrentComponet = Components[type];
+		let childs = null;
+
+		if (childrens && childrens.length) {
+			childs = childrens.map(child => (
+				this.renderContent(child)
+			));
+		}
+
+		return <CurrentComponet {...props} key={id} onClick={ () => this.handleClick({ id, type }) }>{ childs }</CurrentComponet>;
 	}
 
 	render () {
 
+		const content = this.renderContent(store.pageData[0]);
+
 		return (
 			<section className="editor">
-				<div>
+				<>
 					{ this.isShowPlaceholder && <div className="tips">设计区，可拖拽左侧元素到此处，单击元素可编辑属性，蓝色虚线框可放置子组件</div> }
 					<div className="draggable" ref={this.ref}>
-						{ this.renderContent() }
+						{ content }
 					</div>
-				</div>
+				</>
 			</section>
 		)
 	}
