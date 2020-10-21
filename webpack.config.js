@@ -18,7 +18,9 @@ module.exports = ({ mode } = { mode: 'dev', presets: [] }) => {
 		{
 			resolve: {
 				alias: {
-					'react-nodes': resolve('./src'),
+					'@utils': resolve('./src/utils'),
+					'@components': resolve('./src/components'),
+					'@container': resolve('./src/container')
 				},
 				modules: [resolve(__dirname, './src'), resolve(__dirname, './demo'), resolve('./node_modules')],
 				extensions: ['.js'],
