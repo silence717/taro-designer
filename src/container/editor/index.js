@@ -11,7 +11,6 @@ import './style.less';
 @observer
 class Editor extends Component {
 
-
 	@observable
 	ref = createRef();
 
@@ -24,9 +23,11 @@ class Editor extends Component {
 	}
 
 	@action.bound
-	handleClick({ id, type }) {
+	handleClick({ id, type }, event) {
+		event.stopPropagation();
 		store.setCurrentId(id);
 		store.setCurrentType(type);
+		store.setCurrentProps();
 	}
 
 	renderContent(data) {
@@ -40,8 +41,7 @@ class Editor extends Component {
 				this.renderContent(child)
 			));
 		}
-
-		return <CurrentComponet {...props} key={id} onClick={ () => this.handleClick({ id, type }) }>{ childs }</CurrentComponet>;
+		return <CurrentComponet {...props} key={id} onClick={ event => this.handleClick({ id, type }, event) }>{ childs }</CurrentComponet>;
 	}
 
 	render () {

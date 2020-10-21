@@ -1,5 +1,43 @@
 import { observable } from 'mobx';
 
+function findData(data, key) {
+
+	let res = null;
+
+	if (data && data.length) {
+
+		for (let i = 0; i < data.length; i += 1) {
+
+			const item = data[i];
+
+			if (item.id === key) {
+				res = item.props;
+				break;
+			} else {
+				res = findData(item.childrens, key)
+			}
+		}
+	}
+	return res;
+}
+
+function findAndReplace(data, key, values) {
+	if (data && data.length) {
+		for (let i = 0; i < data.length; i += 1) {
+
+			const item = data[i];
+
+			if (item.id === key) {
+				item.props = values;
+				break;
+			} else {
+				findAndReplace(item.childrens, key, values)
+			}
+		}
+	}
+}
+
+
 class Store {
 
 	@observable
@@ -9,14 +47,16 @@ class Store {
 	currentType = '';
 
 	@observable
+	currentProps = {};
+
+	@observable
 	pageData = [{
 		id: '1',
 		type: 'View',
-		name: 'view布局',
-		canPlace: true,
 		props: {
 			style: {
 				minHeight: '200px',
+				margin: '10px'
 			}
 		},
 		childrens: [
@@ -37,9 +77,35 @@ class Store {
 					theme: 'normal',
 					size: 'default'
 				}
+			},
+			{
+				id: '1-3',
+				type: 'View',
+				props: {
+					style: {
+						minHeight: '100px',
+						margin: '10px'
+					}
+				},
+				childrens: [
+					{
+						id: '1-3-1',
+						type: 'Button',
+						props: {
+							text: 'ok',
+							theme: 'dashed',
+							size: 'small'
+						}
+					}
+				]
 			}
 		]
 	}];
+
+	setCurrentProps() {
+		const item = findData(this.pageData, this.currentId);
+		this.currentProps = item;
+	}
 
 	setCurrentType(value) {
 		this.currentType = value;
@@ -51,6 +117,11 @@ class Store {
 
 	setPageData(value) {
 		this.pageData = value;
+	}
+
+	updatePageData(values) {
+		findAndReplace(this.pageData, this.currentId, values);
+		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 
 }

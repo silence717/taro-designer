@@ -22,33 +22,35 @@ class Config extends Component {
 		return null;
 	}
 
-	findCurrentPropsById() {
-		// todo 递归查找当前存储的 id 与 当前页面数据中的 id 进行匹配，然后收集表单中的数据，更新对应的 props
-	}
-
 	@action.bound
 	handleFormChange() {
+
 		const values = this.filed.getValues();
-		// todo 递归查找当前存储的 id 与 当前页面数据中的 id 进行匹配，然后收集表单中的数据，更新对应的 props
-		store.setCurrentProps(values);
+		// 需要对得到的值进行处理，去除掉当前的 id，更新到 props 里面
+		const newValues =  Object.keys(values).reduce((data, key) => {
+			const newKey = key.split('-')[0];
+			data[newKey] = values[key];
+			return data;
+		}, {});
+
+		store.updatePageData(newValues);
 	}
 
-	@action.bound
 	renderByType(item) {
 
 		const { init }  = this.filed;
+		// 为了保证每一个 FormItem 的 name 唯一性，我们使用 `key-id` 的形式作为 name，保证数据更新准确
+		const name = `${item.key}-${store.currentId}`;
+		const options = {
+			initValue: store.currentProps[item.key],
+			onChange: this.handleFormChange
+		}
 
 		switch(item.type) {
 			case 'Input':
-				return <Input {...init(`${item.key}`, {
-					initValue: store.currentProps[item.key],
-					onChange: this.handleFormChange
-				})} />;
+				return <Input {...init(name, options)} />;
 			case 'Select':
-				return <Select dataSource={item.dataSource} {...init(`${item.key}`, {
-					initValue: store.currentProps[item.key],
-					onChange: this.handleFormChange
-				})} />
+				return <Select dataSource={item.dataSource} {...init(name, options)} />
 			default:
 				return null;
 
