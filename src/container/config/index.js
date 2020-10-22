@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer }  from 'mobx-react';
-import { action, computed }  from 'mobx';
+import { action, computed, observe }  from 'mobx';
 import { Button, Field, Form, Input, Select, Tips } from 'cloud-react';
 import Spacing from './Spacing';
 import store from '../store';
@@ -11,6 +11,14 @@ import './style.less';
 class Config extends Component {
 
 	filed = new Field(this);
+
+	componentDidMount() {
+		// 切换组件的时候，form表单虽然重新渲染了，但是 filed 里面存在的值并没有清除，因此需要手动获取一下所有的 names，然后保证数据渲染的准确性
+		observe(store, 'currentId', () => {
+			const names = Object.keys(this.filed.getValues());
+			this.filed.remove(names);
+		});
+	}
 
 	@computed
 	get currentConfig() {
@@ -27,7 +35,6 @@ class Config extends Component {
 	handleFormChange() {
 
 		const values = this.filed.getValues();
-		console.log(values);
 		// 需要对得到的值进行处理，去除掉当前的 id，更新到 props 里面
 		const newValues =  Object.keys(values).reduce((data, key) => {
 			const newKey = key.split('-')[0];
@@ -61,8 +68,6 @@ class Config extends Component {
 			onChange: this.handleFormChange
 		}
 
-		// console.log(name, value);
-
 		switch(item.type) {
 			case 'Input':
 				return <Input {...init(name, options)} />;
@@ -72,7 +77,6 @@ class Config extends Component {
 				return <Spacing {...init(name, options)} value={value} />
 			default:
 				return null;
-
 		}
 	}
 
@@ -97,7 +101,6 @@ class Config extends Component {
 	}
 
 	render() {
-
 		return (
 			<section className="config">
 				<header>属性配置区</header>
@@ -105,14 +108,11 @@ class Config extends Component {
 					{ this.currentConfig ?
 						<>
 							<Button size="small">删除此元素</Button>
-							<Form field={this.field} labelCol={{ span: 3 }} style={{ marginTop: '10px' }}>
-								{ this.renderContent() }
-							</Form>
+							<Form field={this.field}>{this.renderContent()}</Form>
 						</>
 						: <Tips msg="请选择要编辑的元素" type="major" />
 					}
 				</div>
-
 			</section>
 		)
 	}
