@@ -48,6 +48,22 @@
 					"value": "small"
 				}
 			]
+		},
+		{
+			"key": "styles",
+			"childs": [
+				{
+					"key": "width",
+					"label": "宽度",
+					"type": "Input"
+				},
+				{
+					"key": "margin",
+					"label": "外间距",
+					"type": "Spacing"
+				}
+			]
+
 		}
 	]
 }

@@ -3,7 +3,7 @@
 	"name": "view布局",
 	"canPlace": true,
 	"props": {
-		"style": {
+		"styles": {
 			"minHeight": "200px"
 		}
 	},

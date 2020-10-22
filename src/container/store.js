@@ -1,5 +1,6 @@
 import { observable } from 'mobx';
 
+// 根据当前组件的id递归查找页面数据中与之匹配的props
 function findData(data, key) {
 
 	let res = null;
@@ -21,6 +22,7 @@ function findData(data, key) {
 	return res;
 }
 
+// 根据当前组件的id查找并且替换当前页面的数据
 function findAndReplace(data, key, values) {
 	if (data && data.length) {
 		for (let i = 0; i < data.length; i += 1) {
@@ -36,7 +38,6 @@ function findAndReplace(data, key, values) {
 		}
 	}
 }
-
 
 class Store {
 
@@ -54,7 +55,7 @@ class Store {
 		id: '1',
 		type: 'View',
 		props: {
-			style: {
+			styles: {
 				minHeight: '200px',
 				margin: '10px'
 			}
@@ -66,7 +67,11 @@ class Store {
 				props: {
 					text: '按钮一枚',
 					theme: 'primary',
-					size: 'large'
+					size: 'large',
+					styles: {
+						width: '200px',
+						margin: '20px'
+					}
 				}
 			},
 			{
@@ -126,6 +131,4 @@ class Store {
 
 }
 
-
 export default new Store();
-

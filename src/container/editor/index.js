@@ -3,7 +3,6 @@ import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 import Components from '../../components';
-
 import  store from '../store';
 
 import './style.less';
@@ -33,7 +32,10 @@ class Editor extends Component {
 	renderContent(data) {
 
 		const { id, type, props, childrens } = data;
+		const { styles = {}, ...others } = props;
+
 		const CurrentComponet = Components[type];
+
 		let childs = null;
 
 		if (childrens && childrens.length) {
@@ -41,7 +43,9 @@ class Editor extends Component {
 				this.renderContent(child)
 			));
 		}
-		return <CurrentComponet {...props} key={id} onClick={ event => this.handleClick({ id, type }, event) }>{ childs }</CurrentComponet>;
+
+
+		return <CurrentComponet style={{ ...styles }} {...others} key={id} onClick={ event => this.handleClick({ id, type }, event) }>{ childs }</CurrentComponet>;
 	}
 
 	render () {
