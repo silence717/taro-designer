@@ -38,6 +38,18 @@ function findAndReplace(data, key, values) {
 		}
 	}
 }
+// 初始化页面数据
+const initPageData = [{
+	id: '1',
+	type: 'View',
+	props: {
+		styles: {
+			minHeight: '200px',
+			margin: '10px'
+		}
+	},
+	childrens: []
+}];
 
 class Store {
 
@@ -51,61 +63,7 @@ class Store {
 	currentProps = {};
 
 	@observable
-	pageData = [{
-		id: '1',
-		type: 'View',
-		props: {
-			styles: {
-				minHeight: '200px',
-				margin: '10px'
-			}
-		},
-		childrens: [
-			{
-				id: '1-1',
-				type: 'Button',
-				props: {
-					text: '按钮一枚',
-					theme: 'primary',
-					size: 'large',
-					styles: {
-						width: '200px',
-						margin: '20px'
-					}
-				}
-			},
-			{
-				id: '1-2',
-				type: 'Button',
-				props: {
-					text: '按钮',
-					theme: 'normal',
-					size: 'default'
-				}
-			},
-			{
-				id: '1-3',
-				type: 'View',
-				props: {
-					style: {
-						minHeight: '100px',
-						margin: '10px'
-					}
-				},
-				childrens: [
-					{
-						id: '1-3-1',
-						type: 'Button',
-						props: {
-							text: 'ok',
-							theme: 'dashed',
-							size: 'small'
-						}
-					}
-				]
-			}
-		]
-	}];
+	pageData = JSON.parse(localStorage.getItem('cacheData')) || initPageData;
 
 	setCurrentProps() {
 		const item = findData(this.pageData, this.currentId);
@@ -118,10 +76,6 @@ class Store {
 
 	setCurrentId(value) {
 		this.currentId = value;
-	}
-
-	setPageData(value) {
-		this.pageData = value;
 	}
 
 	updatePageData(values) {

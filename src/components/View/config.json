@@ -9,7 +9,7 @@
 	},
 	"config": [
 		{
-			"key": "style",
+			"key": "styles",
 			"childs": [
 				{
 					"key": "margin",

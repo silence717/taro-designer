@@ -103,7 +103,10 @@ class Config extends Component {
 	render() {
 		return (
 			<section className="config">
-				<header>属性配置区</header>
+				<header>
+					属性配置区
+					{ this.currentConfig ? `（${this.currentConfig.name}）` : '' }
+				</header>
 				<div>
 					{ this.currentConfig ?
 						<>
