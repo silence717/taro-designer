@@ -3,18 +3,21 @@ import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 import Components from '../../components';
-import  store from '../store';
+import store from '../store';
+
+import TargetBox from './targetBox';
+
+import { CONTAINER_COMPONENTS } from './constant';
 
 import './style.less';
 
 @observer
 class Editor extends Component {
-
 	@observable
 	ref = createRef();
 
 	@computed
-	get isShowPlaceholder () {
+	get isShowPlaceholder() {
 		if (this.ref.current) {
 			return this.ref.current.children.length === 0;
 		}
@@ -26,11 +29,9 @@ class Editor extends Component {
 		event.stopPropagation();
 		store.setCurrentId(id);
 		store.setCurrentType(type);
-		store.setCurrentProps();
 	}
 
 	renderContent(data) {
-
 		const { id, type, props, childrens } = data;
 		const { styles = {}, ...others } = props;
 
@@ -39,29 +40,33 @@ class Editor extends Component {
 		let childs = null;
 
 		if (childrens && childrens.length) {
-			childs = childrens.map(child => (
-				this.renderContent(child)
-			));
+			childs = childrens.map(child => this.renderContent(child));
 		}
 
-
-		return <CurrentComponet style={{ ...styles }} {...others} key={id} onClick={ event => this.handleClick({ id, type }, event) }>{ childs }</CurrentComponet>;
-	}
-
-	render () {
-
-		const content = this.renderContent(store.pageData[0]);
+		if (CONTAINER_COMPONENTS.includes(type)) {
+			return (
+				<TargetBox key={id}>
+					<CurrentComponet style={{ ...styles }} {...others} onClick={event => this.handleClick({ id, type }, event)}>
+						{childs}
+					</CurrentComponet>
+				</TargetBox>
+			);
+		}
 
 		return (
+			<CurrentComponet style={{ ...styles }} {...others} key={id} onClick={event => this.handleClick({ id, type }, event)}>
+				{childs}
+			</CurrentComponet>
+		);
+	}
+
+	render() {
+		return (
 			<section className="editor">
-				<>
-					{ this.isShowPlaceholder && <div className="tips">设计区，可拖拽左侧元素到此处，单击元素可编辑属性，蓝色虚线框可放置子组件</div> }
-					<div className="draggable" ref={this.ref}>
-						{ content }
-					</div>
-				</>
+				{this.isShowPlaceholder && <div className="tips">设计区，可拖拽左侧元素到此处，单击元素可编辑属性，蓝色虚线框可放置子组件</div>}
+				<div ref={this.ref}>{this.renderContent(store.pageData[0])}</div>
 			</section>
-		)
+		);
 	}
 }
 

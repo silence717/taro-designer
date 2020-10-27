@@ -1,9 +1,13 @@
 .editor {
 	width: 65%;
-	> div {
-		position: relative;
-		min-height: 300px;
+	position: relative;
+
+	.draggable {
 		border: 1px dashed #4f90d3;
+
+		&.active {
+			border: 1px solid #00aaf1;
+		}
 	}
 
 	.tips {
@@ -14,5 +18,4 @@
 		font-size: 20px;
 		color: #aaa;
 	}
-
 }

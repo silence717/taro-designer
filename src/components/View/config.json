@@ -2,11 +2,6 @@
 	"type": "View",
 	"name": "view布局",
 	"canPlace": true,
-	"props": {
-		"styles": {
-			"minHeight": "200px"
-		}
-	},
 	"config": [
 		{
 			"key": "styles",
