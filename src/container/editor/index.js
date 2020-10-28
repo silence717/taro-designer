@@ -2,7 +2,8 @@ import React, { Component, createRef } from 'react';
 import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
-import Components from '../../components';
+import Components, { CONFIGS } from '@components';
+
 import store from '../store';
 
 import TargetBox from './targetBox';
@@ -42,6 +43,8 @@ class Editor extends Component {
 		if (childrens && childrens.length) {
 			childs = childrens.map(child => this.renderContent(child));
 		}
+
+		console.log(CONFIGS[type]);
 
 		if (CONTAINER_COMPONENTS.includes(type)) {
 			return (

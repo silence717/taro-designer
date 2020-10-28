@@ -1,4 +1,5 @@
 import { observable } from 'mobx';
+import { CONFIGS } from '@components';
 
 // 根据当前组件的id递归查找页面数据中与之匹配的props
 function findData(data, key) {
@@ -81,8 +82,7 @@ class Store {
 	}
 
 	setCurrentConfig() {
-		// eslint-disable-next-line
-		this.currentConfig = require(`../components/${this.currentType}/config.json`);
+		this.currentConfig = CONFIGS[this.currentType];
 	}
 
 	updatePageData(values) {
