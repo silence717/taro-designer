@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
 import { DropTarget } from 'react-dnd';
+import Components from '@components';
 
 const target = {
 	canDrop(props) {
@@ -27,11 +29,25 @@ function collect(connect, monitor) {
 	};
 }
 
-function Box(props) {
-	const { connectDropTarget, isOver, canDrop, children } = props;
-	const isActive = canDrop && isOver;
+class Box extends Component {
+	render() {
+		const { connectDropTarget, isOver, canDrop, type, children, ...rest } = this.props;
+		const isActive = canDrop && isOver;
+		const CurrentComponet = Components[type];
 
-	return connectDropTarget(<div className={`draggable ${isActive ? 'active' : ''}`}>{children}</div>);
+		return (
+			<CurrentComponet
+				className={`draggable ${isActive ? 'active' : ''}`}
+				{...rest}
+				ref={instance => {
+					// eslint-disable-next-line
+					const node = findDOMNode(instance);
+					connectDropTarget(node);
+				}}>
+				{children}
+			</CurrentComponet>
+		);
+	}
 }
 
 export default DropTarget('Card', target, collect)(Box);

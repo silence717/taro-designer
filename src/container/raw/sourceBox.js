@@ -10,16 +10,10 @@ const source = {
 
 	endDrag(props, monitor) {
 		const item = monitor.getItem();
-
-		if (monitor.didDrop()) {
-			props.onEndDrag(item.type);
-		}
-
 		const result = monitor.getDropResult();
-		console.log(result);
 
-		if (result) {
-			props.onEndDrag(item.type);
+		if (monitor.didDrop() && result) {
+			props.onEndDrag(result.id, item.type);
 		}
 	}
 };

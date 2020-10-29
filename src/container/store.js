@@ -1,40 +1,32 @@
 import { observable } from 'mobx';
 import { CONFIGS } from '@components';
 
-// 根据当前组件的id递归查找页面数据中与之匹配的props
-function findData(data, key) {
-	let res = null;
-
-	if (data && data.length) {
-		for (let i = 0; i < data.length; i += 1) {
-			const item = data[i];
-
-			if (item.id === key) {
-				res = item.props;
-				break;
-			} else {
-				res = findData(item.childrens, key);
+// 递归查找当前 id 的数据
+function findItem(dataList, id) {
+	let result = null;
+	dataList.forEach(item => {
+		// eslint-disable-next-line
+		const loop = data => {
+			if (data.id === id) {
+				result = data;
+				return result;
 			}
-		}
-	}
-	return res;
+
+			const childs = data.childrens;
+
+			if (childs) {
+				for (let i = 0; i < childs.length; i += 1) {
+					loop(childs[i]);
+				}
+			}
+		};
+
+		loop(item);
+	});
+
+	return result;
 }
 
-// 根据当前组件的id查找并且替换当前页面的数据
-function findAndReplace(data, key, values) {
-	if (data && data.length) {
-		for (let i = 0; i < data.length; i += 1) {
-			const item = data[i];
-
-			if (item.id === key) {
-				item.props = values;
-				break;
-			} else {
-				findAndReplace(item.childrens, key, values);
-			}
-		}
-	}
-}
 // 初始化页面数据
 const initPageData = [
 	{
@@ -72,8 +64,8 @@ class Store {
 	}
 
 	setCurrentProps() {
-		const item = findData(this.pageData, this.currentId);
-		this.currentProps = item;
+		const item = findItem(this.pageData, this.currentId);
+		this.currentProps = item.props;
 	}
 
 	setCurrentType(value) {
@@ -86,7 +78,27 @@ class Store {
 	}
 
 	updatePageData(values) {
-		findAndReplace(this.pageData, this.currentId, values);
+		const item = findItem(this.pageData, this.currentId);
+		item.props = values;
+		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+	}
+
+	add(targetId, type) {
+		const item = findItem(this.pageData, targetId);
+		const obj = {
+			type,
+			props: CONFIGS[type].props || {}
+		};
+
+		if (item.childrens) {
+			const len = item.childrens.length;
+			const id = `${item.id}-${len + 1}`;
+			obj.id = id;
+			item.childrens.push(obj);
+		} else {
+			obj.id = `${item.id}-1`;
+			item.childrens = [obj];
+		}
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 }

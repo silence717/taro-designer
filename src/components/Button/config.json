@@ -1,6 +1,11 @@
 {
 	"type": "Button",
 	"name": "按钮",
+	"props": {
+		"text": "ok",
+		"size": "default",
+		"theme": "normal"
+	},
 	"config": [
 		{
 			"key": "text",
