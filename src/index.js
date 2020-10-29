@@ -34,9 +34,7 @@ class App extends Component {
 				<section className="container">
 					<DndProvider backend={HTML5Backend}>
 						<Raw />
-						{/* <TargetBox>  */}
 						<Editor />
-						{/* </TargetBox> */}
 						<Config />
 					</DndProvider>
 				</section>

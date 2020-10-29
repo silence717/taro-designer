@@ -3,7 +3,6 @@ import { DragSource } from 'react-dnd';
 
 const source = {
 	beginDrag(props) {
-		console.log(props);
 		return {
 			type: props.type
 		};
@@ -11,8 +10,13 @@ const source = {
 
 	endDrag(props, monitor) {
 		const item = monitor.getItem();
+
+		if (monitor.didDrop()) {
+			props.onEndDrag(item.type);
+		}
+
 		const result = monitor.getDropResult();
-		console.log(item, result);
+		console.log(result);
 
 		if (result) {
 			props.onEndDrag(item.type);
@@ -20,17 +24,16 @@ const source = {
 	}
 };
 
-function collect(connect, monitor) {
+function collect(connect) {
 	return {
-		connectDragSource: connect.dragSource(),
-		isDragging: monitor.isDragging()
+		connectDragSource: connect.dragSource()
 	};
 }
 
-function Single(props) {
-	const { connectDragSource } = props;
+function Box(props) {
+	const { connectDragSource, value } = props;
 
-	return connectDragSource(<span className="raw-item">{props.value}</span>, { dropEffect: 'copy' });
+	return connectDragSource(<span className="raw-item">{value}</span>, { dropEffect: 'copy' });
 }
 
-export default DragSource('Card', source, collect)(Single);
+export default DragSource('Card', source, collect)(Box);

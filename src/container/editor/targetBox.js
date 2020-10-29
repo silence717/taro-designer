@@ -3,25 +3,35 @@ import { DropTarget } from 'react-dnd';
 
 const target = {
 	canDrop(props) {
-		const { canDrop } = props;
-		return typeof canDrop === 'function' ? canDrop() : true;
+		return props.canDrop;
+	},
+
+	drop(props, monitor) {
+		const didDrop = monitor.didDrop();
+
+		if (didDrop && !props.greedy) {
+			return undefined;
+		}
+
+		return {
+			id: props.id
+		};
 	}
 };
 
 function collect(connect, monitor) {
-	// console.log(monitor);
 	return {
 		connectDropTarget: connect.dropTarget(),
-		isOver: monitor.isOver(),
+		isOver: monitor.isOver({ shallow: true }),
 		canDrop: monitor.canDrop()
 	};
 }
 
 function Box(props) {
-	const { connectDropTarget, isOver, canDrop } = props;
+	const { connectDropTarget, isOver, canDrop, children } = props;
 	const isActive = canDrop && isOver;
 
-	return connectDropTarget(<div className={`draggable ${isActive ? 'active' : ''}`}>{props.children}</div>);
+	return connectDropTarget(<div className={`draggable ${isActive ? 'active' : ''}`}>{children}</div>);
 }
 
 export default DropTarget('Card', target, collect)(Box);

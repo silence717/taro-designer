@@ -8,8 +8,6 @@ import store from '../store';
 
 import TargetBox from './targetBox';
 
-import { CONTAINER_COMPONENTS } from './constant';
-
 import './style.less';
 
 @observer
@@ -44,11 +42,11 @@ class Editor extends Component {
 			childs = childrens.map(child => this.renderContent(child));
 		}
 
-		console.log(CONFIGS[type]);
+		const canDrop = CONFIGS[type].canPlace === true;
 
-		if (CONTAINER_COMPONENTS.includes(type)) {
+		if (canDrop) {
 			return (
-				<TargetBox key={id}>
+				<TargetBox key={id} id={id} canDrop={canDrop}>
 					<CurrentComponet style={{ ...styles }} {...others} onClick={event => this.handleClick({ id, type }, event)}>
 						{childs}
 					</CurrentComponet>
