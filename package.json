@@ -12,6 +12,7 @@
 		"build": "npm run webpack -- --env.mode prod"
 	},
 	"dependencies": {
+		"@tarojs/components": "^3.0.15",
 		"axios": "^0.19.0",
 		"classnames": "^2.2.6",
 		"cloud-react": "^0.0.79-2",
