@@ -4,7 +4,7 @@
 	"props": {
 		"text": "ok",
 		"size": "default",
-		"theme": "normal"
+		"type": "default"
 	},
 	"config": [
 		{
@@ -13,44 +13,51 @@
 			"label": "文案"
 		},
 		{
-			"key": "theme",
-			"type": "Select",
-			"label": "主题",
-			"dataSource": [
-				{
-					"label": "primary",
-					"value": "primary"
-				},
-				{
-					"label": "dashed",
-					"value": "dashed"
-				},
-				{
-					"label": "normal",
-					"value": "normal"
-				},
-				{
-					"label": "link",
-					"value": "link"
-				}
-			]
-		},
-		{
 			"key": "size",
 			"type": "Select",
-			"label": "大小",
-			"dataSource":  [
+			"label": "尺寸",
+			"dataSource": [
 				{
 					"label": "default",
 					"value": "default"
 				},
 				{
-					"label": "large",
-					"value": "large"
+					"label": "mini",
+					"value": "mini"
+				}
+			]
+		},
+		{
+			"key": "type",
+			"type": "Select",
+			"label": "主题",
+			"dataSource": [
+				{
+					"label": "default",
+					"value": "default"
 				},
 				{
-					"label": "small",
-					"value": "small"
+					"label": "primary",
+					"value": "primary"
+				},
+				{
+					"label": "warn",
+					"value": "warn"
+				}
+			]
+		},
+		{
+			"key": "plain",
+			"type": "Select",
+			"label": "是否镂空",
+			"dataSource": [
+				{
+					"label": "是",
+					"value": true
+				},
+				{
+					"label": "否",
+					"value": false
 				}
 			]
 		},
@@ -68,10 +75,6 @@
 					"type": "Spacing"
 				}
 			]
-
 		}
 	]
 }
-
-
-
