@@ -60,7 +60,6 @@ class Store {
 
 	setCurrentId(value) {
 		this.currentId = value;
-		this.setCurrentProps();
 	}
 
 	setCurrentProps() {

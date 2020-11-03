@@ -3,11 +3,29 @@
 	"name": "view布局",
 	"canPlace": true,
 	"props": {
+		"hoverClass": "none",
+		"hoverStartTime": 50,
+		"hoverStayTime": 400,
 		"styles": {
 			"minHeight": "100px"
 		}
 	},
 	"config": [
+		{
+			"key": "hoverClass",
+			"label": "指定按下去的样式类",
+			"type": "Input"
+		},
+		{
+			"key": "hoverStartTime",
+			"label": "按住后多久出现点击态，单位毫秒",
+			"type": "InputNumber"
+		},
+		{
+			"key": "hoverStayTime",
+			"label": "手指松开后点击态保留时间，单位毫秒",
+			"type": "InputNumber"
+		},
 		{
 			"key": "styles",
 			"childs": [

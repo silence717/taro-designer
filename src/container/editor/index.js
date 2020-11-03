@@ -3,9 +3,9 @@ import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 import Components, { CONFIGS } from '@components';
+import { parseStyles } from '@utils';
 
 import store from '../store';
-
 import TargetBox from './targetBox';
 
 import './style.less';
@@ -27,12 +27,13 @@ class Editor extends Component {
 	handleClick({ id, type }, event) {
 		event.stopPropagation();
 		store.setCurrentId(id);
+		store.setCurrentProps();
 		store.setCurrentType(type);
 	}
 
 	renderContent(data) {
 		const { id, type, props = {}, childrens } = data;
-		const { styles = {}, ...others } = props;
+		const { styles = null, otherStyle = '', ...others } = props;
 
 		const CurrentComponet = Components[type];
 
@@ -51,7 +52,7 @@ class Editor extends Component {
 					id={id}
 					canDrop={canDrop}
 					type={type}
-					style={{ ...styles }}
+					style={{ ...styles, ...parseStyles(otherStyle) }}
 					{...others}
 					onClick={event => this.handleClick({ id, type }, event)}>
 					{childs}
@@ -60,7 +61,12 @@ class Editor extends Component {
 		}
 
 		return (
-			<CurrentComponet style={{ ...styles }} {...others} key={id} onClick={event => this.handleClick({ id, type }, event)}>
+			<CurrentComponet
+				key={id}
+				id={id}
+				style={{ ...styles, ...parseStyles(otherStyle) }}
+				{...others}
+				onClick={event => this.handleClick({ id, type }, event)}>
 				{childs}
 			</CurrentComponet>
 		);

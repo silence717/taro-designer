@@ -104,12 +104,12 @@
 		},
 		{
 			"key": "hoverStartTime",
-			"type": "Input",
+			"type": "InputNumber",
 			"label": "按住后多久出现点击态，单位毫秒"
 		},
 		{
 			"key": "hoverStayTime",
-			"type": "Input",
+			"type": "InputNumber",
 			"label": "手指松开后点击态保留时间，单位毫秒"
 		},
 		{

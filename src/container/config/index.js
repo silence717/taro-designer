@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { action, observe } from 'mobx';
-import { Button, Field, Form, Input, Select, Tips } from 'cloud-react';
+import { Button, Field, Form, Input, InputNumber, Select, Tips } from 'cloud-react';
+import { CONFIGS } from '@components';
+
 import Spacing from './Spacing';
 import store from '../store';
 
@@ -13,7 +15,7 @@ class Config extends Component {
 
 	componentDidMount() {
 		// 切换组件的时候，form表单虽然重新渲染了，但是 filed 里面存在的值并没有清除，因此需要手动获取一下所有的 names，然后保证数据渲染的准确性
-		observe(store, 'currentId', () => {
+		observe(store, 'currentProps', () => {
 			const names = Object.keys(this.filed.getValues());
 			this.filed.remove(names);
 		});
@@ -49,16 +51,22 @@ class Config extends Component {
 		// 为了保证每一个 Form.Item 的 name 唯一性，我们使用 `key-id` 的形式作为 name，如果为样式的话，增加一个 styles_ 前缀，使得好分割，保证数据更新准确
 		const name = isStyle ? `styles_${item.key}-${store.currentId}` : `${item.key}-${store.currentId}`;
 		const value = isStyle ? (store.currentProps.styles && store.currentProps.styles[item.key]) || '' : store.currentProps[item.key];
+		const defaultValue = CONFIGS[store.currentType].props[item.key];
+
 		const options = {
-			initValue: value,
+			initValue: value || defaultValue,
 			onChange: this.handleFormChange
 		};
 
 		switch (item.type) {
 			case 'Input':
 				return <Input {...init(name, options)} />;
+			case 'InputNumber':
+				return <InputNumber {...init(name, options)} />;
+			case 'Textarea':
+				return <Input.Textarea rows={4} {...init(name, options)} />;
 			case 'Select':
-				return <Select style={{ width: '250px' }} dataSource={item.dataSource} {...init(name, options)} />;
+				return <Select dataSource={item.dataSource} {...init(name, options)} />;
 			case 'Spacing':
 				return <Spacing {...init(name, options)} value={value} />;
 			default:

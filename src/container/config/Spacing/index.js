@@ -4,7 +4,6 @@ import { Input } from 'cloud-react';
 import { noop } from '@utils';
 
 export default function Spacing(props) {
-
 	const { value, onChange } = props;
 	const [top, setTop] = useState('0px');
 	const [right, setRight] = useState('0px');
@@ -26,45 +25,54 @@ export default function Spacing(props) {
 				setLeft(props.value);
 			}
 		}
-	}, [props.value])
+	}, [props.value]);
 
 	const handleTopChange = event => {
 		const topValue = event.target.value;
 		setTop(topValue);
 		onChange([topValue, right, bottom, left].join(' '));
-	}
+	};
 
 	const handleRightChange = event => {
 		const rightValue = event.target.value;
 		setRight(rightValue);
 		onChange([top, rightValue, bottom, left].join(' '));
-	}
+	};
 
 	const handleBottomChange = event => {
 		const bottomValue = event.target.value;
 		setBottom(bottomValue);
 		onChange([top, right, bottomValue, left].join(' '));
-	}
+	};
 
 	const handleLeftChange = event => {
 		const leftValue = event.target.value;
 		setLeft(leftValue);
 		onChange([top, right, bottom, leftValue].join(' '));
-	}
+	};
+
+	const style = {
+		width: '45px',
+		marginRight: '5px'
+	};
 
 	return (
-		<div>
-			上：<Input style={{ width: '50px' }} value={top} onChange={handleTopChange} />
-			右：<Input style={{ width: '50px' }} value={right} onChange={handleRightChange} />
-			下：<Input style={{ width: '50px' }} value={bottom} onChange={handleBottomChange} />
-			左：<Input style={{ width: '50px' }} value={left} onChange={handleLeftChange} />
-		</div>
-	)
+		<>
+			上：
+			<Input style={style} value={top} onChange={handleTopChange} />
+			右：
+			<Input style={style} value={right} onChange={handleRightChange} />
+			下：
+			<Input style={style} value={bottom} onChange={handleBottomChange} />
+			左：
+			<Input style={style} value={left} onChange={handleLeftChange} />
+		</>
+	);
 }
 
 Spacing.propTypes = {
 	value: PropTypes.string,
-	onChange: PropTypes.func,
+	onChange: PropTypes.func
 };
 
 Spacing.defaultProps = {
