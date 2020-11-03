@@ -13,10 +13,15 @@
 			"childs": [
 				{
 					"key": "margin",
-					"type": "Input",
+					"type": "Spacing",
 					"label": "外边距"
 				}
 			]
+		},
+		{
+			"key": "otherStyle",
+			"label": "css样式",
+			"type": "Textarea"
 		}
 	]
 }
