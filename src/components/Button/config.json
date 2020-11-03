@@ -4,7 +4,13 @@
 	"props": {
 		"text": "ok",
 		"size": "default",
-		"type": "default"
+		"type": "default",
+		"plain": false,
+		"disabled": false,
+		"loading": false,
+		"hoverClass": "none",
+		"hoverStartTime": 20,
+		"hoverStayTime": 70
 	},
 	"config": [
 		{
@@ -60,6 +66,51 @@
 					"value": false
 				}
 			]
+		},
+		{
+			"key": "disabled",
+			"type": "Select",
+			"label": "是否禁用",
+			"dataSource": [
+				{
+					"label": "是",
+					"value": true
+				},
+				{
+					"label": "否",
+					"value": false
+				}
+			]
+		},
+		{
+			"key": "loading",
+			"type": "Select",
+			"label": "是否带 loading 图标",
+			"dataSource": [
+				{
+					"label": "是",
+					"value": true
+				},
+				{
+					"label": "否",
+					"value": false
+				}
+			]
+		},
+		{
+			"key": "hoverClass",
+			"type": "Input",
+			"label": "指定按下去的样式类"
+		},
+		{
+			"key": "hoverStartTime",
+			"type": "Input",
+			"label": "按住后多久出现点击态，单位毫秒"
+		},
+		{
+			"key": "hoverStayTime",
+			"type": "Input",
+			"label": "手指松开后点击态保留时间，单位毫秒"
 		},
 		{
 			"key": "styles",
