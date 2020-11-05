@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { action, observe } from 'mobx';
+
 import { Button, Field, Form, Input, InputNumber, Select, Tips } from 'cloud-react';
 import { CONFIGS } from '@components';
 
@@ -92,6 +93,11 @@ class Config extends Component {
 		return styles.map((item, index) => this.renderItem(`${parentIndex}-${index}`, item, true));
 	}
 
+	handleGenerate = () => {
+		console.log(123);
+		console.log(React.createElement('View', null, {}));
+	};
+
 	render() {
 		return (
 			<section className="config">
@@ -109,6 +115,9 @@ class Config extends Component {
 						<Tips msg="请选择要编辑的元素" type="major" />
 					)}
 				</div>
+				<Button type="primary" onClick={this.handleGenerate}>
+					生成代码
+				</Button>
 			</section>
 		);
 	}
