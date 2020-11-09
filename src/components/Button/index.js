@@ -5,13 +5,13 @@ import { noop } from '@utils';
 
 export default class Button1 extends Component {
 	render() {
-		const { text, ...othersProps } = this.props;
-		return <Button {...othersProps}>{text}</Button>;
+		const { content, ...othersProps } = this.props;
+		return <Button {...othersProps}>{content}</Button>;
 	}
 }
 
 Button1.propTypes = {
-	text: PropTypes.string,
+	content: PropTypes.string,
 	size: PropTypes.string,
 	type: PropTypes.string,
 	hoverClass: PropTypes.string,
@@ -24,7 +24,7 @@ Button1.propTypes = {
 };
 
 Button1.defaultProps = {
-	text: 'ok',
+	content: 'ok',
 	size: 'default',
 	type: 'default',
 	hoverClass: 'none',

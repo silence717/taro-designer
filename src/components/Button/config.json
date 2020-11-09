@@ -2,7 +2,7 @@
 	"type": "Button",
 	"name": "按钮",
 	"props": {
-		"text": "ok",
+		"content": "ok",
 		"size": "default",
 		"type": "default",
 		"plain": false,
@@ -14,7 +14,7 @@
 	},
 	"config": [
 		{
-			"key": "text",
+			"key": "content",
 			"type": "Input",
 			"label": "文案"
 		},
