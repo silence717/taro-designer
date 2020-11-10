@@ -1,13 +1,24 @@
+const fs = require('fs');
+const path = require('path');
+
+const sourcePath = path.join(__dirname, '../src/generator/template.jsx');
+const targetPath = path.join(__dirname, '../output/taro.jsx');
+
 module.exports = router => {
+	router.post('/generate', (req, res) => {
+		const { types, contents } = req.body;
+		const template = fs.readFileSync(sourcePath);
+		const targetTemplate = template
+			.toString()
+			.replace('generateComponents', types)
+			.replace('JSONtoJsx', contents);
 
-	console.log(router);
-
-	router.get('/user/:id', (req, res) => {
-		res.status(200).json({
-			id: 1,
-			name: 'Silence',
-			avatar: 'https://tva2.sinaimg.cn/crop.0.15.750.750.180/7519e0e4jw8fd1xvl53brj20ku0lp3za.jpg?KID=imgbed,tva&Expires=1572523216&ssig=rl4XjRNXRY',
-			age: 18
-		})
+		fs.writeFileSync(targetPath, targetTemplate, { encoding: 'utf8' }, error => {
+			if (error) {
+				console.log(error);
+				throw error;
+			}
+			res.status(200).json({ res: 'ok' });
+		});
 	});
-}
+};

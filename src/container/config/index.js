@@ -4,7 +4,9 @@ import { action, observe } from 'mobx';
 
 import { Button, Field, Form, Input, InputNumber, Select, Tips } from 'cloud-react';
 import { CONFIGS } from '@components';
+import { http } from '@utils';
 
+import renderJSONtoJSX from '../../generator';
 import Spacing from './Spacing';
 import store from '../store';
 
@@ -93,9 +95,12 @@ class Config extends Component {
 		return styles.map((item, index) => this.renderItem(`${parentIndex}-${index}`, item, true));
 	}
 
-	handleGenerate = () => {
-		console.log(123);
-		console.log(React.createElement('View', null, {}));
+	handleGenerate = async () => {
+		const { types, jsx } = renderJSONtoJSX(store.pageData);
+		await http.post('/generate', {
+			types: Array.from(new Set(types)).join(', '),
+			contents: jsx
+		});
 	};
 
 	render() {

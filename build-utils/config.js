@@ -4,8 +4,8 @@
  * @Description [mock server config]
  */
 
- // 标记连接本地环境或者其它
-const isLocal = false;
+// 标记连接本地环境或者其它
+const isLocal = true;
 const host = '127.0.0.1';
 const port = 4000;
 
