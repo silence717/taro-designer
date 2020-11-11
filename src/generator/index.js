@@ -4,6 +4,7 @@ let jsx = '';
 function renderProps(props) {
 	let str = '';
 	let hasHandleCss = false;
+
 	Object.keys(props).forEach(key => {
 		if (key !== 'styles' && key !== 'otherStyle') {
 			const value = props[key];
@@ -39,6 +40,7 @@ function renderProps(props) {
 			}
 		}
 	});
+
 	return str;
 }
 
@@ -49,9 +51,11 @@ function renderElementToJSX(data) {
 		jsx += renderProps(item.props);
 		jsx += '>\n';
 		const childrens = item.childrens ? renderElementToJSX(item.childrens) : '';
+		console.log(childrens);
 		jsx += item.props.content ? item.props.content : childrens;
 		jsx += `\n</${item.type}>\n`;
 	});
+	return '';
 }
 
 export default function renderJSONtoJSX(data) {
