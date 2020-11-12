@@ -54,7 +54,7 @@ class Config extends Component {
 		// 为了保证每一个 Form.Item 的 name 唯一性，我们使用 `key-id` 的形式作为 name，如果为样式的话，增加一个 styles_ 前缀，使得好分割，保证数据更新准确
 		const name = isStyle ? `styles_${item.key}-${store.currentId}` : `${item.key}-${store.currentId}`;
 		const value = isStyle ? (store.currentProps.styles && store.currentProps.styles[item.key]) || '' : store.currentProps[item.key];
-		const defaultValue = CONFIGS[store.currentType].props[item.key];
+		const defaultValue = CONFIGS[store.currentType].defaultProps[item.key];
 
 		const options = {
 			initValue: value || defaultValue,

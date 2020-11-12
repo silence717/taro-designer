@@ -1,7 +1,7 @@
 {
 	"type": "Button",
 	"name": "按钮",
-	"props": {
+	"defaultProps": {
 		"content": "ok",
 		"size": "default",
 		"type": "default",

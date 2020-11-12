@@ -2,7 +2,7 @@
 	"type": "View",
 	"name": "view布局",
 	"canPlace": true,
-	"props": {
+	"defaultProps": {
 		"hoverClass": "none",
 		"hoverStartTime": 50,
 		"hoverStayTime": 400,

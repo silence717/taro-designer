@@ -1,42 +1,48 @@
+import { CONFIGS } from '@components';
+
 const types = [];
 let jsx = '';
 
-function renderProps(props) {
+function renderProps(props, currentType) {
 	let str = '';
 	let hasHandleCss = false;
 
 	Object.keys(props).forEach(key => {
-		if (key !== 'styles' && key !== 'otherStyle') {
-			const value = props[key];
-			if (typeof value === 'number' || typeof value === 'boolean') {
-				str += ` ${key}={${value}}\n`;
-			}
-			if (typeof value === 'string' && !!value) {
-				str += ` ${key}="${value}"\n`;
-			}
-		} else {
-			if (hasHandleCss) return;
+		const value = props[key];
+		const defaultValue = CONFIGS[currentType].defaultProps[key];
 
-			hasHandleCss = true;
-
-			const { styles } = props;
-			let styleStr = '';
-
-			if (Object.keys(styles).length) {
-				Object.keys(styles).forEach(k => {
-					if (styles[k]) {
-						styleStr += `${k}: '${styles[k]}',`;
-					}
-				});
-
-				if (props.otherStyle) {
-					styleStr += props.otherStyle.replace(';', ',');
+		if (value !== defaultValue) {
+			if (key !== 'styles' && key !== 'otherStyle') {
+				if (typeof value === 'number' || typeof value === 'boolean') {
+					str += ` ${key}={${value}}\n`;
 				}
-				styleStr = styleStr.substr(0, styleStr.length - 1);
-			}
+				if (typeof value === 'string' && !!value) {
+					str += ` ${key}="${value}"\n`;
+				}
+			} else {
+				if (hasHandleCss) return;
 
-			if (styleStr.length) {
-				str += ` style={{${styleStr}}}\n`;
+				hasHandleCss = true;
+
+				const { styles } = props;
+				let styleStr = '';
+
+				if (Object.keys(styles).length) {
+					Object.keys(styles).forEach(k => {
+						if (styles[k]) {
+							styleStr += `${k}: '${styles[k]}',`;
+						}
+					});
+
+					if (props.otherStyle) {
+						styleStr += props.otherStyle.replace(';', ',');
+					}
+					styleStr = styleStr.substr(0, styleStr.length - 1);
+				}
+
+				if (styleStr.length) {
+					str += ` style={{${styleStr}}}\n`;
+				}
 			}
 		}
 	});
@@ -48,10 +54,9 @@ function renderElementToJSX(data) {
 	data.forEach(item => {
 		types.push(item.type);
 		jsx += `<${item.type}`;
-		jsx += renderProps(item.props);
+		jsx += renderProps(item.props, item.type);
 		jsx += '>\n';
 		const childrens = item.childrens ? renderElementToJSX(item.childrens) : '';
-		console.log(childrens);
 		jsx += item.props.content ? item.props.content : childrens;
 		jsx += `\n</${item.type}>\n`;
 	});
