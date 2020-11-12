@@ -1,4 +1,5 @@
 export default function parseStyles(styles) {
+	if (!styles) return {};
 	return styles
 		.split(';')
 		.filter(style => style.split(':')[0] && style.split(':')[1])

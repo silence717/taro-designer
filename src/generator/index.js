@@ -2,47 +2,23 @@ import { CONFIGS } from '@components';
 
 const types = [];
 let jsx = '';
+let css = '';
 
 function renderProps(props, currentType) {
 	let str = '';
-	let hasHandleCss = false;
+
+	if (!props) return str;
 
 	Object.keys(props).forEach(key => {
 		const value = props[key];
 		const defaultValue = CONFIGS[currentType].defaultProps[key];
 
-		if (value !== defaultValue) {
-			if (key !== 'styles' && key !== 'otherStyle') {
-				if (typeof value === 'number' || typeof value === 'boolean') {
-					str += ` ${key}={${value}}\n`;
-				}
-				if (typeof value === 'string' && !!value) {
-					str += ` ${key}="${value}"\n`;
-				}
-			} else {
-				if (hasHandleCss) return;
-
-				hasHandleCss = true;
-
-				const { styles } = props;
-				let styleStr = '';
-
-				if (Object.keys(styles).length) {
-					Object.keys(styles).forEach(k => {
-						if (styles[k]) {
-							styleStr += `${k}: '${styles[k]}',`;
-						}
-					});
-
-					if (props.otherStyle) {
-						styleStr += props.otherStyle.replace(';', ',');
-					}
-					styleStr = styleStr.substr(0, styleStr.length - 1);
-				}
-
-				if (styleStr.length) {
-					str += ` style={{${styleStr}}}\n`;
-				}
+		if (key !== 'content' && key !== 'styles' && value !== defaultValue) {
+			if (typeof value === 'number' || typeof value === 'boolean') {
+				str += ` ${key}={${value}}`;
+			}
+			if (typeof value === 'string' && !!value) {
+				str += ` ${key}="${value}"`;
 			}
 		}
 	});
@@ -50,14 +26,23 @@ function renderProps(props, currentType) {
 	return str;
 }
 
+function renderCss(props) {
+	if (!props) return;
+	const { styles = '', className = '' } = props;
+	if (styles && className) {
+		css += `.${props.className} {\n${props.styles}\n}`;
+	}
+}
+
 function renderElementToJSX(data) {
 	data.forEach(item => {
 		types.push(item.type);
+		renderCss(item.props);
 		jsx += `<${item.type}`;
 		jsx += renderProps(item.props, item.type);
 		jsx += '>\n';
 		const childrens = item.childrens ? renderElementToJSX(item.childrens) : '';
-		jsx += item.props.content ? item.props.content : childrens;
+		jsx += item.props?.content ? item.props.content : childrens;
 		jsx += `\n</${item.type}>\n`;
 	});
 	return '';
@@ -65,5 +50,9 @@ function renderElementToJSX(data) {
 
 export default function renderJSONtoJSX(data) {
 	renderElementToJSX(data);
-	return { jsx, types };
+	return {
+		types: Array.from(new Set(types)).join(', '),
+		jsx,
+		css
+	};
 }

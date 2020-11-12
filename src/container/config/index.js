@@ -30,30 +30,18 @@ class Config extends Component {
 		// 需要对得到的值进行处理，去除掉当前的 id，更新到 props 里面
 		const newValues = Object.keys(values).reduce((data, key) => {
 			const newKey = key.split('-')[0];
-
-			if (newKey.includes('_')) {
-				const styleKey = newKey.split('_')[1];
-				if (!data.styles) {
-					data.styles = {
-						[styleKey]: values[key]
-					};
-				} else {
-					data.styles[styleKey] = values[key];
-				}
-			} else {
-				data[newKey] = values[key];
-			}
+			data[newKey] = values[key];
 			return data;
 		}, {});
 
 		store.updatePageData(newValues);
 	}
 
-	renderByType(item, isStyle) {
+	renderByType(item) {
 		const { init } = this.filed;
 		// 为了保证每一个 Form.Item 的 name 唯一性，我们使用 `key-id` 的形式作为 name，如果为样式的话，增加一个 styles_ 前缀，使得好分割，保证数据更新准确
-		const name = isStyle ? `styles_${item.key}-${store.currentId}` : `${item.key}-${store.currentId}`;
-		const value = isStyle ? (store.currentProps.styles && store.currentProps.styles[item.key]) || '' : store.currentProps[item.key];
+		const name = `${item.key}-${store.currentId}`;
+		const value = store.currentProps[item.key];
 		const defaultValue = CONFIGS[store.currentType].defaultProps[item.key];
 
 		const options = {
@@ -77,29 +65,20 @@ class Config extends Component {
 		}
 	}
 
-	renderItem(index, item, isStyle) {
-		return (
-			<Form.Item key={index} label={item.label}>
-				{this.renderByType(item, isStyle)}
-			</Form.Item>
-		);
-	}
-
 	renderContent() {
-		return store.currentConfig.config.map((item, index) =>
-			item.key === 'styles' ? this.renderStyle(index, item.childs) : this.renderItem(index, item, false)
-		);
-	}
-
-	renderStyle(parentIndex, styles) {
-		return styles.map((item, index) => this.renderItem(`${parentIndex}-${index}`, item, true));
+		return store.currentConfig.config.map((item, index) => (
+			<Form.Item key={index} label={item.label}>
+				{this.renderByType(item)}
+			</Form.Item>
+		));
 	}
 
 	handleGenerate = async () => {
-		const { types, jsx } = renderJSONtoJSX(store.pageData);
+		const { types, jsx, css } = renderJSONtoJSX(store.pageData);
 		await http.post('/generate', {
-			types: Array.from(new Set(types)).join(', '),
-			contents: jsx
+			types,
+			contents: jsx,
+			css
 		});
 	};
 

@@ -10,7 +10,9 @@
 		"loading": false,
 		"hoverClass": "none",
 		"hoverStartTime": 20,
-		"hoverStayTime": 70
+		"hoverStayTime": 70,
+		"className": "",
+		"styles": ""
 	},
 	"config": [
 		{
@@ -113,19 +115,14 @@
 			"label": "手指松开后点击态保留时间，单位毫秒"
 		},
 		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
 			"key": "styles",
-			"childs": [
-				{
-					"key": "width",
-					"label": "宽度",
-					"type": "Input"
-				},
-				{
-					"key": "margin",
-					"label": "外间距",
-					"type": "Spacing"
-				}
-			]
+			"label": "css样式（每个样式以；结束，换行书写下一个）",
+			"type": "Textarea"
 		}
 	]
 }

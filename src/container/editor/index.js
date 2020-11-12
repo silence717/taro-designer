@@ -33,7 +33,7 @@ class Editor extends Component {
 
 	renderContent(data) {
 		const { id, type, props = {}, childrens } = data;
-		const { styles = null, otherStyle = '', ...others } = props;
+		const { styles = '', ...others } = props;
 
 		const CurrentComponet = Components[type];
 
@@ -52,7 +52,7 @@ class Editor extends Component {
 					id={id}
 					canDrop={canDrop}
 					type={type}
-					style={{ ...styles, ...parseStyles(otherStyle) }}
+					style={{ ...parseStyles(styles) }}
 					{...others}
 					onClick={event => this.handleClick({ id, type }, event)}>
 					{childs}
@@ -61,12 +61,7 @@ class Editor extends Component {
 		}
 
 		return (
-			<CurrentComponet
-				key={id}
-				id={id}
-				style={{ ...styles, ...parseStyles(otherStyle) }}
-				{...others}
-				onClick={event => this.handleClick({ id, type }, event)}>
+			<CurrentComponet key={id} id={id} style={{ ...parseStyles(styles) }} {...others} onClick={event => this.handleClick({ id, type }, event)}>
 				{childs}
 			</CurrentComponet>
 		);

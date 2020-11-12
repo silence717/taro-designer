@@ -1,10 +1,10 @@
 /* eslint-disable */
-import Taro from '@tarojs/taro';
-import { observer } from '@tarojs/mobx';
+import React, { Component } from 'react';
 import { generateComponents } from '@tarojs/components';
 
-@observer
-class TemplateComponent extends Taro.Component {
+import './index.less';
+
+class TemplateComponent extends Component {
 	render() {
 		return JSONtoJsx;
 	}

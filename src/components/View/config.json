@@ -6,9 +6,8 @@
 		"hoverClass": "none",
 		"hoverStartTime": 50,
 		"hoverStayTime": 400,
-		"styles": {
-			"minHeight": "100px"
-		}
+		"className": "",
+		"styles": ""
 	},
 	"config": [
 		{
@@ -37,8 +36,13 @@
 			]
 		},
 		{
-			"key": "otherStyle",
-			"label": "css样式",
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
 			"type": "Textarea"
 		}
 	]
