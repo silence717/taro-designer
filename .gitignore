@@ -25,4 +25,4 @@ yarn-error.log*
 
 # webpack default dist folder
 dist/
-output/taro.jsx
+output/

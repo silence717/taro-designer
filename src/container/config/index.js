@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { action, observe } from 'mobx';
+import JSZip from 'jszip';
 
-import { Button, Field, Form, Input, InputNumber, Select, Tips } from 'cloud-react';
+import { Button, Field, Form, Input, InputNumber, Radio, Select, Tips } from 'cloud-react';
 import { CONFIGS } from '@components';
 import { http } from '@utils';
 
@@ -27,6 +28,7 @@ class Config extends Component {
 	@action.bound
 	handleFormChange() {
 		const values = this.filed.getValues();
+		console.log(values);
 		// 需要对得到的值进行处理，去除掉当前的 id，更新到 props 里面
 		const newValues = Object.keys(values).reduce((data, key) => {
 			const newKey = key.split('-')[0];
@@ -58,6 +60,13 @@ class Config extends Component {
 				return <Input.Textarea rows={4} {...init(name, options)} />;
 			case 'Select':
 				return <Select dataSource={item.dataSource} {...init(name, options)} />;
+			case 'Radio':
+				return (
+					<Radio.Group {...init(name, options)}>
+						<Radio value>是</Radio>
+						<Radio value={false}>否</Radio>
+					</Radio.Group>
+				);
 			case 'Spacing':
 				return <Spacing {...init(name, options)} value={value} />;
 			default:
@@ -82,6 +91,21 @@ class Config extends Component {
 		});
 	};
 
+	handleDownload = async () => {
+		const { data } = await http('/download');
+		const zip = new JSZip();
+		await zip.loadAsync(data, { base64: true });
+		const blob = await zip.generateAsync({ type: 'blob' });
+		const url = window.URL.createObjectURL(blob);
+
+		const link = document.createElement('a');
+		link.setAttribute('href', url);
+		link.setAttribute('download', 'code.zip');
+		document.body.appendChild(link);
+		link.click();
+		link.remove();
+	};
+
 	render() {
 		return (
 			<section className="config">
@@ -99,8 +123,11 @@ class Config extends Component {
 						<Tips msg="请选择要编辑的元素" type="major" />
 					)}
 				</div>
-				<Button type="primary" onClick={this.handleGenerate}>
+				<Button type="primary" onClick={this.handleGenerate} style={{ marginRight: '20px' }}>
 					生成代码
+				</Button>
+				<Button type="primary" onClick={this.handleDownload}>
+					下载源代码
 				</Button>
 			</section>
 		);
