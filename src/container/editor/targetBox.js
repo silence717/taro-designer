@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
+import classnames from 'classnames';
 import { DropTarget } from 'react-dnd';
 import Components from '@components';
 
 const target = {
-	canDrop(props) {
-		return props.canDrop;
-	},
-
 	drop(props, monitor) {
 		const didDrop = monitor.didDrop();
 
@@ -24,20 +21,21 @@ const target = {
 function collect(connect, monitor) {
 	return {
 		connectDropTarget: connect.dropTarget(),
-		isOver: monitor.isOver({ shallow: true }),
-		canDrop: monitor.canDrop()
+		isOver: monitor.isOver({ shallow: true })
 	};
 }
 
 class Box extends Component {
 	render() {
-		const { connectDropTarget, isOver, canDrop, type, children, ...rest } = this.props;
-		const isActive = canDrop && isOver;
+		const { connectDropTarget, isOver, type, className, children, ...rest } = this.props;
 		const CurrentComponet = Components[type];
+		const classes = classnames('draggable', className, {
+			active: isOver
+		});
 
 		return (
 			<CurrentComponet
-				className={`draggable ${isActive ? 'active' : ''}`}
+				className={classes}
 				{...rest}
 				ref={instance => {
 					// eslint-disable-next-line

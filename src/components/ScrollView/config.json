@@ -1,0 +1,70 @@
+{
+	"type": "ScrollView",
+	"name": "可滚动视图区域",
+	"canPlace": true,
+	"defaultProps": {
+		"scrollX": false,
+		"scrollY": false,
+		"upperThreshold": 50,
+		"lowerThreshold": 50,
+		"scrollTop": "",
+		"scrollLeft": "",
+		"hoverClass": "none",
+		"scrollIntoView": "",
+		"scrollWithAnimation": false,
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "scrollX",
+			"type": "Radio",
+			"label": "允许横向滚动"
+		},
+		{
+			"key": "scrollY",
+			"type": "Radio",
+			"label": "允许纵向滚动"
+		},
+		{
+			"key": "upperThreshold",
+			"type": "InputNumber",
+			"label": "距顶部/左边多远时(单位px)，触发scrolltoupper事件"
+		},
+		{
+			"key": "lowerThreshold",
+			"type": "InputNumber",
+			"label": "距底部/右边多远时(单位px)，触发scrolltolower事件"
+		},
+		{
+			"key": "scrollTop",
+			"type": "InputNumber",
+			"label": "设置竖向滚动条位置"
+		},
+		{
+			"key": "scrollLeft",
+			"type": "InputNumber",
+			"label": "设置横向滚动条位置"
+		},
+		{
+			"key": "scrollIntoView",
+			"type": "Input",
+			"label": "设置哪个方向可滚动，则在哪个方向滚动到该元素"
+		},
+		{
+			"key": "scrollWithAnimation",
+			"type": "Radio",
+			"label": "在设置滚动条位置时使用动画过渡"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式（每个样式以；结束，换行书写下一个）",
+			"type": "Textarea"
+		}
+	]
+}

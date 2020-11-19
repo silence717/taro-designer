@@ -47,14 +47,7 @@ class Editor extends Component {
 
 		if (canDrop) {
 			return (
-				<TargetBox
-					key={id}
-					id={id}
-					canDrop={canDrop}
-					type={type}
-					style={{ ...parseStyles(styles) }}
-					{...others}
-					onClick={event => this.handleClick({ id, type }, event)}>
+				<TargetBox key={id} id={id} type={type} style={{ ...parseStyles(styles) }} {...others} onClick={event => this.handleClick({ id, type }, event)}>
 					{childs}
 				</TargetBox>
 			);
