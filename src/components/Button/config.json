@@ -56,48 +56,18 @@
 		},
 		{
 			"key": "plain",
-			"type": "Select",
-			"label": "是否镂空",
-			"dataSource": [
-				{
-					"label": "是",
-					"value": true
-				},
-				{
-					"label": "否",
-					"value": false
-				}
-			]
+			"type": "Radio",
+			"label": "是否镂空"
 		},
 		{
 			"key": "disabled",
-			"type": "Select",
-			"label": "是否禁用",
-			"dataSource": [
-				{
-					"label": "是",
-					"value": true
-				},
-				{
-					"label": "否",
-					"value": false
-				}
-			]
+			"type": "Radio",
+			"label": "是否禁用"
 		},
 		{
 			"key": "loading",
-			"type": "Select",
-			"label": "是否带 loading 图标",
-			"dataSource": [
-				{
-					"label": "是",
-					"value": true
-				},
-				{
-					"label": "否",
-					"value": false
-				}
-			]
+			"type": "Radio",
+			"label": "是否带 loading 图标"
 		},
 		{
 			"key": "hoverClass",
