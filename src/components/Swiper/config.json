@@ -1,0 +1,93 @@
+{
+	"type": "Swiper",
+	"name": "滑块视图容器（其中只可放置 swiper-item 组件）",
+	"canPlace": true,
+	"defaultProps": {
+		"indicatorDots": false,
+		"indicatorColor": "rgba(0, 0, 0, .3)",
+		"indicatorActiveColor": "#000000",
+		"autoplay": false,
+		"current": 0,
+		"interval": 5000,
+		"duration": 500,
+		"circular": false,
+		"vertical": false,
+		"previousMargin": "0px",
+		"nextMargin": "0px",
+		"displayMultipleItems": 1,
+		"className": "",
+		"styles": "height: 100px;padding:20px;"
+	},
+	"config": [
+		{
+			"key": "indicatorDots",
+			"type": "Radio",
+			"label": "是否显示面板指示点"
+		},
+		{
+			"key": "indicatorColor",
+			"type": "Input",
+			"label": "指示点颜色"
+		},
+		{
+			"key": "indicatorActiveColor",
+			"type": "Input",
+			"label": "当前选中的指示点颜色"
+		},
+		{
+			"key": "autoplay",
+			"type": "Radio",
+			"label": "是否自动切换"
+		},
+		{
+			"key": "current",
+			"type": "InputNumber",
+			"label": "当前所在滑块的 index"
+		},
+		{
+			"key": "interval",
+			"type": "InputNumber",
+			"label": "自动切换时间间隔"
+		},
+		{
+			"key": "duration",
+			"type": "InputNumber",
+			"label": "滑动动画时长"
+		},
+		{
+			"key": "circular",
+			"type": "Radio",
+			"label": "是否采用衔接滑动"
+		},
+		{
+			"key": "vertical",
+			"type": "Radio",
+			"label": "滑动方向是否为纵向"
+		},
+		{
+			"key": "previousMargin",
+			"type": "Input",
+			"label": "前边距，可用于露出前一项的一小部分，接受px和rpx值"
+		},
+		{
+			"key": "nextMargin",
+			"type": "Input",
+			"label": "后边距，可用于露出后一项的一小部分，接受px和rpx值"
+		},
+		{
+			"key": "displayMultipleItems",
+			"type": "InputNumber",
+			"label": "同时显示的滑块数量"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式（每个样式以；结束，换行书写下一个）",
+			"type": "Textarea"
+		}
+	]
+}

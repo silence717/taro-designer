@@ -5,6 +5,13 @@ import { DropTarget } from 'react-dnd';
 import Components from '@components';
 
 const target = {
+	canDrop(props, monitor) {
+		if (monitor.getItem().type === 'SwiperItem') {
+			return props.type === 'Swiper';
+		}
+		return true;
+	},
+
 	drop(props, monitor) {
 		const didDrop = monitor.didDrop();
 
@@ -21,16 +28,17 @@ const target = {
 function collect(connect, monitor) {
 	return {
 		connectDropTarget: connect.dropTarget(),
-		isOver: monitor.isOver({ shallow: true })
+		isOver: monitor.isOver({ shallow: true }),
+		canDrop: monitor.canDrop()
 	};
 }
 
 class Box extends Component {
 	render() {
-		const { connectDropTarget, isOver, type, className, children, ...rest } = this.props;
+		const { connectDropTarget, canDrop, isOver, type, className, children, ...rest } = this.props;
 		const CurrentComponet = Components[type];
 		const classes = classnames('draggable', className, {
-			active: isOver
+			active: canDrop && isOver
 		});
 
 		return (

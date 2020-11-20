@@ -26,16 +26,6 @@
 			"type": "InputNumber"
 		},
 		{
-			"key": "styles",
-			"childs": [
-				{
-					"key": "margin",
-					"type": "Spacing",
-					"label": "外边距"
-				}
-			]
-		},
-		{
 			"key": "className",
 			"type": "Input",
 			"label": "css样式class名称"
