@@ -21,7 +21,6 @@ import 'cloud-react/cloud-react.css';
 // container
 import Raw from './container/raw';
 import Editor from './container/editor';
-// import TargetBox from './container/editor/targetBox';
 import Config from './container/config';
 
 // css

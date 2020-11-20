@@ -53,9 +53,6 @@ class Store {
 	currentProps = {};
 
 	@observable
-	currentConfig = null;
-
-	@observable
 	pageData = JSON.parse(localStorage.getItem('cacheData')) || initPageData;
 
 	setCurrentId(value) {
@@ -69,15 +66,11 @@ class Store {
 
 	setCurrentType(value) {
 		this.currentType = value;
-		this.setCurrentConfig();
-	}
-
-	setCurrentConfig() {
-		this.currentConfig = CONFIGS[this.currentType];
 	}
 
 	updatePageData(values) {
 		const item = findItem(this.pageData, this.currentId);
+		// console.log(this.currentId, this.currentType, this.currentProps, item, values);
 		item.props = values;
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
@@ -98,7 +91,26 @@ class Store {
 			obj.id = `${item.id}-1`;
 			item.childrens = [obj];
 		}
+
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+	}
+
+	remove() {
+		// this.pageData.forEach(item => {
+		// 	const loop = data => {
+		// 		if (data.id === id) {
+		// 			result = data;
+		// 			return result;
+		// 		}
+		// 		const childs = data.childrens;
+		// 		if (childs) {
+		// 			for (let i = 0; i < childs.length; i += 1) {
+		// 				loop(childs[i]);
+		// 			}
+		// 		}
+		// 	};
+		// 	loop(item);
+		// });
 	}
 }
 
