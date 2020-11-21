@@ -1,0 +1,76 @@
+{
+	"type": "Icon",
+	"name": "图标",
+	"defaultProps": {
+		"type": "success",
+		"size": 23,
+		"color": "",
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "type",
+			"type": "Select",
+			"label": "icon 的类型",
+			"dataSource": [
+				{
+					"label": "成功",
+					"value": "success"
+				},
+				{
+					"label": "成功（不带外圈）",
+					"value": "success_no_circle"
+				},
+				{
+					"label": "信息",
+					"value": "info"
+				},
+				{
+					"label": "警告",
+					"value": "warn"
+				},
+				{
+					"label": "等待",
+					"value": "waiting"
+				},
+				{
+					"label": "取消",
+					"value": "cancel"
+				},
+				{
+					"label": "下载",
+					"value": "download"
+				},
+				{
+					"label": "搜索",
+					"value": "search"
+				},
+				{
+					"label": "清除",
+					"value": "clear"
+				}
+			]
+		},
+		{
+			"key": "size",
+			"type": "InputNumber",
+			"label": "icon 的大小，单位px"
+		},
+		{
+			"key": "color",
+			"type": "Input",
+			"label": "icon 的颜色"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式（每个样式以；结束，换行书写下一个）",
+			"type": "Textarea"
+		}
+	]
+}

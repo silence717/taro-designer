@@ -1,7 +1,7 @@
 export const groupData = [
 	{
 		text: '布局容器类',
-		value: ['View', 'ScrollView', 'Swiper', 'SwiperItem', 'MovableView', 'CoverView']
+		value: ['View', 'ScrollView', 'Swiper', 'SwiperItem']
 	},
 	{
 		text: '基础内容类',

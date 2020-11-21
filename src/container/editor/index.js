@@ -35,26 +35,28 @@ class Editor extends Component {
 		const { id, type, props = {}, childrens } = data;
 		const { styles = '', ...others } = props;
 
+		const { canPlace, defaultProps } = CONFIGS[type];
+
 		const CurrentComponet = Components[type];
+		const style = parseStyles(styles);
+
+		const newProps = { ...defaultProps, ...others };
 
 		let childs = null;
-
 		if (childrens && childrens.length) {
 			childs = childrens.map(child => this.renderContent(child));
 		}
 
-		const canDrop = CONFIGS[type].canPlace === true;
-
-		if (canDrop) {
+		if (canPlace) {
 			return (
-				<TargetBox key={id} id={id} type={type} style={{ ...parseStyles(styles) }} {...others} onClick={event => this.handleClick({ id, type }, event)}>
+				<TargetBox key={id} id={id} type={type} style={style} {...newProps} onClick={event => this.handleClick({ id, type }, event)}>
 					{childs}
 				</TargetBox>
 			);
 		}
 
 		return (
-			<CurrentComponet key={id} id={id} style={{ ...parseStyles(styles) }} {...others} onClick={event => this.handleClick({ id, type }, event)}>
+			<CurrentComponet key={id} id={id} style={style} {...newProps} onClick={event => this.handleClick({ id, type }, event)}>
 				{childs}
 			</CurrentComponet>
 		);
