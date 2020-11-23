@@ -5,6 +5,7 @@ import Swiper from './Swiper';
 import SwiperItem from './SwiperItem';
 import Icon from './Icon';
 import Text from './Text';
+import Progress from './Progress';
 
 const buttonConfig = require('./Button/config.json');
 const viewConfig = require('./View/config.json');
@@ -13,6 +14,7 @@ const swiperConfig = require('./Swiper/config.json');
 const swiperItemConfig = require('./SwiperItem/config.json');
 const iconConfig = require('./Icon/config.json');
 const textConfig = require('./Text/config.json');
+const progressConfig = require('./Progress/config.json');
 
 export default {
 	Button,
@@ -21,7 +23,8 @@ export default {
 	Swiper,
 	SwiperItem,
 	Icon,
-	Text
+	Text,
+	Progress
 };
 
 export const CONFIGS = {
@@ -31,5 +34,6 @@ export const CONFIGS = {
 	Swiper: swiperConfig,
 	SwiperItem: swiperItemConfig,
 	Icon: iconConfig,
-	Text: textConfig
+	Text: textConfig,
+	Progress: progressConfig
 };

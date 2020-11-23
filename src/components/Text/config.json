@@ -1,5 +1,5 @@
 {
-	"type": "文本",
+	"type": "Text",
 	"name": "文本",
 	"canPlace": false,
 	"defaultProps": {

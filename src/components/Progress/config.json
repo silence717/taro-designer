@@ -1,0 +1,97 @@
+{
+	"type": "Progress",
+	"name": "进度条",
+	"canPlace": false,
+	"defaultProps": {
+		"percent": 20,
+		"showInfo": false,
+		"borderRadius": 0,
+		"fontSize": 16,
+		"strokeWidth": 6,
+		"color": "#09BB07",
+		"activeColor": "#09BB07",
+		"backgroundColor": "#EBEBEB",
+		"active": false,
+		"activeMode": "backwards",
+		"duration": 30,
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "percent",
+			"label": "百分比 0~100",
+			"type": "InputNumber"
+		},
+		{
+			"key": "showInfo",
+			"label": "在进度条右侧显示百分比",
+			"type": "Radio"
+		},
+		{
+			"key": "borderRadius",
+			"label": "圆角大小",
+			"type": "Input"
+		},
+		{
+			"key": "fontSize",
+			"label": "右侧百分比字体大小",
+			"type": "Input"
+		},
+		{
+			"key": "strokeWidth",
+			"label": "进度条线的宽度",
+			"type": "Input"
+		},
+		{
+			"key": "color",
+			"label": "进度条颜色 (请使用 activeColor)",
+			"type": "Input"
+		},
+		{
+			"key": "activeColor",
+			"label": "已选择的进度条的颜色",
+			"type": "Input"
+		},
+		{
+			"key": "backgroundColor",
+			"label": "未选择的进度条的颜色",
+			"type": "Input"
+		},
+		{
+			"key": "active",
+			"label": "进度条从左往右的动画",
+			"type": "Radio"
+		},
+		{
+			"key": "activeMode",
+			"type": "Select",
+			"label": "动画播放位置",
+			"dataSource": [
+				{
+					"label": "动画从头播",
+					"value": "backwards"
+				},
+				{
+					"label": "动画从上次结束点接着播",
+					"value": "forwards"
+				}
+			]
+		},
+		{
+			"key": "duration",
+			"label": "进度增加 1% 所需毫秒数",
+			"type": "InputNumber"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}
