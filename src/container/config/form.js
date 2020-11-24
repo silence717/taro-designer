@@ -47,7 +47,7 @@ class ConfigForm extends Component {
 			case 'Input':
 				return <Input {...init(name, options)} />;
 			case 'InputNumber':
-				return <InputNumber {...init(name, options)} />;
+				return <InputNumber {...init(name, options)} min={item.min || -Infinity} max={item.max || Infinity} />;
 			case 'Textarea':
 				return <Input.Textarea rows={4} {...init(name, options)} />;
 			case 'Select':

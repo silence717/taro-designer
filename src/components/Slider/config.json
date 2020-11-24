@@ -1,0 +1,83 @@
+{
+	"type": "Slider",
+	"name": "滑动选择器",
+	"canPlace": false,
+	"defaultProps": {
+		"min": 0,
+		"max": 100,
+		"step": 1,
+		"disabled": false,
+		"value": 0,
+		"activeColor": "#1aad19",
+		"backgroundColor": "#e9e9e9",
+		"blockSize": 28,
+		"blockColor": "#ffffff",
+		"showValue": false,
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "min",
+			"label": "最小值",
+			"type": "InputNumber"
+		},
+		{
+			"key": "max",
+			"label": "最大值",
+			"type": "InputNumber"
+		},
+		{
+			"key": "step",
+			"label": "步长",
+			"type": "InputNumber"
+		},
+		{
+			"key": "disabled",
+			"label": "是否禁用",
+			"type": "Radio"
+		},
+		{
+			"key": "value",
+			"label": "当前取值",
+			"type": "InputNumber"
+		},
+		{
+			"key": "activeColor",
+			"label": "已选择的颜色",
+			"type": "Input"
+		},
+		{
+			"key": "backgroundColor",
+			"label": "背景条的颜色",
+			"type": "Input"
+		},
+		{
+			"key": "blockSize",
+			"label": "滑块的大小，取值范围为12 - 28",
+			"type": "InputNumber",
+			"min": 12,
+			"max": 28
+		},
+		{
+			"key": "blockColor",
+			"label": "滑块的颜色",
+			"type": "Input"
+		},
+		{
+			"key": "showValue",
+			"label": "是否显示当前 value",
+			"type": "Radio"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}
