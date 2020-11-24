@@ -1,0 +1,46 @@
+{
+	"type": "Textarea",
+	"name": "组件名称",
+	"canPlace": false,
+	"defaultProps": {
+		"value": "",
+		"placeholder": "",
+		"disabled": false,
+		"maxlength": 140,
+		"autoFocus": false,
+		"className": "",
+		"styles": "background:#fff;width:100%;height:80px;padding:10px 30px;"
+	},
+	"config": [
+		{
+			"key": "value",
+			"label": "输入框的内容",
+			"type": "Input"
+		},
+		{
+			"key": "placeholder",
+			"label": "输入框为空时占位符",
+			"type": "Input"
+		},
+		{
+			"key": "disabled",
+			"label": "是否禁用",
+			"type": "Radio"
+		},
+		{
+			"key": "autoFocus",
+			"label": "自动聚焦，拉起键盘",
+			"type": "Radio"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}

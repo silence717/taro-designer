@@ -10,6 +10,7 @@ import Swiper from './Swiper';
 import SwiperItem from './SwiperItem';
 import Switch from './Switch';
 import Text from './Text';
+import Textarea from './Textarea';
 import View from './View';
 
 const buttonConfig = require('./Button/config.json');
@@ -24,6 +25,7 @@ const swiperConfig = require('./Swiper/config.json');
 const swiperitemConfig = require('./SwiperItem/config.json');
 const switchConfig = require('./Switch/config.json');
 const textConfig = require('./Text/config.json');
+const textareaConfig = require('./Textarea/config.json');
 const viewConfig = require('./View/config.json');
 
 export default {
@@ -39,6 +41,7 @@ export default {
 	SwiperItem,
 	Switch,
 	Text,
+	Textarea,
 	View
 };
 
@@ -55,5 +58,6 @@ export const CONFIGS = {
 	SwiperItem: swiperitemConfig,
 	Switch: switchConfig,
 	Text: textConfig,
+	Textarea: textareaConfig,
 	View: viewConfig
 };
