@@ -1,0 +1,49 @@
+{
+	"type": "Switch",
+	"name": "组件名称",
+	"canPlace": false,
+	"defaultProps": {
+		"checked": false,
+		"type": "switch",
+		"color": "#04BE02",
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "checked",
+			"label": "是否选中",
+			"type": "Radio"
+		},
+		{
+			"key": "type",
+			"type": "Select",
+			"label": "样式类型",
+			"dataSource": [
+				{
+					"label": "switch",
+					"value": "switch"
+				},
+				{
+					"label": "checkbox",
+					"value": "checkbox"
+				}
+			]
+		},
+		{
+			"key": "color",
+			"label": "颜色",
+			"type": "Input"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}

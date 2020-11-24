@@ -8,6 +8,7 @@ import Radio from './Radio';
 import ScrollView from './ScrollView';
 import Swiper from './Swiper';
 import SwiperItem from './SwiperItem';
+import Switch from './Switch';
 import Text from './Text';
 import View from './View';
 
@@ -21,6 +22,7 @@ const radioConfig = require('./Radio/config.json');
 const scrollviewConfig = require('./ScrollView/config.json');
 const swiperConfig = require('./Swiper/config.json');
 const swiperitemConfig = require('./SwiperItem/config.json');
+const switchConfig = require('./Switch/config.json');
 const textConfig = require('./Text/config.json');
 const viewConfig = require('./View/config.json');
 
@@ -35,6 +37,7 @@ export default {
 	ScrollView,
 	Swiper,
 	SwiperItem,
+	Switch,
 	Text,
 	View
 };
@@ -50,6 +53,7 @@ export const CONFIGS = {
 	ScrollView: scrollviewConfig,
 	Swiper: swiperConfig,
 	SwiperItem: swiperitemConfig,
+	Switch: switchConfig,
 	Text: textConfig,
 	View: viewConfig
 };
