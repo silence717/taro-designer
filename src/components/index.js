@@ -4,6 +4,7 @@ import Icon from './Icon';
 import Input from './Input';
 import Label from './Label';
 import Progress from './Progress';
+import Radio from './Radio';
 import ScrollView from './ScrollView';
 import Swiper from './Swiper';
 import SwiperItem from './SwiperItem';
@@ -16,6 +17,7 @@ const iconConfig = require('./Icon/config.json');
 const inputConfig = require('./Input/config.json');
 const labelConfig = require('./Label/config.json');
 const progressConfig = require('./Progress/config.json');
+const radioConfig = require('./Radio/config.json');
 const scrollviewConfig = require('./ScrollView/config.json');
 const swiperConfig = require('./Swiper/config.json');
 const swiperitemConfig = require('./SwiperItem/config.json');
@@ -29,6 +31,7 @@ export default {
 	Input,
 	Label,
 	Progress,
+	Radio,
 	ScrollView,
 	Swiper,
 	SwiperItem,
@@ -43,6 +46,7 @@ export const CONFIGS = {
 	Input: inputConfig,
 	Label: labelConfig,
 	Progress: progressConfig,
+	Radio: radioConfig,
 	ScrollView: scrollviewConfig,
 	Swiper: swiperConfig,
 	SwiperItem: swiperitemConfig,
