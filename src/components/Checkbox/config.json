@@ -1,0 +1,51 @@
+{
+	"type": "Checkbox",
+	"name": "多选",
+	"canPlace": false,
+	"defaultProps": {
+		"value": "a",
+		"content": "a",
+		"disabled": false,
+		"checked": false,
+		"color": "",
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "value",
+			"label": "checkbox标识，选中时触发change事件",
+			"type": "Input"
+		},
+		{
+			"key": "content",
+			"label": "显示文本",
+			"type": "Input"
+		},
+		{
+			"key": "disabled",
+			"label": "是否禁用",
+			"type": "Radio"
+		},
+		{
+			"key": "checked",
+			"label": "当前是否选中",
+			"type": "Radio"
+		},
+		{
+			"key": "color",
+			"type": "Input",
+			"label": "checkbox的颜色"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}

@@ -1,39 +1,43 @@
 import Button from './Button';
-import View from './View';
+import Checkbox from './Checkbox';
+import Icon from './Icon';
+import Progress from './Progress';
 import ScrollView from './ScrollView';
 import Swiper from './Swiper';
 import SwiperItem from './SwiperItem';
-import Icon from './Icon';
 import Text from './Text';
-import Progress from './Progress';
+import View from './View';
 
 const buttonConfig = require('./Button/config.json');
-const viewConfig = require('./View/config.json');
-const scrollViewConfig = require('./ScrollView/config.json');
-const swiperConfig = require('./Swiper/config.json');
-const swiperItemConfig = require('./SwiperItem/config.json');
+const checkboxConfig = require('./Checkbox/config.json');
 const iconConfig = require('./Icon/config.json');
-const textConfig = require('./Text/config.json');
 const progressConfig = require('./Progress/config.json');
+const scrollviewConfig = require('./ScrollView/config.json');
+const swiperConfig = require('./Swiper/config.json');
+const swiperitemConfig = require('./SwiperItem/config.json');
+const textConfig = require('./Text/config.json');
+const viewConfig = require('./View/config.json');
 
 export default {
 	Button,
-	View,
+	Checkbox,
+	Icon,
+	Progress,
 	ScrollView,
 	Swiper,
 	SwiperItem,
-	Icon,
 	Text,
-	Progress
+	View
 };
 
 export const CONFIGS = {
 	Button: buttonConfig,
-	View: viewConfig,
-	ScrollView: scrollViewConfig,
-	Swiper: swiperConfig,
-	SwiperItem: swiperItemConfig,
+	Checkbox: checkboxConfig,
 	Icon: iconConfig,
+	Progress: progressConfig,
+	ScrollView: scrollviewConfig,
+	Swiper: swiperConfig,
+	SwiperItem: swiperitemConfig,
 	Text: textConfig,
-	Progress: progressConfig
+	View: viewConfig
 };
