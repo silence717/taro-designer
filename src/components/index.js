@@ -13,6 +13,7 @@ import Switch from './Switch';
 import Text from './Text';
 import Textarea from './Textarea';
 import View from './View';
+import WebView from './WebView';
 
 const buttonConfig = require('./Button/config.json');
 const checkboxConfig = require('./Checkbox/config.json');
@@ -29,6 +30,7 @@ const switchConfig = require('./Switch/config.json');
 const textConfig = require('./Text/config.json');
 const textareaConfig = require('./Textarea/config.json');
 const viewConfig = require('./View/config.json');
+const webviewConfig = require('./WebView/config.json');
 
 export default {
 	Button,
@@ -45,7 +47,8 @@ export default {
 	Switch,
 	Text,
 	Textarea,
-	View
+	View,
+	WebView
 };
 
 export const CONFIGS = {
@@ -63,5 +66,6 @@ export const CONFIGS = {
 	Switch: switchConfig,
 	Text: textConfig,
 	Textarea: textareaConfig,
-	View: viewConfig
+	View: viewConfig,
+	WebView: webviewConfig
 };

@@ -1,0 +1,15 @@
+{
+	"type": "WebView",
+	"name": "网页的容器",
+	"canPlace": true,
+	"defaultProps": {
+		"src": "https://mp.weixin.qq.com/"
+	},
+	"config": [
+		{
+			"key": "src",
+			"label": "文本",
+			"type": "Input"
+		}
+	]
+}
