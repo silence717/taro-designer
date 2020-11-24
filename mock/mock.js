@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const JSZip = require('jszip');
+const prettier = require('prettier');
 
 const sourcePath = path.join(__dirname, '../src/generator/template.jsx');
 const jsxPath = path.join(__dirname, '../output/taro.jsx');
@@ -17,20 +18,28 @@ module.exports = router => {
 			.replace('generateComponents', types)
 			.replace('JSONtoJsx', contents);
 
-		fs.writeFileSync(jsxPath, targetTemplate, options, error => {
-			if (error) {
-				console.log(error);
-				throw error;
-			}
-		});
+		const configPath = path.join(__dirname, '../.prettierrc');
+		prettier.resolveConfig(configPath).then((options) => {
 
-		fs.writeFileSync(cssPath, css, options, error => {
-			if (error) {
-				console.log(error);
-				throw error;
-			}
-		});
+			const content = prettier.format(targetTemplate, Object.assign(options, {parser: 'babel'}));
 
+			fs.writeFileSync(jsxPath, content, options, error => {
+				if (error) {
+					console.log(error);
+					throw error;
+				}
+			});
+		});
+		prettier.resolveConfig(configPath).then((options) => {
+			const content = prettier.format(css, Object.assign(options, {parser: 'babel'}));
+
+			fs.writeFileSync(cssPath, content, options, error => {
+				if (error) {
+					console.log(error);
+					throw error;
+				}
+			});
+		});
 		res.status(200).json({ res: 'ok' });
 	});
 

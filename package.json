@@ -9,7 +9,9 @@
 		"webpack": "webpack",
 		"webpack-dev-server": "webpack-dev-server",
 		"start": "npm run webpack-dev-server -- --env.mode dev",
-		"build": "npm run webpack -- --env.mode prod"
+		"build": "npm run webpack -- --env.mode prod",
+		"new": "node scripts/new.js",
+		"gen": "node scripts/generate.js"
 	},
 	"dependencies": {
 		"@tarojs/components": "^3.0.15",

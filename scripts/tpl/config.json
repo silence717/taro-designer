@@ -1,0 +1,55 @@
+{
+	"type": "__ComponentName__",
+	"name": "组件名称",
+	"canPlace": true,
+	"defaultProps": {
+		"a": "ok",
+		"b": 50,
+		"c": true,
+		"d": "apple",
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "a",
+			"label": "文本",
+			"type": "Input"
+		},
+		{
+			"key": "b",
+			"label": "数字",
+			"type": "InputNumber"
+		},
+		{
+			"key": "c",
+			"label": "开关",
+			"type": "Radio"
+		},
+		{
+			"key": "d",
+			"type": "Select",
+			"label": "下拉列表",
+			"dataSource": [
+				{
+					"label": "apple",
+					"value": "苹果"
+				},
+				{
+					"label": "香蕉",
+					"value": "banana"
+				}
+			]
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}
