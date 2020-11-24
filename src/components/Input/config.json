@@ -1,0 +1,75 @@
+{
+	"type": "Input",
+	"name": "输入框",
+	"canPlace": false,
+	"defaultProps": {
+		"type": "text",
+		"password": false,
+		"placeholder": "请输入内容...",
+		"disabled": false,
+		"maxLength": 140,
+		"focus": false,
+		"className": "",
+		"styles": ""
+	},
+	"config": [
+		{
+			"key": "type",
+			"type": "Select",
+			"label": "input 的类型",
+			"dataSource": [
+				{
+					"label": "number",
+					"value": "number"
+				},
+				{
+					"label": "text",
+					"value": "text"
+				},
+				{
+					"label": "idcard",
+					"value": "idcard"
+				},
+				{
+					"label": "digit",
+					"value": "digit"
+				}
+			]
+		},
+		{
+			"key": "password",
+			"label": "是否是密码类型",
+			"type": "Radio"
+		},
+		{
+			"key": "placeholder",
+			"label": "输入框为空时占位符",
+			"type": "Input"
+		},
+		{
+			"key": "disabled",
+			"label": "是否禁用",
+			"type": "Radio"
+		},
+		{
+			"key": "maxLength",
+			"label": "最大输入长度",
+			"type": "InputNumber"
+		},
+		{
+			"key": "focus",
+			"label": "获取焦点",
+			"type": "Radio"
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}
