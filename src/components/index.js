@@ -2,6 +2,7 @@ import Button from './Button';
 import Checkbox from './Checkbox';
 import Icon from './Icon';
 import Input from './Input';
+import Label from './Label';
 import Progress from './Progress';
 import ScrollView from './ScrollView';
 import Swiper from './Swiper';
@@ -13,6 +14,7 @@ const buttonConfig = require('./Button/config.json');
 const checkboxConfig = require('./Checkbox/config.json');
 const iconConfig = require('./Icon/config.json');
 const inputConfig = require('./Input/config.json');
+const labelConfig = require('./Label/config.json');
 const progressConfig = require('./Progress/config.json');
 const scrollviewConfig = require('./ScrollView/config.json');
 const swiperConfig = require('./Swiper/config.json');
@@ -25,6 +27,7 @@ export default {
 	Checkbox,
 	Icon,
 	Input,
+	Label,
 	Progress,
 	ScrollView,
 	Swiper,
@@ -38,6 +41,7 @@ export const CONFIGS = {
 	Checkbox: checkboxConfig,
 	Icon: iconConfig,
 	Input: inputConfig,
+	Label: labelConfig,
 	Progress: progressConfig,
 	ScrollView: scrollviewConfig,
 	Swiper: swiperConfig,

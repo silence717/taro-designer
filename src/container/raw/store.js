@@ -5,7 +5,7 @@ export const groupData = [
 	},
 	{
 		text: '基础内容类',
-		value: ['Icon', 'Text', 'Progress', 'RichText']
+		value: ['Icon', 'Text', 'Progress']
 	},
 	{
 		text: '布局容器类',
