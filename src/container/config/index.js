@@ -50,6 +50,7 @@ class Config extends Component {
 					{store.currentId ? (
 						<>
 							<Button size="small">删除此元素</Button>
+							{CONFIGS[store.currentType].tips && <Tips msg={CONFIGS[store.currentType].tips} type="major" />}
 							<ConfigForm />
 						</>
 					) : (

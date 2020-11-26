@@ -1,5 +1,6 @@
 import Button from './Button';
 import Checkbox from './Checkbox';
+import Form from './Form';
 import Icon from './Icon';
 import Image from './Image';
 import Input from './Input';
@@ -19,6 +20,7 @@ import WebView from './WebView';
 
 const buttonConfig = require('./Button/config.json');
 const checkboxConfig = require('./Checkbox/config.json');
+const formConfig = require('./Form/config.json');
 const iconConfig = require('./Icon/config.json');
 const imageConfig = require('./Image/config.json');
 const inputConfig = require('./Input/config.json');
@@ -39,6 +41,7 @@ const webviewConfig = require('./WebView/config.json');
 export default {
 	Button,
 	Checkbox,
+	Form,
 	Icon,
 	Image,
 	Input,
@@ -60,6 +63,7 @@ export default {
 export const CONFIGS = {
 	Button: buttonConfig,
 	Checkbox: checkboxConfig,
+	Form: formConfig,
 	Icon: iconConfig,
 	Image: imageConfig,
 	Input: inputConfig,
