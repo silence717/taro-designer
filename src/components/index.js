@@ -1,6 +1,7 @@
 import Button from './Button';
 import Checkbox from './Checkbox';
 import Icon from './Icon';
+import Image from './Image';
 import Input from './Input';
 import Label from './Label';
 import Progress from './Progress';
@@ -18,6 +19,7 @@ import WebView from './WebView';
 const buttonConfig = require('./Button/config.json');
 const checkboxConfig = require('./Checkbox/config.json');
 const iconConfig = require('./Icon/config.json');
+const imageConfig = require('./Image/config.json');
 const inputConfig = require('./Input/config.json');
 const labelConfig = require('./Label/config.json');
 const progressConfig = require('./Progress/config.json');
@@ -36,6 +38,7 @@ export default {
 	Button,
 	Checkbox,
 	Icon,
+	Image,
 	Input,
 	Label,
 	Progress,
@@ -55,6 +58,7 @@ export const CONFIGS = {
 	Button: buttonConfig,
 	Checkbox: checkboxConfig,
 	Icon: iconConfig,
+	Image: imageConfig,
 	Input: inputConfig,
 	Label: labelConfig,
 	Progress: progressConfig,

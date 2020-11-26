@@ -1,0 +1,91 @@
+{
+	"type": "Image",
+	"name": "图片",
+	"canPlace": false,
+	"defaultProps": {
+		"src": "https://seopic.699pic.com/photo/50064/1758.jpg_wh1200.jpg",
+		"mode": "scaleToFill",
+		"className": "",
+		"styles": "background: #fff;"
+	},
+	"config": [
+		{
+			"key": "src",
+			"label": "文本",
+			"type": "Input"
+		},
+		{
+			"key": "mode",
+			"type": "Select",
+			"label": "下拉列表",
+			"dataSource": [
+				{
+					"label": "scaleToFill",
+					"value": "scaleToFill"
+				},
+				{
+					"label": "aspectFit",
+					"value": "aspectFit"
+				},
+				{
+					"label": "aspectFill",
+					"value": "aspectFill"
+				},
+				{
+					"label": "widthFix",
+					"value": "widthFix"
+				},
+				{
+					"label": "heightFix",
+					"value": "heightFix"
+				},
+				{
+					"label": "top",
+					"value": "top"
+				},
+				{
+					"label": "bottom",
+					"value": "bottom"
+				},
+				{
+					"label": "center",
+					"value": "center"
+				},
+				{
+					"label": "left",
+					"value": "left"
+				},
+				{
+					"label": "right",
+					"value": "right"
+				},
+				{
+					"label": "top left",
+					"value": "top left"
+				},
+				{
+					"label": "top right",
+					"value": "top right"
+				},
+				{
+					"label": "bottom left",
+					"value": "bottom left"
+				},
+				{
+					"label": "bottom right",
+					"value": "bottom right"
+				}
+			]
+		},
+		{
+			"key": "className",
+			"type": "Input",
+			"label": "css样式class名称"
+		},
+		{
+			"key": "styles",
+			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
+			"type": "Textarea"
+		}
+	]
+}
