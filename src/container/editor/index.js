@@ -33,14 +33,16 @@ class Editor extends Component {
 
 	renderContent(data) {
 		const { id, type, props = {}, childrens } = data;
-		const { styles = '', ...others } = props;
-
-		const { canPlace, defaultProps } = CONFIGS[type];
-
 		const CurrentComponet = Components[type];
+		const {
+			canPlace,
+			defaultProps: { styles: defaultStyle, ...othersDefaultProps }
+		} = CONFIGS[type];
+
+		const { styles = defaultStyle, ...others } = props;
 		const style = parseStyles(styles);
 
-		const newProps = { ...defaultProps, ...others };
+		const newProps = { ...othersDefaultProps, ...others };
 
 		let childs = null;
 		if (childrens && childrens.length) {
