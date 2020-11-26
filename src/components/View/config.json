@@ -7,7 +7,7 @@
 		"hoverStartTime": 50,
 		"hoverStayTime": 400,
 		"className": "",
-		"styles": ""
+		"styles": "min-height:100px; margin:10px;"
 	},
 	"config": [
 		{

@@ -32,12 +32,7 @@ const initPageData = [
 	{
 		id: '1',
 		type: 'View',
-		props: {
-			styles: {
-				minHeight: '200px',
-				margin: '10px'
-			}
-		},
+		props: {},
 		childrens: []
 	}
 ];
@@ -70,7 +65,6 @@ class Store {
 
 	updatePageData(values) {
 		const item = findItem(this.pageData, this.currentId);
-		// console.log(this.currentId, this.currentType, this.currentProps, item, values);
 		item.props = values;
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
