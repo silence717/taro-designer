@@ -4,6 +4,7 @@ import Icon from './Icon';
 import Image from './Image';
 import Input from './Input';
 import Label from './Label';
+import Picker from './Picker';
 import Progress from './Progress';
 import Radio from './Radio';
 import ScrollView from './ScrollView';
@@ -22,6 +23,7 @@ const iconConfig = require('./Icon/config.json');
 const imageConfig = require('./Image/config.json');
 const inputConfig = require('./Input/config.json');
 const labelConfig = require('./Label/config.json');
+const pickerConfig = require('./Picker/config.json');
 const progressConfig = require('./Progress/config.json');
 const radioConfig = require('./Radio/config.json');
 const scrollviewConfig = require('./ScrollView/config.json');
@@ -41,6 +43,7 @@ export default {
 	Image,
 	Input,
 	Label,
+	Picker,
 	Progress,
 	Radio,
 	ScrollView,
@@ -61,6 +64,7 @@ export const CONFIGS = {
 	Image: imageConfig,
 	Input: inputConfig,
 	Label: labelConfig,
+	Picker: pickerConfig,
 	Progress: progressConfig,
 	Radio: radioConfig,
 	ScrollView: scrollviewConfig,

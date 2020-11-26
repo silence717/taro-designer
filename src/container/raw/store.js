@@ -9,7 +9,7 @@ export const groupData = [
 	},
 	{
 		text: '布局容器类',
-		value: ['Form', 'Button', 'Checkbox', 'Input', 'Label', 'Picker', 'PickerView', 'Radio', 'Slider', 'Switch', 'Textarea']
+		value: ['Form', 'Button', 'Checkbox', 'Input', 'Label', 'Picker', 'Radio', 'Slider', 'Switch', 'Textarea']
 	},
 	{
 		text: '媒体组件类',
