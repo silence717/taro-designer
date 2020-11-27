@@ -9,7 +9,7 @@ export default function Raw() {
 		<section className="raw">
 			<header>组件拖拽区</header>
 			{groupData.map((item, index) => (
-				<Group key={index} text={item.text} value={item.value} />
+				<Group key={index} text={item.text} childs={item.children} />
 			))}
 		</section>
 	);

@@ -25,9 +25,14 @@ function collect(connect) {
 }
 
 function Box(props) {
-	const { connectDragSource, value } = props;
+	const { connectDragSource, item } = props;
 
-	return connectDragSource(<span className="raw-item">{value}</span>, { dropEffect: 'copy' });
+	return connectDragSource(
+		<span className="raw-item">
+			{item.name}&nbsp;&nbsp;&nbsp;{item.value}
+		</span>,
+		{ dropEffect: 'copy' }
+	);
 }
 
 export default DragSource('Card', source, collect)(Box);

@@ -23,47 +23,47 @@ module.exports = ({ mode } = { mode: 'dev', presets: [] }) => {
 					'@container': resolve('./src/container')
 				},
 				modules: [resolve(__dirname, './src'), resolve(__dirname, './demo'), resolve('./node_modules')],
-				extensions: ['.js'],
+				extensions: ['.js']
 			},
 			resolveLoader: {
-				moduleExtensions: ['-loader'],
+				moduleExtensions: ['-loader']
 			},
 			module: {
 				rules: [
 					{
 						test: /\.js$/,
 						exclude: [resolve('./node_modules')],
-						use: ['babel', 'eslint'],
+						use: ['babel', 'eslint']
 					},
 					{
 						test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 						loader: 'url',
 						options: {
 							limit: 10000,
-							name: '[name]-[hash:7].[ext]',
-						},
+							name: '[name]-[hash:7].[ext]'
+						}
 					},
 					{
 						test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
 						loader: 'url',
 						options: {
 							limit: 10000,
-							name: '[name]-[hash:7].[ext]',
-						},
-					},
-				],
+							name: '[name]-[hash:7].[ext]'
+						}
+					}
+				]
 			},
 			plugins: [
 				new HtmlWebpackPlugin({
 					filename: 'index.html',
-					template: 'demo/index.html',
-					minify: false,
+					template: 'public/index.html',
+					minify: false
 				}),
 				// 分析打包大小问题
 				// new WebpackBundleAnalyzer(),
 				new webpack.ProgressPlugin()
-			],
+			]
 		},
-		modeConfig(mode),
+		modeConfig(mode)
 	);
 };

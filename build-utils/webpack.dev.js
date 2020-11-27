@@ -24,9 +24,7 @@ const devServer = {
 		}
 	},
 	historyApiFallback: {
-		rewrites: [
-			{ from: /.*/, to: path.posix.join(publicPath, 'index.html') }
-		]
+		rewrites: [{ from: /.*/, to: path.posix.join(publicPath, 'index.html') }]
 	},
 	hot: true,
 	contentBase: srcDir,
@@ -40,10 +38,10 @@ const devServer = {
 module.exports = () => ({
 	devServer,
 	mode: 'development',
-    devtool: 'cheap-module-eval-source-map',
-    entry: {
-        app: './demo/index.js',
-    },
+	devtool: 'cheap-module-eval-source-map',
+	entry: {
+		app: './public/index.js'
+	},
 	output: {
 		publicPath,
 		filename: '[name].js',
@@ -54,13 +52,11 @@ module.exports = () => ({
 		rules: [
 			{
 				test: /\.(css|less)$/,
-				use: ['style', 'css', 'less'],
+				use: ['style', 'css', 'less']
 			}
 		]
 	},
-	plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ]
+	plugins: [new webpack.HotModuleReplacementPlugin()]
 });
 
 // 引入mock服务

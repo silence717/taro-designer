@@ -9,12 +9,12 @@ export default function Raw(props) {
 
 	return (
 		<section className="raw-group">
-			<header>
+			<div className="header">
 				<span>{props.text}</span>
-			</header>
+			</div>
 			<div>
-				{props.value.map((item, index) => (
-					<SourceBox key={index} type={item} value={item} onEndDrag={handleDrag} />
+				{props.childs.map((item, index) => (
+					<SourceBox key={index} type={item.value} item={item} onEndDrag={handleDrag} />
 				))}
 			</div>
 		</section>

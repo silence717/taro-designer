@@ -11,17 +11,15 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { applyPolyfills, defineCustomElements } from '@tarojs/components/loader';
 
+// third libs css
 import '@tarojs/components/dist/taro-components/taro-components.css';
 import 'cloud-react/cloud-react.css';
-
-// owner libs
-
-// components
 
 // container
 import Raw from './container/raw';
 import Editor from './container/editor';
 import Config from './container/config';
+import Header from './container/header';
 
 // css
 import './style.less';
@@ -35,8 +33,8 @@ applyPolyfills().then(() => {
 class App extends Component {
 	render() {
 		return (
-			<section className="wrapper">
-				<h1>可视化页面编辑器</h1>
+			<>
+				<Header />
 				<section className="container">
 					<DndProvider backend={HTML5Backend}>
 						<Raw />
@@ -44,7 +42,7 @@ class App extends Component {
 						<Config />
 					</DndProvider>
 				</section>
-			</section>
+			</>
 		);
 	}
 }
