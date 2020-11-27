@@ -5,9 +5,9 @@ import { Button } from 'cloud-react';
 import JSZip from 'jszip';
 
 import Components, { CONFIGS } from '@components';
-import { parseStyles, http } from '@utils';
+import { parseStyles, http, renderJSONtoJSX } from '@utils';
 
-import renderJSONtoJSX from '../../generator';
+// import renderJSONtoJSX from '../../generator';
 
 import store from '../store';
 import TargetBox from './targetBox';
@@ -73,17 +73,14 @@ class Editor extends Component {
 		);
 	}
 
-	handleGenerate = async () => {
+	handleDownload = async () => {
 		const { types, jsx, css } = renderJSONtoJSX(store.pageData);
-		await http.post('/generate', {
+
+		const { data } = await http.post('/download', {
 			types,
 			contents: jsx,
 			css
 		});
-	};
-
-	handleDownload = async () => {
-		const { data } = await http('/download');
 		const zip = new JSZip();
 		await zip.loadAsync(data, { base64: true });
 		const blob = await zip.generateAsync({ type: 'blob' });
@@ -103,9 +100,6 @@ class Editor extends Component {
 				<header>页面编辑区</header>
 				{this.isShowPlaceholder && <div className="tips">设计区，可拖拽左侧元素到此处，单击元素可编辑属性，蓝色虚线框可放置子组件</div>}
 				<div className="operate">
-					<Button type="primary" onClick={this.handleGenerate} style={{ marginRight: '20px' }}>
-						生成代码
-					</Button>
 					<Button type="primary" onClick={this.handleDownload}>
 						下载源代码
 					</Button>

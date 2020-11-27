@@ -1,5 +1,5 @@
 /mock/**
 /build-utils/**
 webpack.config.js
-/src/generator/template.jsx
+/mock/template.jsx
 /output/taro.jsx
