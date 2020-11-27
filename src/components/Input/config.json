@@ -2,6 +2,7 @@
 	"type": "Input",
 	"name": "输入框",
 	"canPlace": false,
+	"tips": "该组件是原生组件，使用时请注意相关限制",
 	"defaultProps": {
 		"type": "text",
 		"password": false,

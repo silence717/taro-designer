@@ -2,6 +2,7 @@
 	"type": "Progress",
 	"name": "进度条",
 	"canPlace": false,
+	"tips": "组件属性的长度单位默认为 px",
 	"defaultProps": {
 		"percent": 20,
 		"showInfo": false,

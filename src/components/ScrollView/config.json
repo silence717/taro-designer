@@ -1,7 +1,8 @@
 {
 	"type": "ScrollView",
-	"name": "可滚动视图区域",
+	"name": "可滚动视图",
 	"canPlace": true,
+	"tips": "使用竖向滚动时，需要给scroll-view一个固定高度，通过 WXSS 设置 height。组件属性的长度单位默认为 px",
 	"defaultProps": {
 		"scrollX": false,
 		"scrollY": false,
@@ -13,7 +14,7 @@
 		"scrollIntoView": "",
 		"scrollWithAnimation": false,
 		"className": "",
-		"styles": ""
+		"styles": "min-height:100px;\npadding:10px;"
 	},
 	"config": [
 		{

@@ -22,7 +22,9 @@ class Config extends Component {
 				<div>
 					{store.currentId ? (
 						<>
-							<Button size="small">删除此元素</Button>
+							<Button size="small" style={{ marginBottom: '10px' }}>
+								删除此元素
+							</Button>
 							{CONFIGS[store.currentType].tips && <Tips msg={CONFIGS[store.currentType].tips} type="major" />}
 							<ConfigForm />
 						</>

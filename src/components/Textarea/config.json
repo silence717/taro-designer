@@ -1,15 +1,16 @@
 {
 	"type": "Textarea",
-	"name": "组件名称",
+	"name": "多行输入框",
 	"canPlace": false,
+	"tips": "该组件是原生组件，使用时请注意相关限制",
 	"defaultProps": {
 		"value": "",
-		"placeholder": "",
+		"placeholder": "请输入内容...",
 		"disabled": false,
 		"maxlength": 140,
 		"autoFocus": false,
 		"className": "",
-		"styles": "background:#fff;width:100%;height:80px;padding:10px 30px;"
+		"styles": "height:80px;\n"
 	},
 	"config": [
 		{

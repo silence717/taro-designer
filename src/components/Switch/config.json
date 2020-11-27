@@ -1,6 +1,6 @@
 {
 	"type": "Switch",
-	"name": "组件名称",
+	"name": "开关选择器",
 	"canPlace": false,
 	"defaultProps": {
 		"checked": false,

@@ -29,7 +29,6 @@ class Editor extends Component {
 
 	@action.bound
 	handleClick({ id, type }, event) {
-		// event.target.style.background = 'red';
 		event.stopPropagation();
 		store.setCurrentId(id);
 		store.setCurrentProps();
@@ -48,11 +47,9 @@ class Editor extends Component {
 		const style = parseStyles(styles);
 
 		// 为当前选中正在编辑的设置高亮
-		if (id === store.currentId) {
-			Object.assign(style, { background: '#f6f7ff' });
-		} else {
-			Object.assign(style, { background: 'none' });
-		}
+		// if (id === store.currentId) {
+		// 	Object.assign(style, { background: '#f6f7ff' });
+		// }
 
 		const newProps = { ...othersDefaultProps, ...others };
 

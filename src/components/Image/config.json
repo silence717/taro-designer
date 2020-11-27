@@ -2,11 +2,12 @@
 	"type": "Image",
 	"name": "图片",
 	"canPlace": false,
+	"tips": "支持 JPG、PNG、SVG、WEBP、GIF 等格式以及云文件ID。",
 	"defaultProps": {
 		"src": "https://seopic.699pic.com/photo/50064/1758.jpg_wh1200.jpg",
 		"mode": "scaleToFill",
 		"className": "",
-		"styles": "background: #fff;"
+		"styles": ""
 	},
 	"config": [
 		{

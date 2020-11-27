@@ -1,6 +1,8 @@
 {
 	"type": "Icon",
 	"name": "图标",
+	"canPlace": false,
+	"tips": "组件属性的长度单位默认为 px",
 	"defaultProps": {
 		"type": "success",
 		"size": 23,

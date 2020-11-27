@@ -6,7 +6,7 @@
 	"defaultProps": {
 		"reportSubmit": false,
 		"className": "",
-		"styles": "display:block;width:100%;min-height:100px;"
+		"styles": "display:block;\nwidth:100%;\nmin-height:100px;"
 	},
 	"config": [
 		{

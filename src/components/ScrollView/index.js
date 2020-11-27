@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
 import { ScrollView } from '@tarojs/components/dist-h5/react';
-import { noop } from '@utils';
 
 export default class ScrollView1 extends Component {
 	render() {
@@ -20,15 +19,11 @@ ScrollView1.propTypes = {
 	scrollY: PropTypes.bool,
 	upperThreshold: PropTypes.number,
 	lowerThreshold: PropTypes.number,
-	scrollTop: PropTypes.string,
-	scrollLeft: PropTypes.string,
+	scrollTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	scrollLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	scrollIntoView: PropTypes.string,
 	scrollWithAnimation: PropTypes.bool,
-	// onScrollToUpper: PropTypes.func,
-	// onScrollToLower: PropTypes.func,
-	// onScroll: PropTypes.func,
-	style: PropTypes.object,
-	onClick: PropTypes.func
+	style: PropTypes.object
 };
 
 ScrollView1.defaultProps = {
@@ -40,9 +35,5 @@ ScrollView1.defaultProps = {
 	scrollLeft: 0,
 	scrollIntoView: '',
 	scrollWithAnimation: false,
-	// onScrollToUpper: noop,
-	// onScrollToLower: noop,
-	// onScroll: noop,
-	style: {},
-	onClick: noop
+	style: {}
 };
