@@ -7,8 +7,6 @@ import JSZip from 'jszip';
 import Components, { CONFIGS } from '@components';
 import { parseStyles, http, renderJSONtoJSX } from '@utils';
 
-// import renderJSONtoJSX from '../../generator';
-
 import store from '../store';
 import TargetBox from './targetBox';
 
