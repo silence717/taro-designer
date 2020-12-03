@@ -20,7 +20,6 @@ class ConfigForm extends Component {
 	@action.bound
 	handleFormChange() {
 		const values = this.field.getValues();
-		// 需要对得到的值进行处理，去除掉当前的 id，更新到 props 里面
 		const newValues = Object.keys(values).reduce((data, key) => {
 			const newKey = key.split('-')[0];
 			data[newKey] = values[key];

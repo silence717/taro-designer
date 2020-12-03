@@ -10,9 +10,10 @@
 		"loading": false,
 		"hoverClass": "none",
 		"hoverStartTime": 20,
-		"hoverStayTime": 70,
-		"className": "",
-		"styles": ""
+		"hoverStayTime": 70
+	},
+	"defaultStyles": {
+		"className": ""
 	},
 	"config": [
 		{
@@ -83,16 +84,6 @@
 			"key": "hoverStayTime",
 			"type": "InputNumber",
 			"label": "手指松开后点击态保留时间，单位毫秒"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式（每个样式以；结束，换行书写下一个）",
-			"type": "Textarea"
 		}
 	]
 }

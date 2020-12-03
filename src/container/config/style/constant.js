@@ -52,11 +52,6 @@ const styleConfigs = {
 		key: 'border',
 		label: '边框',
 		type: 'Input'
-	},
-	className: {
-		key: 'className',
-		label: 'class名称',
-		type: 'Input'
 	}
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { action, computed, observable } from 'mobx';
+import { action, computed, observe } from 'mobx';
 import { Field, Form, Input, Select } from 'cloud-react';
 
 import { CONFIGS } from '@components';
@@ -14,14 +14,31 @@ import { properties, styleConfigs } from './constant';
 class Styles extends Component {
 	field = new Field(this);
 
-	@observable
-	defaultValues = Object.keys(CONFIGS[store.currentType].defaultStyles);
+	componentDidMount() {
+		observe(store, 'currentId', () => {
+			this.field.fieldsMeta = {};
+			this.field.__fieldsMeta__ = {};
+		});
+	}
+
+	@computed
+	get defaultValues() {
+		const hasSetValues = Object.keys(store.currentStyles);
+		return hasSetValues.length ? hasSetValues : Object.keys(CONFIGS[store.currentType].defaultStyles);
+	}
 
 	@computed
 	get styleList() {
-		return this.defaultValues.map(item => {
-			return styleConfigs[item];
-		});
+		return this.defaultValues
+			.filter(item => item !== 'className')
+			.map(item => {
+				return styleConfigs[item];
+			});
+	}
+
+	@computed
+	get isRequired() {
+		return Object.keys(store.currentStyles).length;
 	}
 
 	@action
@@ -32,7 +49,7 @@ class Styles extends Component {
 	@action.bound
 	handleFormChange() {
 		const values = this.field.getValues();
-		// 需要对得到的值进行处理，去除掉当前的 id，更新到 styles 里面
+
 		const newValues = Object.keys(values).reduce((data, key) => {
 			const newKey = key.split('-')[0];
 			data[newKey] = values[key];
@@ -78,22 +95,45 @@ class Styles extends Component {
 		));
 	}
 
+	renderClassName() {
+		const { init } = this.field;
+
+		return (
+			<Form.Item label="class名称">
+				<Input
+					{...init(`className-${store.currentId}`, {
+						initValue: store.currentStyles.className || '',
+						rules: [{ required: this.isRequired, message: 'class名称不能为空' }],
+						onChange: this.handleFormChange
+					})}
+				/>
+			</Form.Item>
+		);
+	}
+
+	renderSelect() {
+		return (
+			<Select
+				placeholder="请选择当前组件要配置的样式"
+				value={this.defaultValues}
+				dataSource
+				multiple
+				allowClear
+				hasSelectAll
+				onChange={this.handleChange}>
+				{this.renderOptions(properties)}
+			</Select>
+		);
+	}
+
 	render() {
 		return (
 			<div className="wrapper">
 				<h3>css样式设置</h3>
-				<Select
-					placeholder="请选择当前组件要配置的样式"
-					defaultValue={this.defaultValues}
-					dataSource
-					multiple
-					allowClear
-					hasSelectAll
-					onChange={this.handleChange}>
-					{this.renderOptions(properties)}
-				</Select>
+				{this.renderSelect()}
 				{this.defaultValues.length ? (
 					<Form field={this.field}>
+						{this.renderClassName()}
 						{this.styleList.map((item, index) => (
 							<Form.Item key={index} label={item.label}>
 								{this.renderByType(item)}

@@ -29,7 +29,7 @@ class Editor extends Component {
 	handleClick({ id, type }, event) {
 		event.stopPropagation();
 		store.setCurrentId(id);
-		store.setCurrentProps();
+		store.setCurrentConfig();
 		store.setCurrentType(type);
 	}
 

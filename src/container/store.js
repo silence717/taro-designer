@@ -58,9 +58,10 @@ class Store {
 		this.currentId = value;
 	}
 
-	setCurrentProps() {
+	setCurrentConfig() {
 		const item = findItem(this.pageData, this.currentId);
 		this.currentProps = item.props;
+		this.currentStyles = item.styles || {};
 	}
 
 	setCurrentType(value) {
@@ -78,6 +79,7 @@ class Store {
 	updatePageStyle(values) {
 		const item = findItem(this.pageData, this.currentId);
 		item.styles = values;
+		this.currentStyles = values;
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 
