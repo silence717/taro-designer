@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { action, computed, observe } from 'mobx';
+import { action, computed, observable, observe } from 'mobx';
 import { Field, Form, Input, Select } from 'cloud-react';
 
 import { CONFIGS } from '@components';
@@ -14,17 +14,20 @@ import { properties, styleConfigs } from './constant';
 class Styles extends Component {
 	field = new Field(this);
 
+	@observable
+	defaultValues = [];
+
+	constructor(props) {
+		super(props);
+		const hasSetValues = Object.keys(store.currentStyles);
+		this.defaultValues = hasSetValues.length ? hasSetValues : Object.keys(CONFIGS[store.currentType].defaultStyles);
+	}
+
 	componentDidMount() {
 		observe(store, 'currentId', () => {
 			this.field.fieldsMeta = {};
 			this.field.__fieldsMeta__ = {};
 		});
-	}
-
-	@computed
-	get defaultValues() {
-		const hasSetValues = Object.keys(store.currentStyles);
-		return hasSetValues.length ? hasSetValues : Object.keys(CONFIGS[store.currentType].defaultStyles);
 	}
 
 	@computed
