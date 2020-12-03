@@ -5,7 +5,7 @@ import { Button } from 'cloud-react';
 import JSZip from 'jszip';
 
 import Components, { CONFIGS } from '@components';
-import { parseStyles, http, renderJSONtoJSX } from '@utils';
+import { http, renderJSONtoJSX } from '@utils';
 
 import store from '../store';
 import TargetBox from './targetBox';
@@ -34,22 +34,12 @@ class Editor extends Component {
 	}
 
 	renderContent(data) {
-		const { id, type, props = {}, childrens } = data;
+		const { id, type, props = {}, styles = {}, childrens } = data;
 		const CurrentComponet = Components[type];
-		const {
-			canPlace,
-			defaultProps: { styles: defaultStyle, ...othersDefaultProps }
-		} = CONFIGS[type];
+		const { canPlace, defaultStyles, defaultProps } = CONFIGS[type];
 
-		const { styles = defaultStyle, ...others } = props;
-		const style = parseStyles(styles);
-
-		// 为当前选中正在编辑的设置高亮
-		// if (id === store.currentId) {
-		// 	Object.assign(style, { background: '#f6f7ff' });
-		// }
-
-		const newProps = { ...othersDefaultProps, ...others };
+		const finalProps = { ...defaultProps, ...props };
+		const finalStyle = { ...defaultStyles, ...styles };
 
 		let childs = null;
 		if (childrens && childrens.length) {
@@ -58,14 +48,14 @@ class Editor extends Component {
 
 		if (canPlace) {
 			return (
-				<TargetBox key={id} id={id} type={type} style={style} {...newProps} onClick={event => this.handleClick({ id, type }, event)}>
+				<TargetBox key={id} id={id} style={finalStyle} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
 					{childs}
 				</TargetBox>
 			);
 		}
 
 		return (
-			<CurrentComponet key={id} id={id} style={style} {...newProps} onClick={event => this.handleClick({ id, type }, event)}>
+			<CurrentComponet key={id} id={id} style={finalStyle} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
 				{childs}
 			</CurrentComponet>
 		);
@@ -79,6 +69,7 @@ class Editor extends Component {
 			contents: jsx,
 			css
 		});
+
 		const zip = new JSZip();
 		await zip.loadAsync(data, { base64: true });
 		const blob = await zip.generateAsync({ type: 'blob' });
@@ -92,6 +83,10 @@ class Editor extends Component {
 		link.remove();
 	};
 
+	handleReset = () => {
+		store.reset();
+	};
+
 	render() {
 		return (
 			<section className="editor">
@@ -100,6 +95,9 @@ class Editor extends Component {
 				<div className="operate">
 					<Button type="primary" onClick={this.handleDownload}>
 						下载源代码
+					</Button>
+					<Button onClick={this.handleReset} style={{ marginLeft: '10px' }}>
+						清空当前工作区
 					</Button>
 				</div>
 				<div className="edit" ref={this.ref}>

@@ -51,21 +51,16 @@ export default function Spacing(props) {
 		onChange([top, right, bottom, leftValue].join(' '));
 	};
 
-	const style = {
-		width: '45px',
-		marginRight: '5px'
-	};
-
 	return (
 		<>
 			上：
-			<Input style={style} value={top} onChange={handleTopChange} />
+			<Input className="spcing" value={top} onChange={handleTopChange} />
 			右：
-			<Input style={style} value={right} onChange={handleRightChange} />
+			<Input className="spcing" value={right} onChange={handleRightChange} />
 			下：
-			<Input style={style} value={bottom} onChange={handleBottomChange} />
+			<Input className="spcing" value={bottom} onChange={handleBottomChange} />
 			左：
-			<Input style={style} value={left} onChange={handleLeftChange} />
+			<Input className="spcing" value={left} onChange={handleLeftChange} />
 		</>
 	);
 }

@@ -34,7 +34,7 @@ module.exports = router => {
 			});
 		});
 		prettier.resolveConfig(configPath).then(options => {
-			const content = prettier.format(css, Object.assign(options, { parser: 'babel' }));
+			const content = prettier.format(css, Object.assign(options, { parser: 'less' }));
 
 			fs.writeFileSync(cssPath, content, options, error => {
 				if (error) {

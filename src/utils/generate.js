@@ -13,7 +13,7 @@ function renderProps(props, currentType) {
 		const value = props[key];
 		const defaultValue = CONFIGS[currentType].defaultProps[key];
 
-		if (key !== 'content' && key !== 'styles' && value !== defaultValue) {
+		if (key !== 'content' && value !== defaultValue) {
 			if (typeof value === 'number' || typeof value === 'boolean') {
 				str += ` ${key}={${value}}`;
 			}
@@ -26,18 +26,29 @@ function renderProps(props, currentType) {
 	return str;
 }
 
-function renderCss(props) {
-	if (!props) return;
-	const { styles = '', className = '' } = props;
-	if (styles && className) {
-		css += `.${props.className} {\n${props.styles}\n}`;
-	}
+function renderCss(styles, currentType) {
+	let str = '';
+	if (!styles) return str;
+
+	const { className, ...others } = styles;
+	str += `.${className} {`;
+
+	Object.keys(others).forEach(key => {
+		const value = styles[key];
+		const defaultValue = CONFIGS[currentType].defaultStyles[key];
+		if (value !== defaultValue) {
+			str += `${key}: ${value};`;
+		}
+	});
+	str += '}';
+
+	return str;
 }
 
 function renderElementToJSX(data) {
 	data.forEach(item => {
 		types.push(item.type);
-		renderCss(item.props);
+		css += renderCss(item.styles, item.type);
 		jsx += `<${item.type}`;
 		jsx += renderProps(item.props, item.type);
 		jsx += '>\n';

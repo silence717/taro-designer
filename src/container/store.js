@@ -33,6 +33,7 @@ const initPageData = [
 		id: '1',
 		type: 'View',
 		props: {},
+		styles: {},
 		childrens: []
 	}
 ];
@@ -46,6 +47,9 @@ class Store {
 
 	@observable
 	currentProps = {};
+
+	@observable
+	currentStyles = {};
 
 	@observable
 	pageData = JSON.parse(localStorage.getItem('cacheData')) || initPageData;
@@ -63,9 +67,17 @@ class Store {
 		this.currentType = value;
 	}
 
+	// 更新配置数据
 	updatePageData(values) {
 		const item = findItem(this.pageData, this.currentId);
 		item.props = values;
+		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+	}
+
+	// 更新样式配置
+	updatePageStyle(values) {
+		const item = findItem(this.pageData, this.currentId);
+		item.styles = values;
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 
@@ -87,6 +99,15 @@ class Store {
 		}
 
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+	}
+
+	reset() {
+		this.currentId = '';
+		this.currentType = '';
+		this.currentProps = {};
+		this.currentStyles = {};
+		this.pageData = initPageData;
+		localStorage.setItem('cacheData', JSON.stringify(initPageData));
 	}
 
 	remove() {

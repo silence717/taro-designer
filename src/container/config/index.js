@@ -7,6 +7,7 @@ import { CONFIGS } from '@components';
 import store from '../store';
 
 import ConfigForm from './form';
+import StyleForm from './style';
 
 import './style.less';
 
@@ -27,6 +28,7 @@ class Config extends Component {
 							</Button>
 							{CONFIGS[store.currentType].tips && <Tips msg={CONFIGS[store.currentType].tips} type="major" />}
 							<ConfigForm />
+							<StyleForm />
 						</>
 					) : (
 						<Tips msg="请选择要编辑的元素" type="major" />

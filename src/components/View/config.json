@@ -5,9 +5,13 @@
 	"defaultProps": {
 		"hoverClass": "none",
 		"hoverStartTime": 50,
-		"hoverStayTime": 400,
+		"hoverStayTime": 400
+	},
+	"defaultStyles": {
 		"className": "",
-		"styles": "min-height:100px;\npadding:10px;"
+		"background": "#f8f8f8",
+		"height": "100px",
+		"padding": "10px"
 	},
 	"config": [
 		{
@@ -24,16 +28,6 @@
 			"key": "hoverStayTime",
 			"label": "手指松开后点击态保留时间，单位毫秒",
 			"type": "InputNumber"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

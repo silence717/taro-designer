@@ -4,7 +4,6 @@ import { action, observe } from 'mobx';
 import { Field, Form, Input, InputNumber, Radio, Select } from 'cloud-react';
 import { CONFIGS } from '@components';
 import store from '../store';
-import Spacing from './Spacing';
 
 @observer
 class ConfigForm extends Component {
@@ -27,7 +26,6 @@ class ConfigForm extends Component {
 			data[newKey] = values[key];
 			return data;
 		}, {});
-		// console.log(newValues);
 		store.updatePageData(newValues);
 	}
 
@@ -59,8 +57,6 @@ class ConfigForm extends Component {
 						<Radio value={false}>否</Radio>
 					</Radio.Group>
 				);
-			case 'Spacing':
-				return <Spacing {...init(name, options)} value={value} />;
 			default:
 				return null;
 		}
@@ -70,13 +66,16 @@ class ConfigForm extends Component {
 		const configs = CONFIGS[store.currentType].config;
 
 		return (
-			<Form field={this.field}>
-				{configs.map((item, index) => (
-					<Form.Item key={index} label={item.label}>
-						{this.renderByType(item)}
-					</Form.Item>
-				))}
-			</Form>
+			<div className="wrapper">
+				<h3>组件属性配置</h3>
+				<Form field={this.field}>
+					{configs.map((item, index) => (
+						<Form.Item key={index} label={item.label}>
+							{this.renderByType(item)}
+						</Form.Item>
+					))}
+				</Form>
+			</div>
 		);
 	}
 }
