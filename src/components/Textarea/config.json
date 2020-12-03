@@ -8,9 +8,10 @@
 		"placeholder": "请输入内容...",
 		"disabled": false,
 		"maxlength": 140,
-		"autoFocus": false,
-		"className": "",
-		"styles": "height:80px;\n"
+		"autoFocus": false
+	},
+	"defaultStyles": {
+		"height": "50px"
 	},
 	"config": [
 		{
@@ -32,16 +33,6 @@
 			"key": "autoFocus",
 			"label": "自动聚焦，拉起键盘",
 			"type": "Radio"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

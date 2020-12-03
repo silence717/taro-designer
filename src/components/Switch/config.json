@@ -5,10 +5,9 @@
 	"defaultProps": {
 		"checked": false,
 		"type": "switch",
-		"color": "#04BE02",
-		"className": "",
-		"styles": ""
+		"color": "#04BE02"
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "checked",
@@ -34,16 +33,6 @@
 			"key": "color",
 			"label": "颜色",
 			"type": "Input"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

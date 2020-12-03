@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { Input } from '@tarojs/components/dist-h5/react';
 
 export default class Input1 extends Component {
 	render() {
 		const { style, ...others } = this.props;
-		return <Input style={toJS(style)} {...others} />;
+		return <Input style={style} {...others} />;
 	}
 }
 
@@ -15,7 +14,7 @@ Input1.propTypes = {
 	password: PropTypes.bool,
 	placeholder: PropTypes.string,
 	disabled: PropTypes.bool,
-	maxLength: PropTypes.number,
+	maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	focus: PropTypes.bool,
 	style: PropTypes.object
 };

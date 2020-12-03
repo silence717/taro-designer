@@ -8,7 +8,6 @@
 		"hoverStayTime": 400
 	},
 	"defaultStyles": {
-		"className": "",
 		"background": "#f8f8f8",
 		"height": "100px",
 		"padding": "10px"

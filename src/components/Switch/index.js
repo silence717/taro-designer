@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { Switch } from '@tarojs/components/dist-h5/react';
 
 export default class Switch1 extends Component {
 	render() {
 		const { style, ...others } = this.props;
-		return <Switch style={toJS(style)} {...others} />;
+		return <Switch style={style} {...others} />;
 	}
 }
 

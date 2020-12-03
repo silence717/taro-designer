@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { Radio } from '@tarojs/components/dist-h5/react';
 
 export default class Radio1 extends Component {
 	render() {
 		const { style, children, ...others } = this.props;
 		return (
-			<Radio style={toJS(style)} {...others}>
+			<Radio style={style} {...others}>
 				{children}
 			</Radio>
 		);

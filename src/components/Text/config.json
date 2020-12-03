@@ -4,10 +4,9 @@
 	"canPlace": false,
 	"defaultProps": {
 		"content": "text",
-		"selectable": false,
-		"className": "",
-		"styles": ""
+		"selectable": false
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "content",
@@ -18,16 +17,6 @@
 			"key": "selectable",
 			"label": "文本是否可选",
 			"type": "Radio"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

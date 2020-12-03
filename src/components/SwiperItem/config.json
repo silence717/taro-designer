@@ -3,25 +3,18 @@
 	"name": "滑块视图子项，仅可放置在 swiper 组件中，宽高自动设置为100%",
 	"canPlace": true,
 	"defaultProps": {
-		"itemId": "",
-		"className": "",
-		"styles": "background: yellow;"
+		"itemId": ""
+	},
+	"defaultStyles": {
+		"background": "#efef0c",
+		"width": "100%",
+		"height": "100%"
 	},
 	"config": [
 		{
 			"key": "itemId",
 			"label": "该 swiper-item 的标识符",
 			"type": "Input"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

@@ -4,25 +4,18 @@
 	"canPlace": true,
 	"tips": "当点击 form 表单中 form-type 为 submit 的 button 组件时，会将表单组件中的 value 值进行提交，需要在表单组件中加上 name 来作为 key。",
 	"defaultProps": {
-		"reportSubmit": false,
-		"className": "",
-		"styles": "display:block;\nwidth:100%;\nmin-height:100px;"
+		"reportSubmit": false
+	},
+	"defaultStyles": {
+		"display": "block",
+		"width": "100%",
+		"height": "100px"
 	},
 	"config": [
 		{
 			"key": "reportSubmit",
 			"label": "是否返回 formId 用于发送模板消息",
 			"type": "Radio"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

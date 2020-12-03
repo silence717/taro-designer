@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { SwiperItem } from '@tarojs/components/dist-h5/react';
-import { noop } from '@utils';
 
 export default class SwiperItem1 extends Component {
 	render() {
 		const { style, children, ...others } = this.props;
 
 		return (
-			<SwiperItem style={toJS(style)} {...others}>
+			<SwiperItem style={style} {...others}>
 				{children}
 			</SwiperItem>
 		);
@@ -18,12 +16,10 @@ export default class SwiperItem1 extends Component {
 
 SwiperItem1.propTypes = {
 	itemId: PropTypes.string,
-	style: PropTypes.object,
-	onClick: PropTypes.func
+	style: PropTypes.object
 };
 
 SwiperItem1.defaultProps = {
 	itemId: '',
-	style: {},
-	onClick: noop
+	style: {}
 };

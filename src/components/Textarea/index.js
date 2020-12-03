@@ -14,7 +14,7 @@ Textarea1.propTypes = {
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
 	disabled: PropTypes.bool,
-	maxlength: PropTypes.number,
+	maxlength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	autoFocus: PropTypes.bool,
 	style: PropTypes.object
 };

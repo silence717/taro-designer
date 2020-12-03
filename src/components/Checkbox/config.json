@@ -7,10 +7,9 @@
 		"content": "a",
 		"disabled": false,
 		"checked": false,
-		"color": "",
-		"className": "",
-		"styles": ""
+		"color": ""
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "value",
@@ -36,16 +35,6 @@
 			"key": "color",
 			"type": "Input",
 			"label": "checkbox的颜色"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

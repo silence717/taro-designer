@@ -15,9 +15,11 @@
 		"vertical": false,
 		"previousMargin": "0px",
 		"nextMargin": "0px",
-		"displayMultipleItems": 1,
-		"className": "",
-		"styles": "height: 100px;\npadding:20px;"
+		"displayMultipleItems": 1
+	},
+	"defaultStyles": {
+		"height": "80px",
+		"padding": "20px"
 	},
 	"config": [
 		{
@@ -79,16 +81,6 @@
 			"key": "displayMultipleItems",
 			"type": "InputNumber",
 			"label": "同时显示的滑块数量"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式（每个样式以；结束，换行书写下一个）",
-			"type": "Textarea"
 		}
 	]
 }

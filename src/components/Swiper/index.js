@@ -20,14 +20,14 @@ Swiper1.propTypes = {
 	indicatorColor: PropTypes.string,
 	indicatorActiveColor: PropTypes.string,
 	autoplay: PropTypes.bool,
-	current: PropTypes.number,
-	interval: PropTypes.number,
-	duration: PropTypes.number,
+	current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	interval: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	circular: PropTypes.bool,
 	vertical: PropTypes.bool,
 	previousMargin: PropTypes.string,
 	nextMargin: PropTypes.string,
-	displayMultipleItems: PropTypes.number,
+	displayMultipleItems: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	style: PropTypes.object,
 	onClick: PropTypes.func
 };

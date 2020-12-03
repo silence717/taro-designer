@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toJS } from 'mobx';
 import { Button } from '@tarojs/components/dist-h5/react';
 import { noop } from '@utils';
 
@@ -8,7 +7,7 @@ export default class Button1 extends Component {
 	render() {
 		const { style, content, ...othersProps } = this.props;
 		return (
-			<Button {...othersProps} style={toJS(style)}>
+			<Button {...othersProps} style={style}>
 				{content}
 			</Button>
 		);
@@ -23,8 +22,8 @@ Button1.propTypes = {
 	plain: PropTypes.bool,
 	disabled: PropTypes.bool,
 	loading: PropTypes.bool,
-	hoverStartTime: PropTypes.number,
-	hoverStayTime: PropTypes.number,
+	hoverStartTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	hoverStayTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	style: PropTypes.object,
 	onClick: PropTypes.func
 };

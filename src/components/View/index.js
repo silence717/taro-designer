@@ -15,8 +15,8 @@ export default class View1 extends Component {
 
 View1.propTypes = {
 	hoverClass: PropTypes.string,
-	hoverStartTime: PropTypes.number,
-	hoverStayTime: PropTypes.number,
+	hoverStartTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	hoverStayTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	style: PropTypes.object
 };
 

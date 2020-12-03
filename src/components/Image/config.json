@@ -5,10 +5,9 @@
 	"tips": "支持 JPG、PNG、SVG、WEBP、GIF 等格式以及云文件ID。",
 	"defaultProps": {
 		"src": "https://seopic.699pic.com/photo/50064/1758.jpg_wh1200.jpg",
-		"mode": "scaleToFill",
-		"className": "",
-		"styles": ""
+		"mode": "scaleToFill"
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "src",
@@ -77,16 +76,6 @@
 					"value": "bottom right"
 				}
 			]
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

@@ -11,14 +11,14 @@ export default class Slider1 extends Component {
 }
 
 Slider1.propTypes = {
-	min: PropTypes.number,
-	max: PropTypes.number,
-	step: PropTypes.number,
+	min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+	step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	disabled: PropTypes.bool,
-	value: PropTypes.number,
+	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	activeColor: PropTypes.string,
 	backgroundColor: PropTypes.string,
-	blockSize: PropTypes.number,
+	blockSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	blockColor: PropTypes.string,
 	showValue: PropTypes.bool,
 	style: PropTypes.object

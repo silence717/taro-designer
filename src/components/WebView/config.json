@@ -6,6 +6,7 @@
 	"defaultProps": {
 		"src": "https://mp.weixin.qq.com/"
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "src",

@@ -4,10 +4,9 @@
 	"canPlace": false,
 	"defaultProps": {
 		"checked": false,
-		"disabled": false,
-		"className": "",
-		"styles": ""
+		"disabled": false
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "checked",
@@ -18,17 +17,6 @@
 			"disabled": "disabled",
 			"label": "是否禁用",
 			"type": "Radio"
-		},
-
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }

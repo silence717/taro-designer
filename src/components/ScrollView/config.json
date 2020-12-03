@@ -12,9 +12,12 @@
 		"scrollLeft": "",
 		"hoverClass": "none",
 		"scrollIntoView": "",
-		"scrollWithAnimation": false,
+		"scrollWithAnimation": false
+	},
+	"defaultStyles": {
 		"className": "",
-		"styles": "min-height:100px;\npadding:10px;"
+		"height": "100px",
+		"padding": "10px"
 	},
 	"config": [
 		{
@@ -56,16 +59,6 @@
 			"key": "scrollWithAnimation",
 			"type": "Radio",
 			"label": "在设置滚动条位置时使用动画过渡"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式（每个样式以；结束，换行书写下一个）",
-			"type": "Textarea"
 		}
 	]
 }

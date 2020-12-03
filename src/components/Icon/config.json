@@ -6,10 +6,9 @@
 	"defaultProps": {
 		"type": "success",
 		"size": 23,
-		"color": "",
-		"className": "",
-		"styles": ""
+		"color": ""
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "type",
@@ -63,16 +62,6 @@
 			"key": "color",
 			"type": "Input",
 			"label": "icon 的颜色"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式（每个样式以；结束，换行书写下一个）",
-			"type": "Textarea"
 		}
 	]
 }

@@ -12,7 +12,7 @@ export default class Progress1 extends Component {
 }
 
 Progress1.propTypes = {
-	percent: PropTypes.number,
+	percent: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	showInfo: PropTypes.bool,
 	borderRadius: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -22,7 +22,7 @@ Progress1.propTypes = {
 	backgroundColor: PropTypes.string,
 	active: PropTypes.bool,
 	activeMode: PropTypes.oneOf(['backwards', 'forwards']),
-	duration: PropTypes.number,
+	duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	style: PropTypes.object,
 	onClick: PropTypes.func
 };

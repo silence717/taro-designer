@@ -12,9 +12,7 @@
 		"hoverStartTime": 20,
 		"hoverStayTime": 70
 	},
-	"defaultStyles": {
-		"className": ""
-	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "content",

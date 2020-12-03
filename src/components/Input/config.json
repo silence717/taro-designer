@@ -9,10 +9,9 @@
 		"placeholder": "请输入内容...",
 		"disabled": false,
 		"maxLength": 140,
-		"focus": false,
-		"className": "",
-		"styles": ""
+		"focus": false
 	},
+	"defaultStyles": {},
 	"config": [
 		{
 			"key": "type",
@@ -61,16 +60,6 @@
 			"key": "focus",
 			"label": "获取焦点",
 			"type": "Radio"
-		},
-		{
-			"key": "className",
-			"type": "Input",
-			"label": "css样式class名称"
-		},
-		{
-			"key": "styles",
-			"label": "css样式(每个样式以分号;结束且换行书写下一个)",
-			"type": "Textarea"
 		}
 	]
 }
