@@ -20,7 +20,7 @@ class Config extends Component {
 					属性配置区
 					{store.currentId ? `（${CONFIGS[store.currentType].name}）` : ''}
 				</header>
-				<div>
+				<div className="config-area">
 					{store.currentId ? (
 						<>
 							<Button size="small" style={{ marginBottom: '10px' }}>
