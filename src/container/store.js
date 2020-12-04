@@ -103,31 +103,28 @@ class Store {
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 
-	reset() {
+	clearCurrentData() {
 		this.currentId = '';
 		this.currentType = '';
 		this.currentProps = {};
 		this.currentStyles = {};
+	}
+
+	reset() {
+		this.clearCurrentData();
 		this.pageData = initPageData;
 		localStorage.setItem('cacheData', JSON.stringify(initPageData));
 	}
 
-	remove() {
-		// this.pageData.forEach(item => {
-		// 	const loop = data => {
-		// 		if (data.id === id) {
-		// 			result = data;
-		// 			return result;
-		// 		}
-		// 		const childs = data.childrens;
-		// 		if (childs) {
-		// 			for (let i = 0; i < childs.length; i += 1) {
-		// 				loop(childs[i]);
-		// 			}
-		// 		}
-		// 	};
-		// 	loop(item);
-		// });
+	removeElement() {
+		if (this.currentId === '1') return;
+
+		const parentId = this.currentId.substring(0, this.currentId.lastIndexOf('-'));
+		const item = findItem(this.pageData, parentId);
+		const index = item.childrens.findIndex(child => child.id === this.currentId);
+		item.childrens.splice(index, 1);
+		this.clearCurrentData();
+		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 }
 
