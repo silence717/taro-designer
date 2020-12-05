@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { action, computed, observable, observe } from 'mobx';
-import { Field, Form, Input, Select } from 'cloud-react';
+import { Field, Form, Input, Checkbox, Radio } from 'cloud-react';
 
 import { CONFIGS } from '@components';
 import store from '../../store';
@@ -17,17 +17,25 @@ class Styles extends Component {
 	@observable
 	defaultValues = [];
 
+	@observable
+	checkedAll = false;
+
 	constructor(props) {
 		super(props);
-		const hasSetValues = Object.keys(store.currentStyles);
-		this.defaultValues = hasSetValues.length ? hasSetValues : Object.keys(CONFIGS[store.currentType].defaultStyles);
+		this.computedDefaultValues();
 	}
 
 	componentDidMount() {
-		observe(store, 'currentId', () => {
+		observe(store, 'currentStyles', () => {
 			this.field.fieldsMeta = {};
 			this.field.__fieldsMeta__ = {};
+			this.computedDefaultValues();
 		});
+	}
+
+	computedDefaultValues() {
+		const hasSetValues = Object.keys(store.currentStyles);
+		this.defaultValues = hasSetValues.length ? hasSetValues : Object.keys(CONFIGS[store.currentType].defaultStyles);
 	}
 
 	@computed
@@ -43,11 +51,6 @@ class Styles extends Component {
 	get isRequired() {
 		return Object.keys(store.currentStyles).length;
 	}
-
-	@action
-	handleChange = value => {
-		this.defaultValues = value;
-	};
 
 	@action.bound
 	handleFormChange() {
@@ -77,25 +80,21 @@ class Styles extends Component {
 				return <Input {...init(name, options)} />;
 			case 'Color':
 				return <Input type="color" {...init(name, options)} />;
-			case 'Select':
+			case 'Radio':
 				return (
-					<Select dataSource={item.dataSource} {...init(name, options)}>
-						{this.renderOptions(item.dataSource)}
-					</Select>
+					<Radio.Group {...init(name, options)}>
+						{item.dataSource.map((data, index) => (
+							<Radio key={index} value={data}>
+								{data}
+							</Radio>
+						))}
+					</Radio.Group>
 				);
 			case 'Spacing':
 				return <Spacing {...init(name, options)} value={options.initValue} />;
 			default:
 				return null;
 		}
-	}
-
-	renderOptions(data) {
-		return data.map((item, index) => (
-			<Select.Option key={index} value={item}>
-				{item}
-			</Select.Option>
-		));
 	}
 
 	renderClassName() {
@@ -114,18 +113,31 @@ class Styles extends Component {
 		);
 	}
 
-	renderSelect() {
+	@action
+	handleChange = value => {
+		this.defaultValues = value;
+	};
+
+	@action
+	handleCheckAll = checked => {
+		this.defaultValues = checked ? properties : [];
+		this.checkedAll = checked;
+	};
+
+	renderProperties() {
 		return (
-			<Select
-				placeholder="请选择当前组件要配置的样式"
-				value={this.defaultValues}
-				dataSource
-				multiple
-				allowClear
-				hasSelectAll
-				onChange={this.handleChange}>
-				{this.renderOptions(properties)}
-			</Select>
+			<Form.Item label="请选择要配置的属性">
+				<Checkbox checked={this.checkedAll} onChange={this.handleCheckAll}>
+					全选
+				</Checkbox>
+				<Checkbox.Group value={this.defaultValues} onChange={this.handleChange}>
+					{properties.map((item, index) => (
+						<Checkbox key={index} value={item}>
+							{item}
+						</Checkbox>
+					))}
+				</Checkbox.Group>
+			</Form.Item>
 		);
 	}
 
@@ -133,17 +145,19 @@ class Styles extends Component {
 		return (
 			<div className="wrapper">
 				<h3>css样式设置</h3>
-				{this.renderSelect()}
-				{this.defaultValues.length ? (
-					<Form field={this.field}>
-						{this.renderClassName()}
-						{this.styleList.map((item, index) => (
-							<Form.Item key={index} label={item.label}>
-								{this.renderByType(item)}
-							</Form.Item>
-						))}
-					</Form>
-				) : null}
+				<Form layout="horizontal" labelCol={{ span: 6 }} field={this.field}>
+					{this.renderProperties()}
+					{this.defaultValues.length ? (
+						<>
+							{this.renderClassName()}
+							{this.styleList.map((item, index) => (
+								<Form.Item key={index} label={item.label}>
+									{this.renderByType(item)}
+								</Form.Item>
+							))}
+						</>
+					) : null}
+				</Form>
 			</div>
 		);
 	}

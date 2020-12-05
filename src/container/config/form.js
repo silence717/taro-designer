@@ -11,7 +11,7 @@ class ConfigForm extends Component {
 
 	componentDidMount() {
 		// 切换组件的时候，form表单虽然重新渲染了，但是 filed 里面存在的值并没有清除，因此需要手动获取一下所有的 names，然后保证数据渲染的准确性
-		observe(store, 'currentId', () => {
+		observe(store, 'currentProps', () => {
 			this.field.fieldsMeta = {};
 			this.field.__fieldsMeta__ = {};
 		});
@@ -30,7 +30,6 @@ class ConfigForm extends Component {
 
 	renderByType(item) {
 		const { init } = this.field;
-		// 为了保证每一个 Form.Item 的 name 唯一性，我们使用 `key-id` 的形式作为 name，如果为样式的话，增加一个 styles_ 前缀，使得好分割，保证数据更新准确
 		const name = `${item.key}-${store.currentId}`;
 		const value = store.currentProps[item.key];
 		const defaultValue = CONFIGS[store.currentType].defaultProps[item.key];
@@ -67,7 +66,7 @@ class ConfigForm extends Component {
 		return (
 			<div className="wrapper">
 				<h3>组件属性配置</h3>
-				<Form field={this.field}>
+				<Form layout="horizontal" labelCol={{ span: 6 }} field={this.field}>
 					{configs.map((item, index) => (
 						<Form.Item key={index} label={item.label}>
 							{this.renderByType(item)}
