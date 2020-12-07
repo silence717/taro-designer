@@ -3,6 +3,8 @@ import { CONFIGS } from '@components';
 const types = [];
 let jsx = '';
 let css = '';
+const reg = /\B([A-Z])/g;
+const reg2 = /([0-9]{1,})px+/g;
 
 function renderProps(props, currentType) {
 	let str = '';
@@ -22,34 +24,64 @@ function renderProps(props, currentType) {
 			}
 		}
 	});
-
 	return str;
 }
 
-function renderCss(styles, currentType) {
-	let str = '';
-	if (!styles) return str;
+// 拼接独立含classname的样式
+function renderCss(finalStyle, className) {
+	css += `.${className} {`;
 
-	const { className, ...others } = styles;
-	str += `.${className} {`;
+	Object.keys(finalStyle).forEach(key => {
+		const __key = key.replace(reg, '-$1').toLowerCase();
 
-	Object.keys(others).forEach(key => {
-		const value = styles[key];
-		const defaultValue = CONFIGS[currentType].defaultStyles[key];
-		if (value !== defaultValue) {
-			str += `${key}: ${value};`;
-		}
+		const value = finalStyle[key].replace(reg2, (result, $1) => {
+			return `${parseInt($1, 10) * 2}px`;
+		});
+		css += `${__key}: ${value};`;
 	});
-	str += '}';
+	css += '}';
+}
 
-	return str;
+// 生成行内样式
+function renderInlineCss(finalStyle) {
+	let temp = '';
+	Object.keys(finalStyle).forEach(key => {
+		const __value = finalStyle[key];
+		if (!__value) return;
+
+		temp += `${key}:`;
+		if (reg2.test(__value)) {
+			const value = __value.replace(reg2, (result, $1) => {
+				const res = parseInt($1, 10) * 2;
+				// eslint-disable-next-line
+				return '${Taro.pxTransform(' + res + ', 750)}';
+			});
+			// eslint-disable-next-line
+			temp += '`' + value + '`';
+		} else {
+			temp += `'${__value}'`;
+		}
+		temp += ',';
+	});
+	return ` style={{ ${temp.substring(0, temp.length - 1)} }}`;
 }
 
 function renderElementToJSX(data) {
 	data.forEach(item => {
 		types.push(item.type);
-		css += renderCss(item.styles, item.type);
+
+		const { className, ...otherStyle } = item.styles;
+		const { defaultStyles } = CONFIGS[item.type];
+		const finalStyle = { ...defaultStyles, ...otherStyle };
+
 		jsx += `<${item.type}`;
+
+		if (className) {
+			renderCss(finalStyle, className);
+			jsx += ` className="${className}"`;
+		} else {
+			jsx += renderInlineCss(finalStyle);
+		}
 		jsx += renderProps(item.props, item.type);
 		jsx += '>\n';
 		const childrens = item.childrens ? renderElementToJSX(item.childrens) : '';

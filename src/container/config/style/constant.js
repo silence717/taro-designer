@@ -26,7 +26,7 @@ const styleConfigs = {
 		key: 'display',
 		label: '布局类型',
 		type: 'Radio',
-		dataSource: ['block', 'flex', 'inline', 'inline-block', 'inline-flex', 'none']
+		dataSource: ['block', 'flex', 'inline', 'inline-block', 'inline-flex']
 	},
 	width: {
 		key: 'width',
