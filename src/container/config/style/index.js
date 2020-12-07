@@ -29,7 +29,9 @@ class Styles extends Component {
 		observe(store, 'currentStyles', () => {
 			this.field.fieldsMeta = {};
 			this.field.__fieldsMeta__ = {};
-			this.computedDefaultValues();
+			if (store.currentId) {
+				this.computedDefaultValues();
+			}
 		});
 	}
 
