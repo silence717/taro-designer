@@ -63,6 +63,7 @@ class Styles extends Component {
 			data[newKey] = values[key];
 			return data;
 		}, {});
+
 		store.updatePageStyle(newValues);
 	}
 
@@ -80,8 +81,6 @@ class Styles extends Component {
 		switch (item.type) {
 			case 'Input':
 				return <Input {...init(name, options)} />;
-			case 'Color':
-				return <Input type="color" {...init(name, options)} />;
 			case 'Radio':
 				return (
 					<Radio.Group {...init(name, options)}>

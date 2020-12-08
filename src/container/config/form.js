@@ -10,7 +10,6 @@ class ConfigForm extends Component {
 	field = new Field(this);
 
 	componentDidMount() {
-		// 切换组件的时候，form表单虽然重新渲染了，但是 filed 里面存在的值并没有清除，因此需要手动获取一下所有的 names，然后保证数据渲染的准确性
 		observe(store, 'currentProps', () => {
 			this.field.fieldsMeta = {};
 			this.field.__fieldsMeta__ = {};

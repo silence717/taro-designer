@@ -79,7 +79,6 @@ class Store {
 	updatePageStyle(values) {
 		const item = findItem(this.pageData, this.currentId);
 		item.styles = values;
-		this.currentStyles = values;
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 
