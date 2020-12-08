@@ -12,7 +12,10 @@ const properties = [
 	'background',
 	'border',
 	'boxShadow',
-	'borderRadius'
+	'borderRadius',
+	'flexDirection',
+	'alignItems',
+	'justifyContent'
 ];
 
 const styleConfigs = {
@@ -27,6 +30,24 @@ const styleConfigs = {
 		label: '布局类型',
 		type: 'Radio',
 		dataSource: ['block', 'flex', 'inline', 'inline-block', 'inline-flex']
+	},
+	flexDirection: {
+		key: 'flexDirection',
+		label: 'flex布局主轴的方向',
+		type: 'Radio',
+		dataSource: ['row', 'column', 'row-reverse', 'column-reverse']
+	},
+	justifyContent: {
+		key: 'justifyContent',
+		label: 'flex布局在主轴上如何对齐。',
+		type: 'Radio',
+		dataSource: ['flex-start', 'flex-end', 'center', 'space-between', 'space-around']
+	},
+	alignItems: {
+		key: 'alignItems',
+		label: 'flex布局在交叉轴上如何对齐。',
+		type: 'Radio',
+		dataSource: ['flex-start', 'flex-end', 'center', 'baseline']
 	},
 	width: {
 		key: 'width',

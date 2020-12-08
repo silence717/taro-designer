@@ -28,9 +28,7 @@ class Editor extends Component {
 	@action.bound
 	handleClick({ id, type }, event) {
 		event.stopPropagation();
-		store.setCurrentId(id);
-		store.setCurrentConfig();
-		store.setCurrentType(type);
+		store.setCurrentData(id, type);
 	}
 
 	renderContent(data) {

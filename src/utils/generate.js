@@ -70,7 +70,7 @@ function renderElementToJSX(data) {
 	data.forEach(item => {
 		types.push(item.type);
 
-		const { className, ...otherStyle } = item.styles;
+		const { className = '', ...otherStyle } = item.styles;
 		const { defaultStyles } = CONFIGS[item.type];
 		const finalStyle = { ...defaultStyles, ...otherStyle };
 

@@ -16,7 +16,9 @@ import './style.less';
 class Config extends Component {
 	@action
 	handleRemove = () => {
-		store.removeElement();
+		if (store.currentId) {
+			store.removeElement();
+		}
 	};
 
 	render() {
@@ -24,14 +26,14 @@ class Config extends Component {
 			<section className="config">
 				<header>
 					属性配置区
-					{store.currentId ? `（${CONFIGS[store.currentType].name}）` : ''}
+					{store.currentType ? `（${CONFIGS[store.currentType].name}）` : ''}
 				</header>
 				<div className="config-area">
-					{store.currentId ? (
+					<Button size="small" onClick={this.handleRemove} style={{ marginBottom: '10px' }}>
+						删除此元素
+					</Button>
+					{store.currentType ? (
 						<>
-							<Button size="small" onClick={this.handleRemove}>
-								删除此元素
-							</Button>
 							{CONFIGS[store.currentType].tips && <Tips msg={CONFIGS[store.currentType].tips} type="major" />}
 							<ConfigForm />
 							<StyleForm />

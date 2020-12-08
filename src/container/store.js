@@ -33,7 +33,9 @@ const initPageData = [
 		id: '1',
 		type: 'View',
 		props: {},
-		styles: {},
+		styles: {
+			height: '100%'
+		},
 		childrens: []
 	}
 ];
@@ -54,18 +56,12 @@ class Store {
 	@observable
 	pageData = JSON.parse(localStorage.getItem('cacheData')) || initPageData;
 
-	setCurrentId(value) {
-		this.currentId = value;
-	}
-
-	setCurrentConfig() {
-		const item = findItem(this.pageData, this.currentId);
+	setCurrentData(id, type) {
+		const item = findItem(this.pageData, id);
+		this.currentId = id;
+		this.currentType = type;
 		this.currentProps = item.props;
 		this.currentStyles = item.styles || {};
-	}
-
-	setCurrentType(value) {
-		this.currentType = value;
 	}
 
 	// 更新配置数据
@@ -86,7 +82,8 @@ class Store {
 		const item = findItem(this.pageData, targetId);
 		const obj = {
 			type,
-			props: CONFIGS[type].props || {}
+			props: CONFIGS[type].defaultProps || {},
+			styles: CONFIGS[type].defaultStyles || {}
 		};
 
 		if (item.childrens) {
