@@ -60,7 +60,9 @@ class Styles extends Component {
 
 		const newValues = Object.keys(values).reduce((data, key) => {
 			const newKey = key.split('-')[0];
-			data[newKey] = values[key];
+			if (this.defaultValues.indexOf(newKey) !== -1) {
+				data[newKey] = values[key];
+			}
 			return data;
 		}, {});
 
@@ -117,6 +119,7 @@ class Styles extends Component {
 	@action
 	handleChange = value => {
 		this.defaultValues = value;
+		this.handleFormChange();
 	};
 
 	@action

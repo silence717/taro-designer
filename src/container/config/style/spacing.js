@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'cloud-react';
+import { Button, Input } from 'cloud-react';
 import { noop } from '@utils';
 
 export default function Spacing(props) {
@@ -51,6 +51,14 @@ export default function Spacing(props) {
 		onChange([top, right, bottom, leftValue].join(' '));
 	};
 
+	const handleResetZero = () => {
+		setTop('0px');
+		setRight('0px');
+		setBottom('0px');
+		setLeft('0px');
+		onChange('0px');
+	};
+
 	return (
 		<>
 			上：
@@ -61,6 +69,9 @@ export default function Spacing(props) {
 			<Input className="spcing" value={bottom} onChange={handleBottomChange} />
 			左：
 			<Input className="spcing" value={left} onChange={handleLeftChange} />
+			<Button size="small" onClick={handleResetZero}>
+				清零
+			</Button>
 		</>
 	);
 }

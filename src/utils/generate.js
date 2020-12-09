@@ -70,17 +70,15 @@ function renderElementToJSX(data) {
 	data.forEach(item => {
 		types.push(item.type);
 
-		const { className = '', ...otherStyle } = item.styles;
-		const { defaultStyles } = CONFIGS[item.type];
-		const finalStyle = { ...defaultStyles, ...otherStyle };
+		const { className = '', ...styles } = item.styles;
 
 		jsx += `<${item.type}`;
 
 		if (className) {
-			renderCss(finalStyle, className);
+			renderCss(styles, className);
 			jsx += ` className="${className}"`;
 		} else {
-			jsx += renderInlineCss(finalStyle);
+			jsx += renderInlineCss(styles);
 		}
 		jsx += renderProps(item.props, item.type);
 		jsx += '>\n';

@@ -39,13 +39,13 @@ const styleConfigs = {
 	},
 	justifyContent: {
 		key: 'justifyContent',
-		label: 'flex布局在主轴上如何对齐。',
+		label: 'flex布局在主轴上如何对齐',
 		type: 'Radio',
 		dataSource: ['flex-start', 'flex-end', 'center', 'space-between', 'space-around']
 	},
 	alignItems: {
 		key: 'alignItems',
-		label: 'flex布局在交叉轴上如何对齐。',
+		label: 'flex布局在交叉轴上如何对齐',
 		type: 'Radio',
 		dataSource: ['flex-start', 'flex-end', 'center', 'baseline']
 	},

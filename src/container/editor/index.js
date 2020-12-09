@@ -34,10 +34,9 @@ class Editor extends Component {
 	renderContent(data) {
 		const { id, type, props = {}, styles = {}, childrens } = data;
 		const CurrentComponet = Components[type];
-		const { canPlace, defaultStyles, defaultProps } = CONFIGS[type];
+		const { canPlace, defaultProps } = CONFIGS[type];
 
 		const finalProps = { ...defaultProps, ...props };
-		const finalStyle = { ...defaultStyles, ...styles };
 
 		let childs = null;
 		if (childrens && childrens.length) {
@@ -46,14 +45,14 @@ class Editor extends Component {
 
 		if (canPlace) {
 			return (
-				<TargetBox key={id} id={id} style={finalStyle} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
+				<TargetBox key={id} id={id} style={styles} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
 					{childs}
 				</TargetBox>
 			);
 		}
 
 		return (
-			<CurrentComponet key={id} id={id} style={finalStyle} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
+			<CurrentComponet key={id} id={id} style={styles} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
 				{childs}
 			</CurrentComponet>
 		);
