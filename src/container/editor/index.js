@@ -5,7 +5,7 @@ import { Button } from 'cloud-react';
 import JSZip from 'jszip';
 
 import Components, { CONFIGS } from '@components';
-import { http, renderJSONtoJSX } from '@utils';
+import { http, renderJSONtoJSX, parseStyles } from '@utils';
 
 import store from '../store';
 import TargetBox from './targetBox';
@@ -45,14 +45,14 @@ class Editor extends Component {
 
 		if (canPlace) {
 			return (
-				<TargetBox key={id} id={id} style={styles} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
+				<TargetBox key={id} id={id} style={parseStyles(styles)} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
 					{childs}
 				</TargetBox>
 			);
 		}
 
 		return (
-			<CurrentComponet key={id} id={id} style={styles} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
+			<CurrentComponet key={id} id={id} style={parseStyles(styles)} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
 				{childs}
 			</CurrentComponet>
 		);

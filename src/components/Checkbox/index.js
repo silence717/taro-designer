@@ -19,7 +19,7 @@ Checkbox1.propTypes = {
 	disabled: PropTypes.bool,
 	checked: PropTypes.bool,
 	color: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Checkbox1.defaultProps = {
@@ -28,5 +28,5 @@ Checkbox1.defaultProps = {
 	disabled: false,
 	checked: false,
 	color: '',
-	style: {}
+	style: ''
 };

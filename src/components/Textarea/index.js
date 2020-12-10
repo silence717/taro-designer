@@ -16,7 +16,7 @@ Textarea1.propTypes = {
 	disabled: PropTypes.bool,
 	maxlength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	autoFocus: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Textarea1.defaultProps = {
@@ -25,5 +25,5 @@ Textarea1.defaultProps = {
 	disabled: false,
 	maxlength: 140,
 	autoFocus: false,
-	style: {}
+	style: ''
 };

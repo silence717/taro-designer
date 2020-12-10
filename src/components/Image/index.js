@@ -13,11 +13,11 @@ export default class Image1 extends Component {
 Image1.propTypes = {
 	src: PropTypes.string,
 	mode: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Image1.defaultProps = {
 	src: '',
 	mode: 'scaleToFill',
-	style: {}
+	style: ''
 };

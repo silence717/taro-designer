@@ -16,11 +16,11 @@ export default class Radio1 extends Component {
 Radio1.propTypes = {
 	checked: PropTypes.bool,
 	disabled: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Radio1.defaultProps = {
 	checked: false,
 	disabled: false,
-	style: {}
+	style: ''
 };

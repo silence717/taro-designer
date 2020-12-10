@@ -15,10 +15,10 @@ export default class Form1 extends Component {
 
 Form1.propTypes = {
 	reportSubmit: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Form1.defaultProps = {
 	reportSubmit: false,
-	style: {}
+	style: ''
 };

@@ -23,7 +23,7 @@ Progress1.propTypes = {
 	active: PropTypes.bool,
 	activeMode: PropTypes.oneOf(['backwards', 'forwards']),
 	duration: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	style: PropTypes.object,
+	style: PropTypes.string,
 	onClick: PropTypes.func
 };
 
@@ -39,6 +39,6 @@ Progress1.defaultProps = {
 	active: false,
 	activeMode: 'backwards',
 	duration: 30,
-	style: {},
+	style: '',
 	onClick: noop
 };

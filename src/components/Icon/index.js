@@ -13,12 +13,12 @@ Icon1.propTypes = {
 	type: PropTypes.string,
 	size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	color: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Icon1.defaultProps = {
 	type: '',
 	size: 23,
 	color: '',
-	style: {}
+	style: ''
 };

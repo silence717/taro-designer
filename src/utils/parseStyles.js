@@ -1,20 +1,14 @@
 export default function parseStyles(styles) {
-	if (!styles) return {};
-	return styles
-		.split(';')
-		.filter(style => style.split(':')[0] && style.split(':')[1])
-		.map(style => [
-			style
-				.split(':')[0]
-				.trim()
-				.replace(/-./g, c => c.substr(1).toUpperCase()),
-			style.split(':')[1].trim()
-		])
-		.reduce(
-			(styleObj, style) => ({
-				...styleObj,
-				[style[0]]: style[1]
-			}),
-			{}
-		);
+	const reg = /\B([A-Z])/g;
+
+	let res = '';
+
+	Object.keys(styles)
+		.filter(item => item !== 'className')
+		.forEach(key => {
+			const __key = key.replace(reg, '-$1').toLowerCase();
+			res += `${__key}:${styles[key]};`;
+		});
+
+	return res;
 }

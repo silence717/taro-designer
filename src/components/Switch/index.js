@@ -13,12 +13,12 @@ Switch1.propTypes = {
 	checked: PropTypes.bool,
 	type: PropTypes.oneOf(['switch', 'checkbox']),
 	color: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Switch1.defaultProps = {
 	checked: false,
 	type: 'swirch',
 	color: '#04BE02',
-	style: {}
+	style: ''
 };

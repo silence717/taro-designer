@@ -17,11 +17,11 @@ export default class Picker1 extends Component {
 Picker1.propTypes = {
 	mode: PropTypes.string,
 	disabled: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Picker1.defaultProps = {
 	mode: 'selector',
 	disabled: false,
-	style: {}
+	style: ''
 };

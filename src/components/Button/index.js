@@ -24,7 +24,7 @@ Button1.propTypes = {
 	loading: PropTypes.bool,
 	hoverStartTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	hoverStayTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	style: PropTypes.object,
+	style: PropTypes.string,
 	onClick: PropTypes.func
 };
 
@@ -38,6 +38,6 @@ Button1.defaultProps = {
 	loading: false,
 	hoverStartTime: 20,
 	hoverStayTime: 70,
-	style: {},
+	style: '',
 	onClick: noop
 };

@@ -16,10 +16,10 @@ export default class SwiperItem1 extends Component {
 
 SwiperItem1.propTypes = {
 	itemId: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 SwiperItem1.defaultProps = {
 	itemId: '',
-	style: {}
+	style: ''
 };

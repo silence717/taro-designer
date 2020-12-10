@@ -18,13 +18,13 @@ export default class Text1 extends Component {
 Text1.propTypes = {
 	content: PropTypes.string,
 	selectable: PropTypes.bool,
-	style: PropTypes.object,
+	style: PropTypes.string,
 	onClick: PropTypes.func
 };
 
 Text1.defaultProps = {
 	content: '',
 	selectable: false,
-	style: {},
+	style: '',
 	onClick: noop
 };

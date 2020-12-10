@@ -16,7 +16,7 @@ Input1.propTypes = {
 	disabled: PropTypes.bool,
 	maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	focus: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Input1.defaultProps = {
@@ -26,5 +26,5 @@ Input1.defaultProps = {
 	disabled: false,
 	maxLength: 140,
 	focus: false,
-	style: {}
+	style: ''
 };

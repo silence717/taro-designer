@@ -28,7 +28,7 @@ Swiper1.propTypes = {
 	previousMargin: PropTypes.string,
 	nextMargin: PropTypes.string,
 	displayMultipleItems: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	style: PropTypes.object,
+	style: PropTypes.string,
 	onClick: PropTypes.func
 };
 
@@ -45,6 +45,6 @@ Swiper1.defaultProps = {
 	previousMargin: '0px',
 	nextMargin: '0px',
 	displayMultipleItems: 1,
-	style: {},
+	style: '',
 	onClick: noop
 };

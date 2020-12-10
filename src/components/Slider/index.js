@@ -21,7 +21,7 @@ Slider1.propTypes = {
 	blockSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	blockColor: PropTypes.string,
 	showValue: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Slider1.defaultProps = {
@@ -35,5 +35,5 @@ Slider1.defaultProps = {
 	blockSize: 28,
 	blockColor: '#ffffff',
 	showValue: false,
-	style: {}
+	style: ''
 };

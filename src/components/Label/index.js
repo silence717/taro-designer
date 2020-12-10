@@ -15,10 +15,10 @@ export default class Label1 extends Component {
 
 Label1.propTypes = {
 	for: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 Label1.defaultProps = {
 	for: '',
-	style: {}
+	style: ''
 };

@@ -17,12 +17,12 @@ View1.propTypes = {
 	hoverClass: PropTypes.string,
 	hoverStartTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	hoverStayTime: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 View1.defaultProps = {
 	hoverClass: 'none',
 	hoverStartTime: 50,
 	hoverStayTime: 400,
-	style: {}
+	style: ''
 };

@@ -22,7 +22,7 @@ ScrollView1.propTypes = {
 	scrollLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	scrollIntoView: PropTypes.string,
 	scrollWithAnimation: PropTypes.bool,
-	style: PropTypes.object
+	style: PropTypes.string
 };
 
 ScrollView1.defaultProps = {
@@ -34,5 +34,5 @@ ScrollView1.defaultProps = {
 	scrollLeft: 0,
 	scrollIntoView: '',
 	scrollWithAnimation: false,
-	style: {}
+	style: ''
 };
