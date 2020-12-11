@@ -60,7 +60,9 @@ class Styles extends Component {
 
 		const newValues = Object.keys(values).reduce((data, key) => {
 			const newKey = key.split('-')[0];
-			if (this.defaultValues.indexOf(newKey) !== -1) {
+			if (newKey === 'className') {
+				data[newKey] = values[key];
+			} else if (this.defaultValues.indexOf(newKey) !== -1) {
 				data[newKey] = values[key];
 			}
 			return data;
