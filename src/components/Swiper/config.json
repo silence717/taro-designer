@@ -18,7 +18,7 @@
 		"displayMultipleItems": 1
 	},
 	"defaultStyles": {
-		"height": "80px",
+		"minHeight": "50px",
 		"padding": "20px"
 	},
 	"config": [

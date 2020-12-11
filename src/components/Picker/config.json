@@ -2,14 +2,14 @@
 	"type": "Picker",
 	"name": "滚动选择器",
 	"canPlace": true,
-	"tips": "从底部弹起的滚动选择器",
+	"tips": "从底部弹起的滚动选择器， 只能配置选择器类型，其余数据需要在代码中编写",
 	"defaultProps": {
 		"mode": "selector",
 		"disabled": false
 	},
 	"defaultStyles": {
 		"display": "block",
-		"width": "50px",
+		"width": "70px",
 		"height": "20px"
 	},
 	"config": [

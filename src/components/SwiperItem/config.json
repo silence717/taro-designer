@@ -1,14 +1,13 @@
 {
 	"type": "SwiperItem",
-	"name": "滑块视图子项，仅可放置在 swiper 组件中，宽高自动设置为100%",
+	"name": "滑块视图子项",
+	"tips": "仅可放置在 swiper 组件中，宽高自动设置为100%。由于taro自身嵌套层级问题，拖入后需要刷新页面可正常显示",
 	"canPlace": true,
 	"defaultProps": {
 		"itemId": ""
 	},
 	"defaultStyles": {
-		"background": "#efef0c",
-		"width": "100%",
-		"height": "100%"
+		"padding": "#ffffff"
 	},
 	"config": [
 		{

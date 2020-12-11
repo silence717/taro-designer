@@ -9,6 +9,9 @@ const cssPath = path.join(__dirname, '../output/index.less');
 
 module.exports = router => {
 	router.post('/download', (req, res) => {
+		fs.truncateSync(jsxPath);
+		fs.truncateSync(cssPath);
+
 		const zip = new JSZip();
 		const folder = zip.folder('code');
 

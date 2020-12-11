@@ -59,7 +59,8 @@ class Editor extends Component {
 	}
 
 	handleDownload = async () => {
-		const { types, jsx, css } = renderJSONtoJSX(store.pageData);
+		const cacheData = JSON.parse(localStorage.getItem('cacheData'));
+		const { types, jsx, css } = renderJSONtoJSX(cacheData);
 
 		const { data } = await http.post('/download', {
 			types,

@@ -104,11 +104,10 @@ class Styles extends Component {
 		const { init } = this.field;
 
 		return (
-			<Form.Item label="class名称">
+			<Form.Item label="class名称" help="添加class名称下载源码的时候会单独分离到less文件，增加代码阅读性">
 				<Input
 					{...init(`className-${store.currentId}`, {
 						initValue: store.currentStyles.className || '',
-						rules: [{ required: this.isRequired, message: 'class名称不能为空' }],
 						onChange: this.handleFormChange
 					})}
 				/>

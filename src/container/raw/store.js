@@ -70,7 +70,7 @@ export const groupData = [
 			},
 			{
 				value: 'Slider',
-				name: '滑动选择器r'
+				name: '滑动选择器'
 			},
 			{
 				value: 'Switch',

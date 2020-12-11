@@ -15,7 +15,8 @@
 		"scrollWithAnimation": false
 	},
 	"defaultStyles": {
-		"height": "100px",
+		"width": "auto",
+		"minHeight": "100px",
 		"padding": "10px"
 	},
 	"config": [

@@ -1,8 +1,11 @@
 const properties = [
+	'boxSizing',
 	'position',
 	'display',
 	'width',
 	'height',
+	'minHeight',
+	'lineHeight',
 	'margin',
 	'padding',
 	'fontSize',
@@ -19,6 +22,12 @@ const properties = [
 ];
 
 const styleConfigs = {
+	boxSizing: {
+		key: 'boxSizing',
+		label: '盒模型',
+		type: 'Radio',
+		dataSource: ['border-box', 'content-box']
+	},
 	position: {
 		key: 'position',
 		label: '位置',
@@ -57,6 +66,16 @@ const styleConfigs = {
 	height: {
 		key: 'height',
 		label: '高度',
+		type: 'Input'
+	},
+	minHeight: {
+		key: 'minHeight',
+		label: '最小高度',
+		type: 'Input'
+	},
+	lineHeight: {
+		key: 'lineHeight',
+		label: '行高',
 		type: 'Input'
 	},
 	margin: {

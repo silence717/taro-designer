@@ -8,6 +8,7 @@ export default class Picker1 extends Component {
 		const { style, children, ...others } = this.props;
 		return (
 			<Picker style={toJS(style)} {...others}>
+				滚动选择器
 				{children}
 			</Picker>
 		);

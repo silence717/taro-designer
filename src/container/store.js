@@ -34,7 +34,8 @@ const initPageData = [
 		type: 'View',
 		props: {},
 		styles: {
-			height: '100%'
+			minHeight: '100px',
+			padding: '10px'
 		},
 		childrens: []
 	}
@@ -78,6 +79,20 @@ class Store {
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 
+	clearCurrentData() {
+		this.currentId = '';
+		this.currentType = '';
+		this.currentProps = {};
+		this.currentStyles = {};
+	}
+
+	reset() {
+		this.clearCurrentData();
+		this.pageData = initPageData;
+		localStorage.setItem('cacheData', JSON.stringify(initPageData));
+	}
+
+	// 拖拽增加新元素
 	add(targetId, type) {
 		const item = findItem(this.pageData, targetId);
 		const obj = {
@@ -99,19 +114,7 @@ class Store {
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 
-	clearCurrentData() {
-		this.currentId = '';
-		this.currentType = '';
-		this.currentProps = {};
-		this.currentStyles = {};
-	}
-
-	reset() {
-		this.clearCurrentData();
-		this.pageData = initPageData;
-		localStorage.setItem('cacheData', JSON.stringify(initPageData));
-	}
-
+	// 删除元素
 	removeElement() {
 		if (this.currentId === '1') return;
 
@@ -120,6 +123,27 @@ class Store {
 		const index = item.childrens.findIndex(child => child.id === this.currentId);
 		item.childrens.splice(index, 1);
 		this.clearCurrentData();
+		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+	}
+
+	// 复制元素
+	copyElement() {
+		if (this.currentId === '1') return;
+
+		const parentId = this.currentId.substring(0, this.currentId.lastIndexOf('-'));
+		const parentItem = findItem(this.pageData, parentId);
+		const currentItem = findItem(this.pageData, this.currentId);
+		const { canPlace, type, childrens, props, styles } = currentItem;
+
+		parentItem.childrens.push({
+			id: `${parentId}-${parentItem.childrens.length + 1}`,
+			type,
+			canPlace,
+			childrens,
+			props,
+			styles
+		});
+
 		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
 	}
 }

@@ -21,6 +21,13 @@ class Config extends Component {
 		}
 	};
 
+	@action
+	hanldeCopy = () => {
+		if (store.currentId) {
+			store.copyElement();
+		}
+	};
+
 	render() {
 		return (
 			<section className="config">
@@ -29,9 +36,12 @@ class Config extends Component {
 					{store.currentType ? `（${CONFIGS[store.currentType].name}）` : ''}
 				</header>
 				<div className="config-area">
-					<Button size="small" onClick={this.handleRemove} style={{ marginBottom: '10px' }}>
-						删除此元素
+					<Button size="small" onClick={this.handleRemove}>
+						删除元素
 					</Button>
+					{/* <Button size="small" onClick={this.hanldeCopy} style={{ marginLeft: '10px', marginBottom: '10px' }}>
+						复制元素
+					</Button> */}
 					{store.currentType ? (
 						<>
 							{CONFIGS[store.currentType].tips && <Tips msg={CONFIGS[store.currentType].tips} type="major" />}
@@ -39,7 +49,7 @@ class Config extends Component {
 							<StyleForm />
 						</>
 					) : (
-						<Tips msg="请选择要编辑的元素" type="major" />
+						<Tips msg="请选择要编辑的元素" type="major" style={{ marginTop: '10px' }} />
 					)}
 				</div>
 			</section>
