@@ -6,6 +6,12 @@ let css = '';
 const reg = /\B([A-Z])/g;
 const reg2 = /([0-9]{1,})px+/g;
 
+function hyphen2Camel(str) {
+	return str.replace(/-(\w)/g, (__, letter) => {
+		return letter.toUpperCase();
+	})
+}
+
 function getSingleStr(key, value) {
 	let str = '';
 	if (typeof value === 'number' || typeof value === 'boolean') {
@@ -86,8 +92,9 @@ function renderElementToJSX(data) {
 		jsx += `<${item.type}`;
 
 		if (className) {
-			renderCss(styles, className);
-			jsx += ` className="${className}"`;
+			const convertClassName = hyphen2Camel(className);
+			renderCss(styles, convertClassName);
+			jsx += ` className={styles.${convertClassName}}`;
 		} else {
 			jsx += renderInlineCss(styles);
 		}

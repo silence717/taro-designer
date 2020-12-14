@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Taro from '@tarojs/taro';
 import { generateComponents } from '@tarojs/components';
 
-import './index.less';
+import styles from './index.less';
 
 class TemplateComponent extends Component {
 	render() {
