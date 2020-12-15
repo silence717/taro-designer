@@ -39,9 +39,6 @@ module.exports = () => ({
 	devServer,
 	mode: 'development',
 	devtool: 'cheap-module-eval-source-map',
-	entry: {
-		app: './public/index.js'
-	},
 	output: {
 		publicPath,
 		filename: '[name].js',

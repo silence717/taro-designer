@@ -16,6 +16,9 @@ const resolve = dir => path.resolve(__dirname, dir);
 module.exports = ({ mode } = { mode: 'dev', presets: [] }) => {
 	return webpackMerge(
 		{
+			entry: {
+				'taro-designer': './public/index.js'
+			},
 			resolve: {
 				alias: {
 					'@utils': resolve('./src/utils'),
@@ -27,6 +30,16 @@ module.exports = ({ mode } = { mode: 'dev', presets: [] }) => {
 			},
 			resolveLoader: {
 				moduleExtensions: ['-loader']
+			},
+			externals: {
+				axios: 'axios',
+				react: 'React',
+				'react-dom': 'ReactDOM',
+				'react-router-dom': 'ReactRouterDOM',
+				classnames: 'classNames',
+				mobx: 'mobx',
+				'mobx-react': 'mobxReact',
+				'cloud-react': 'CloudReact'
 			},
 			module: {
 				rules: [
@@ -60,7 +73,7 @@ module.exports = ({ mode } = { mode: 'dev', presets: [] }) => {
 					minify: false
 				}),
 				// 分析打包大小问题
-				// new WebpackBundleAnalyzer(),
+				new WebpackBundleAnalyzer(),
 				new webpack.ProgressPlugin()
 			]
 		},

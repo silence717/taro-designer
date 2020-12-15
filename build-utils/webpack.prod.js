@@ -6,7 +6,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const buildOutputDir = path.join(__dirname, '../dist');
@@ -28,26 +28,27 @@ module.exports = () => ({
 		path: buildOutputDir,
 	},
 	optimization: {
+		minimize: true,
 		minimizer: [
-			new OptimizeCSSAssetsPlugin(),
-			new UglifyJsPlugin({
-				uglifyOptions: {
-					cache: true,
-					parallel: true,
-					sourceMap: true,
-					warnings: false,
-					output: {
-						comments: false,
-					},
-				},
-			}),
+			new OptimizeCSSAssetsPlugin()
+			// new TerserPlugin()
 		],
+		splitChunks: {
+			cacheGroups: {
+				tarojsGroup: {
+					test(module) {
+						return module.resource && module.resource.includes('@tarojs');
+					},
+					name: 'vendor-tarojs'
+				}
+			}
+		}
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: '[name]-[hash:20].css',
 			chunkFilename: '[name].[hash:20].css',
-		}),
+		})
 	],
 });

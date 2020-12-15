@@ -13,7 +13,6 @@ import { applyPolyfills, defineCustomElements } from '@tarojs/components/loader'
 
 // third libs css
 import '@tarojs/components/dist/taro-components/taro-components.css';
-import 'cloud-react/cloud-react.css';
 
 // container
 import Raw from './container/raw';
