@@ -7,7 +7,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const { isLocal, target } = require('./config');
+const { target } = require('../server-config');
 
 const srcDir = path.join(__dirname, '..');
 const publicPath = '/';
@@ -18,9 +18,7 @@ const devServer = {
 	proxy: {
 		'/api': {
 			target,
-			pathRewrite: { '^/api': '' },
-			logLevel: 'debug',
-			changeOrigin: !isLocal
+			logLevel: 'debug'
 		}
 	},
 	historyApiFallback: {
@@ -57,4 +55,4 @@ module.exports = () => ({
 });
 
 // 引入mock服务
-require('./server');
+require('../server');

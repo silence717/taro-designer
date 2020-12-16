@@ -6,10 +6,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const buildOutputDir = path.join(__dirname, '../dist');
+const buildOutputDir = path.join(__dirname, '../taro-designer');
 
 module.exports = () => ({
 	mode: 'production',
@@ -24,22 +23,22 @@ module.exports = () => ({
 	},
 	output: {
 		filename: '[name]-[hash:20].js',
-		publicPath: '/dist/',
+		publicPath: '/taro-designer/',
 		path: buildOutputDir,
 	},
 	optimization: {
 		minimize: true,
 		minimizer: [
 			new OptimizeCSSAssetsPlugin()
-			// new TerserPlugin()
 		],
 		splitChunks: {
+			chunks: 'all',
 			cacheGroups: {
-				tarojsGroup: {
+				vendors: {
 					test(module) {
 						return module.resource && module.resource.includes('@tarojs');
 					},
-					name: 'vendor-tarojs'
+					name: 'vendors'
 				}
 			}
 		}

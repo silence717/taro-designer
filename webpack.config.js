@@ -8,12 +8,14 @@ const argv = require('yargs').argv;
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
 const resolve = dir => path.resolve(__dirname, dir);
+const { mode } = argv.env;
 
-module.exports = ({ mode } = { mode: 'dev', presets: [] }) => {
+module.exports = () => {
 	return webpackMerge(
 		{
 			entry: {
@@ -70,10 +72,11 @@ module.exports = ({ mode } = { mode: 'dev', presets: [] }) => {
 				new HtmlWebpackPlugin({
 					filename: 'index.html',
 					template: 'public/index.html',
-					minify: false
+					minify: false,
+					chunks: ['vendors', 'taro-designer']
 				}),
 				// 分析打包大小问题
-				new WebpackBundleAnalyzer(),
+				// new WebpackBundleAnalyzer(),
 				new webpack.ProgressPlugin()
 			]
 		},

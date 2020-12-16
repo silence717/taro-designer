@@ -6,10 +6,10 @@
 import axios from 'axios';
 
 const http = axios.create({
-	baseURL: process.env.NODE_ENV === 'production' ? process.env.SERVICE_URL : '/api',
+	baseURL: '/api',
 	headers: {
-		'Cache-Control': 'no-cache',
-	},
+		'Cache-Control': 'no-cache'
+	}
 });
 
 export default http;
