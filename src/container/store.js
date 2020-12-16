@@ -1,5 +1,6 @@
 import { observable } from 'mobx';
 import { CONFIGS } from '@components';
+import { KEY, DEFAULT_VALUE } from '../constant';
 
 // 递归查找当前 id 的数据
 function findItem(dataList, id) {
@@ -27,20 +28,6 @@ function findItem(dataList, id) {
 	return result;
 }
 
-// 初始化页面数据
-const initPageData = [
-	{
-		id: '1',
-		type: 'View',
-		props: {},
-		styles: {
-			minHeight: '100px',
-			padding: '10px'
-		},
-		childrens: []
-	}
-];
-
 class Store {
 	@observable
 	currentId = '';
@@ -55,7 +42,7 @@ class Store {
 	currentStyles = {};
 
 	@observable
-	pageData = JSON.parse(localStorage.getItem('cacheData')) || initPageData;
+	pageData = JSON.parse(localStorage.getItem(KEY)) || DEFAULT_VALUE;
 
 	setCurrentData(id, type) {
 		const item = findItem(this.pageData, id);
@@ -69,14 +56,14 @@ class Store {
 	updatePageData(values) {
 		const item = findItem(this.pageData, this.currentId);
 		item.props = values;
-		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
 
 	// 更新样式配置
 	updatePageStyle(values) {
 		const item = findItem(this.pageData, this.currentId);
 		item.styles = values;
-		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
 
 	clearCurrentData() {
@@ -88,8 +75,8 @@ class Store {
 
 	reset() {
 		this.clearCurrentData();
-		this.pageData = initPageData;
-		localStorage.setItem('cacheData', JSON.stringify(initPageData));
+		this.pageData = DEFAULT_VALUE;
+		localStorage.setItem(KEY, JSON.stringify(DEFAULT_VALUE));
 	}
 
 	// 拖拽增加新元素
@@ -111,7 +98,7 @@ class Store {
 			item.childrens = [obj];
 		}
 
-		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
 
 	// 删除元素
@@ -123,7 +110,7 @@ class Store {
 		const index = item.childrens.findIndex(child => child.id === this.currentId);
 		item.childrens.splice(index, 1);
 		this.clearCurrentData();
-		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
 
 	// 复制元素
@@ -144,7 +131,7 @@ class Store {
 			styles
 		});
 
-		localStorage.setItem('cacheData', JSON.stringify(this.pageData));
+		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
 }
 

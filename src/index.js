@@ -20,6 +20,7 @@ import Editor from './container/editor';
 import Config from './container/config';
 import Header from './container/header';
 
+import { KEY, DEFAULT_VALUE } from './constant';
 // css
 import './style.less';
 
@@ -27,6 +28,14 @@ import './style.less';
 applyPolyfills().then(() => {
 	defineCustomElements(window);
 });
+
+function setUp() {
+	const data = localStorage.getItem('cacheData');
+	if (!data) {
+		localStorage.setItem(KEY, JSON.stringify(DEFAULT_VALUE));
+	}
+}
+setUp();
 
 @observer
 class App extends Component {
