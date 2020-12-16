@@ -17,20 +17,18 @@ module.exports = () => ({
 		rules: [
 			{
 				test: /\.(css|less)$/,
-				use: [MiniCssExtractPlugin.loader, 'css', 'less'],
-			},
-		],
+				use: [MiniCssExtractPlugin.loader, 'css', 'less']
+			}
+		]
 	},
 	output: {
 		filename: '[name]-[hash:20].js',
-		publicPath: '/taro-designer/',
-		path: buildOutputDir,
+		publicPath: '/',
+		path: buildOutputDir
 	},
 	optimization: {
 		minimize: true,
-		minimizer: [
-			new OptimizeCSSAssetsPlugin()
-		],
+		minimizer: [new OptimizeCSSAssetsPlugin()],
 		splitChunks: {
 			chunks: 'all',
 			cacheGroups: {
@@ -47,7 +45,7 @@ module.exports = () => ({
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: '[name]-[hash:20].css',
-			chunkFilename: '[name].[hash:20].css',
+			chunkFilename: '[name].[hash:20].css'
 		})
-	],
+	]
 });
