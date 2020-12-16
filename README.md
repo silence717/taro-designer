@@ -2,6 +2,8 @@
 
 基于React开发可视化拖拽，页面搭建，使用tarojs自带组件库，生成源码生成。主要取tarojs组件库支持的 H5和微信小程序的交集进行属性编辑。
 
+### 访问地址
+[taro-designer](https://taro-designer.shuyun.com/#/)
 ### 技术栈
 
 react + mobx + cloud-react + tarojs
@@ -27,14 +29,9 @@ yarn start
 
 ```
 build-utils  // webpack相关配置
-    config.js  // mock数据服务相关配置
-    server.js   // mock数据服务
     webpack.dev.js  // webpack development mode config
     webpack.prod.js  // wbepack production mode config
 
-mock  // mock数据目录
-    index.js  // mock数据入库文件
-    mock.js   // 需要mock的请求
 output // 生成源码目录
     index.less // 生成的css文件
     taro.jsx   // 生成的jsx文件
@@ -48,7 +45,6 @@ scripts  // 项目脚本文件
     new.js // 执行当前脚本，在src/components 下新增加一个组件，模版为tpl下的文件
    
 src // 源码目录
-    assets  // 静态资源
     components  // 可供拖拽的组件目录
     container // 页面容器
     utils  // 工具类
@@ -63,6 +59,8 @@ src // 源码目录
 .prettierrc   // 格式化代码配置
 .jsconfig     // 使得编辑器认识项目中配置的别名，可链接查找
 README.MD     // 项目说明
+server-config.js // node服务相关配置
+server.js     // node服务
 webpack.config.js // webpack基础配置
 ```
 
@@ -105,3 +103,9 @@ webpack.config.js // webpack基础配置
 
 因为需要兼容多端，而taro每个组件 api 对平台的支持程度不一致，在当前项目中我们选取了兼容**微信小程序**和**h5**两个版本的属性可进行配置。
 
+
+### 项目部署说明
+使用[jenkins](http://dev-jenkins-f2e.shuyun.com/view/ccms-tool-f2e/job/taro-designer/)进行部署，在 ccms-tool-fe/taro-designer 下进行发布。
+
+1、node服务，在项目下使用 pm2 启动 server.js，如果node端代码有改动，需要登录服务器重启。
+2、静态资源，使用jenkins发布后直接更新，不需要其余操作。
