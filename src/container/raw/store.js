@@ -90,16 +90,17 @@ export const groupData = [
 				name: '图片'
 			}
 		]
-	},
-	{
-		text: '开放能力',
-		children: [
-			{
-				value: 'WebView',
-				name: '网页容器'
-			}
-		]
 	}
+	// ,
+	// {
+	// 	text: '开放能力',
+	// 	children: [
+	// 		{
+	// 			value: 'WebView',
+	// 			name: '网页容器'
+	// 		}
+	// 	]
+	// }
 ];
 
 export const a = 1;
