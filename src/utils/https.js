@@ -6,7 +6,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-	baseURL: '/api',
+	baseURL: '/taro-designer-api/',
 	headers: {
 		'Cache-Control': 'no-cache'
 	}

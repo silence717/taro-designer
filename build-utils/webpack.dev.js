@@ -16,7 +16,7 @@ const devServer = {
 	clientLogLevel: 'warning',
 	disableHostCheck: true,
 	proxy: {
-		'/api': {
+		'/taro-designer-api': {
 			target,
 			logLevel: 'debug'
 		}

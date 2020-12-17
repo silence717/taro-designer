@@ -13,7 +13,6 @@ const prettier = require('prettier');
 const app = express();
 
 const { host, port } = require('./server-config');
-const { func } = require('prop-types');
 
 app.use(bodyParser.json());
 
@@ -23,12 +22,11 @@ const configPath = path.join(__dirname, './.prettierrc');
 
 const option = { encoding: 'utf8' };
 
-app.post('/api/format', (req, res) => {
+app.post('/taro-designer-api/format', (req, res) => {
 	let jsxRes = '';
 	let cssRes = '';
 
 	const { jsx, css } = req.body;
-	console.log(jsx, css);
 
 	function format() {
 		return new Promise((resolve, reject) => {
@@ -48,7 +46,7 @@ app.post('/api/format', (req, res) => {
 	});
 });
 
-app.post('/api/download', (req, res) => {
+app.post('/taro-designer-api/download', (req, res) => {
 	res.setHeader('Content-Type', 'application/zip');
 
 	fs.truncateSync(jsxPath);
