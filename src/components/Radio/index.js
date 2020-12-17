@@ -4,9 +4,10 @@ import { Radio } from '@tarojs/components/dist-h5/react';
 
 export default class Radio1 extends Component {
 	render() {
-		const { style, children, ...others } = this.props;
+		const { style, content, children, ...others } = this.props;
 		return (
 			<Radio style={style} {...others}>
+				{content}
 				{children}
 			</Radio>
 		);
@@ -14,12 +15,14 @@ export default class Radio1 extends Component {
 }
 
 Radio1.propTypes = {
+	content: PropTypes.string,
 	checked: PropTypes.bool,
 	disabled: PropTypes.bool,
 	style: PropTypes.string
 };
 
 Radio1.defaultProps = {
+	content: 'a',
 	checked: false,
 	disabled: false,
 	style: ''

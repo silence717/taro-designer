@@ -3,11 +3,17 @@
 	"name": "单选",
 	"canPlace": false,
 	"defaultProps": {
+		"content": "a",
 		"checked": false,
 		"disabled": false
 	},
 	"defaultStyles": {},
 	"config": [
+		{
+			"key": "content",
+			"label": "显示文本",
+			"type": "Input"
+		},
 		{
 			"key": "checked",
 			"label": "当前是否选中",

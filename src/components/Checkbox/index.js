@@ -4,10 +4,11 @@ import { Checkbox } from '@tarojs/components/dist-h5/react';
 
 export default class Checkbox1 extends Component {
 	render() {
-		const { style, content, ...others } = this.props;
+		const { style, content, children, ...others } = this.props;
 		return (
 			<Checkbox style={style} {...others}>
 				{content}
+				{children}
 			</Checkbox>
 		);
 	}
