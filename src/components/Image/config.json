@@ -11,13 +11,13 @@
 	"config": [
 		{
 			"key": "src",
-			"label": "文本",
+			"label": "图片资源地址",
 			"type": "Input"
 		},
 		{
 			"key": "mode",
 			"type": "Select",
-			"label": "下拉列表",
+			"label": "图片裁剪、缩放的模式",
 			"dataSource": [
 				{
 					"label": "scaleToFill",
