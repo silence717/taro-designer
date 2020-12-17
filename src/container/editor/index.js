@@ -17,6 +17,9 @@ class Editor extends Component {
 	@observable
 	ref = createRef();
 
+	@observable
+	loading = false;
+
 	@computed
 	get isShowPlaceholder() {
 		if (this.ref.current) {
@@ -59,6 +62,10 @@ class Editor extends Component {
 	}
 
 	handleDownload = async () => {
+		if (this.loading) return;
+
+		this.loading = true;
+
 		const cacheData = JSON.parse(localStorage.getItem('cacheData'));
 		const { types, jsx, css } = renderJSONtoJSX(cacheData);
 
@@ -79,6 +86,8 @@ class Editor extends Component {
 		document.body.appendChild(link);
 		link.click();
 		link.remove();
+
+		this.loading = false;
 	};
 
 	handleReset = () => {
@@ -91,7 +100,7 @@ class Editor extends Component {
 				<header>页面编辑区</header>
 				{this.isShowPlaceholder && <div className="tips">设计区，可拖拽左侧元素到此处，单击元素可编辑属性，蓝色虚线框可放置子组件</div>}
 				<div className="operate">
-					<Button type="primary" onClick={this.handleDownload}>
+					<Button type="primary" loading={this.loading} onClick={this.handleDownload}>
 						下载源代码
 					</Button>
 					<Button onClick={this.handleReset} style={{ marginLeft: '10px' }}>
