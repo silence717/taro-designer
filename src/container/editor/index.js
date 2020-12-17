@@ -2,10 +2,9 @@ import React, { Component, createRef } from 'react';
 import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { Button } from 'cloud-react';
-import JSZip from 'jszip';
 
 import Components, { CONFIGS } from '@components';
-import { http, renderJSONtoJSX, parseStyles } from '@utils';
+import { parseStyles } from '@utils';
 
 import store from '../store';
 import TargetBox from './targetBox';
@@ -16,9 +15,6 @@ import './style.less';
 class Editor extends Component {
 	@observable
 	ref = createRef();
-
-	@observable
-	loading = false;
 
 	@computed
 	get isShowPlaceholder() {
@@ -61,35 +57,6 @@ class Editor extends Component {
 		);
 	}
 
-	handleDownload = async () => {
-		if (this.loading) return;
-
-		this.loading = true;
-
-		const cacheData = JSON.parse(localStorage.getItem('cacheData'));
-		const { types, jsx, css } = renderJSONtoJSX(cacheData);
-
-		const { data } = await http.post('/download', {
-			types,
-			contents: jsx,
-			css
-		});
-
-		const zip = new JSZip();
-		await zip.loadAsync(data, { base64: true });
-		const blob = await zip.generateAsync({ type: 'blob' });
-		const url = window.URL.createObjectURL(blob);
-
-		const link = document.createElement('a');
-		link.setAttribute('href', url);
-		link.setAttribute('download', 'code.zip');
-		document.body.appendChild(link);
-		link.click();
-		link.remove();
-
-		this.loading = false;
-	};
-
 	handleReset = () => {
 		store.reset();
 	};
@@ -99,14 +66,9 @@ class Editor extends Component {
 			<section className="editor">
 				<header>页面编辑区</header>
 				{this.isShowPlaceholder && <div className="tips">设计区，可拖拽左侧元素到此处，单击元素可编辑属性，蓝色虚线框可放置子组件</div>}
-				<div className="operate">
-					<Button type="primary" loading={this.loading} onClick={this.handleDownload}>
-						下载源代码
-					</Button>
-					<Button onClick={this.handleReset} style={{ marginLeft: '10px' }}>
-						清空当前工作区
-					</Button>
-				</div>
+				<Button size="small" onClick={this.handleReset} style={{ margin: '10px 0' }}>
+					清空工作区
+				</Button>
 				<div className="edit" ref={this.ref}>
 					{this.renderContent(store.pageData[0])}
 				</div>

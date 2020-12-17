@@ -19,6 +19,7 @@ import Raw from './container/raw';
 import Editor from './container/editor';
 import Config from './container/config';
 import Header from './container/header';
+import Code from './container/code';
 
 import { KEY, DEFAULT_VALUE } from './constant';
 // css
@@ -48,6 +49,7 @@ class App extends Component {
 						<Raw />
 						<Editor />
 						<Config />
+						<Code />
 					</DndProvider>
 				</section>
 			</>

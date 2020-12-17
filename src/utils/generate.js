@@ -1,15 +1,19 @@
 import { CONFIGS } from '@components';
 
-let types = [];
 let jsx = '';
 let css = '';
+let types = [];
 const reg = /\B([A-Z])/g;
 const reg2 = /([0-9]{1,})px+/g;
+
+const templateContent =
+	// eslint-disable-next-line
+	"import React, { Component } from 'react';\nimport Taro from '@tarojs/taro';\nimport { generateComponents } from '@tarojs/components';\n\nimport styles from './index.less';\nclass TemplateComponent extends Component {\nrender() {\nreturn JSONtoJsx;\n}\n}\n\nexport default TemplateComponent;";
 
 function hyphen2Camel(str) {
 	return str.replace(/-(\w)/g, (__, letter) => {
 		return letter.toUpperCase();
-	})
+	});
 }
 
 function getSingleStr(key, value) {
@@ -42,8 +46,8 @@ function renderProps(props, currentType) {
 }
 
 // 拼接独立含classname的样式
-function renderCss(styles, className) {
-	css += `.${className} {`;
+function renderCss(styles) {
+	let str = '';
 
 	Object.keys(styles).forEach(key => {
 		const __key = key.replace(reg, '-$1').toLowerCase();
@@ -51,9 +55,9 @@ function renderCss(styles, className) {
 		const value = styles[key].replace(reg2, (result, $1) => {
 			return `${parseInt($1, 10) * 2}px`;
 		});
-		css += `${__key}: ${value};`;
+		str += `${__key}: ${value};`;
 	});
-	css += '}';
+	return str;
 }
 
 // 生成行内样式
@@ -93,7 +97,7 @@ function renderElementToJSX(data) {
 
 		if (className) {
 			const convertClassName = hyphen2Camel(className);
-			renderCss(styles, convertClassName);
+			css += `.${convertClassName} { ${renderCss(styles, convertClassName)} }`;
 			jsx += ` className={styles.${convertClassName}}`;
 		} else {
 			jsx += renderInlineCss(styles);
@@ -114,15 +118,16 @@ function renderElementToJSX(data) {
 }
 
 export default function renderJSONtoJSX(data) {
-	// 清空数据
-	types = [];
 	jsx = '';
 	css = '';
+	types = [];
 
 	renderElementToJSX(data);
+
+	const targetTemplate = templateContent.replace('generateComponents', types).replace('JSONtoJsx', jsx);
+
 	return {
-		types: Array.from(new Set(types)).join(', '),
-		jsx,
+		jsx: targetTemplate,
 		css
 	};
 }
