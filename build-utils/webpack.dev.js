@@ -55,4 +55,4 @@ module.exports = () => ({
 });
 
 // 引入mock服务
-require('../server');
+require('../taro-designer-server');
