@@ -18,9 +18,16 @@ app.use(bodyParser.json());
 
 const jsxPath = path.join(__dirname, './output/taro.jsx');
 const cssPath = path.join(__dirname, './output/index.less');
-const configPath = path.join(__dirname, './.prettierrc');
 
-const option = { encoding: 'utf8' };
+const formatOptions = {
+	printWidth: 160,
+	tabWidth: 4,
+	arrowParens: 'avoid',
+	bracketSpacing: true,
+	htmlWhitespaceSensitivity: 'ignore',
+	jsxBracketSameLine: true,
+	singleQuote: true
+};
 
 app.post('/taro-designer-api/format', (req, res) => {
 	let jsxRes = '';
@@ -30,20 +37,19 @@ app.post('/taro-designer-api/format', (req, res) => {
 
 	function format() {
 		return new Promise((resolve, reject) => {
-			prettier.resolveConfig(configPath).then(options => {
-				jsxRes = prettier.format(jsx, Object.assign(options, { parser: 'babel' }));
-			});
-
-			prettier.resolveConfig(configPath).then(options => {
-				cssRes = prettier.format(css, Object.assign(options, { parser: 'less' }));
-				resolve();
-			});
+			jsxRes = prettier.format(jsx, Object.assign(formatOptions, { parser: 'babel' }));
+			cssRes = prettier.format(css, Object.assign(formatOptions, { parser: 'less' }));
+			resolve();
 		});
 	}
 
-	format().then(() => {
-		res.status(200).json({ jsxRes, cssRes });
-	});
+	format()
+		.then(() => {
+			res.status(200).json({ jsxRes, cssRes });
+		})
+		.catch(() => {
+			res.status(500).json({ msg: '抱歉出错了，请稍后重试～' });
+		});
 });
 
 app.post('/taro-designer-api/download', (req, res) => {
@@ -59,39 +65,39 @@ app.post('/taro-designer-api/download', (req, res) => {
 
 	function wirteFile() {
 		return new Promise((resolve, reject) => {
-			prettier.resolveConfig(configPath).then(options => {
-				const content = prettier.format(contents, Object.assign(options, { parser: 'babel' }));
+			const jsxContent = prettier.format(contents, Object.assign(formatOptions, { parser: 'babel' }));
 
-				fs.writeFileSync(jsxPath, content, option, error => {
-					if (error) {
-						console.log(error);
-						throw error;
-					}
-				});
+			fs.writeFileSync(jsxPath, jsxContent, { encoding: 'utf8' }, error => {
+				if (error) {
+					console.log(error);
+					throw error;
+				}
 			});
 
-			prettier.resolveConfig(configPath).then(options => {
-				const content = prettier.format(css, Object.assign(options, { parser: 'less' }));
+			const cssContent = prettier.format(css, Object.assign(formatOptions, { parser: 'less' }));
 
-				fs.writeFileSync(cssPath, content, option, error => {
-					if (error) {
-						console.log(error);
-						throw error;
-					}
-				});
-				resolve();
+			fs.writeFileSync(cssPath, cssContent, { encoding: 'utf8' }, error => {
+				if (error) {
+					console.log(error);
+					throw error;
+				}
 			});
+			resolve();
 		});
 	}
 
-	wirteFile().then(() => {
-		folder.file('taro.jsx', fs.readFileSync(jsxPath, option));
-		folder.file('index.less', fs.readFileSync(cssPath, option));
+	wirteFile()
+		.then(() => {
+			folder.file('taro.jsx', fs.readFileSync(jsxPath, { encoding: 'utf8' }));
+			folder.file('index.less', fs.readFileSync(cssPath, { encoding: 'utf8' }));
 
-		zip.generateAsync({ type: 'base64' }).then(content => {
-			res.status(200).send(content);
+			zip.generateAsync({ type: 'base64' }).then(content => {
+				res.status(200).send(content);
+			});
+		})
+		.catch(() => {
+			res.status(500).json({ msg: '下载出错了，请稍后重试～' });
 		});
-	});
 });
 
 app.listen(port, host, err => {

@@ -1,21 +1,23 @@
 ## trao-designer
 
-基于React开发可视化拖拽，页面搭建，使用tarojs自带组件库，生成源码生成。主要取tarojs组件库支持的 H5和微信小程序的交集进行属性编辑。
+基于 React 开发可视化拖拽，页面搭建，使用 tarojs 自带组件库，生成源码生成。主要取 tarojs 组件库支持的 H5 和微信小程序的交集进行属性编辑。
 
 ### 访问地址
+
 [taro-designer](https://taro-designer.shuyun.com/#/)
+
 ### 技术栈
 
 react + mobx + cloud-react + tarojs
 
 ### 目的
 
-提高互动多端开发的效率，降低开发门槛，通过拖拉拽就可生成基本的页面UI 
+提高互动多端开发的效率，降低开发门槛，通过拖拉拽就可生成基本的页面 UI
 
 ### 使用
 
 ```bash
-// clone code 
+// clone code
 http://gitlab.platdep.shuyun.com/fe/public/taro-designer.git
 // 进入工程
 cd taro-designer
@@ -60,20 +62,9 @@ src // 源码目录
 .jsconfig     // 使得编辑器认识项目中配置的别名，可链接查找
 README.MD     // 项目说明
 server-config.js // node服务相关配置
-server.js     // node服务
+taro-designer-server.js     // node服务
 webpack.config.js // webpack基础配置
 ```
-
-## 项目截图
-
-##### 编辑器截图
-
-![editor](http://gitlab.platdep.shuyun.com/fe/public/taro-designer/blob/master/src/docs/editor.png)
-
-##### 生成源码在taro项目的H5模式下截图
-
-![h5](http://gitlab.platdep.shuyun.com/fe/public/taro-designer/blob/master/src/docs/h5.png)
-
 
 ## 一些说明
 
@@ -81,27 +72,27 @@ webpack.config.js // webpack基础配置
 
 ##### 视图容器
 
-视图容器View，可滚动的视图容器ScrollView，滑块视图容器Swiper，滑块 SwiperItem
+视图容器 View，可滚动的视图容器 ScrollView，滑块视图容器 Swiper，滑块 SwiperItem
 
 ##### 基础内容
 
-图标Icon，文本Text，进度条Progress
+图标 Icon，文本 Text，进度条 Progress
 
 ##### 表单组件
 
-按钮Button，多选Checkbox，表单Form，输入框Input，标签Label，选择器Picker，单选Radio，滑动选择器Slider，开关选择器Switch，多行输入框Textarea
+按钮 Button，多选 Checkbox，表单 Form，输入框 Input，标签 Label，选择器 Picker，单选 Radio，滑动选择器 Slider，开关选择器 Switch，多行输入框 Textarea
 
 ##### 媒体组件
 
-图片Image
+图片 Image
 
 #### 组件可配置的属性说明
 
-因为需要兼容多端，而taro每个组件 api 对平台的支持程度不一致，在当前项目中我们选取了兼容**微信小程序**和**h5**两个版本的属性可进行配置。
-
+因为需要兼容多端，而 taro 每个组件 api 对平台的支持程度不一致，在当前项目中我们选取了兼容**微信小程序**和**h5**两个版本的属性可进行配置。
 
 ### 项目部署说明
+
 使用[jenkins](http://dev-jenkins-f2e.shuyun.com/view/ccms-tool-f2e/job/taro-designer/)进行部署，在 ccms-tool-fe/taro-designer 下进行发布。
 
-1、node服务，在项目下使用 pm2 启动 server.js，如果node端代码有改动，需要登录服务器重启。
-2、静态资源，使用jenkins发布后直接更新，不需要其余操作。
+1、node 服务，在项目下使用 pm2 启动 server.js，如果 node 端代码有改动，需要登录服务器重启。  
+2、静态资源，使用 jenkins 发布后直接更新，不需要其余操作。

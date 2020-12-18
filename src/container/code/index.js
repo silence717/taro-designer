@@ -28,14 +28,21 @@ class Code extends Component {
 
 		const cacheData = JSON.parse(localStorage.getItem('cacheData'));
 		const { jsx, css } = renderJSONtoJSX(cacheData);
-		const { data } = await http.post('format', {
-			jsx,
-			css
-		});
-		this.jsxString = data.jsxRes;
-		this.cssString = data.cssRes;
 
-		this.genLoading = false;
+		try {
+			const { data } = await http.post('format', {
+				jsx,
+				css
+			});
+
+			this.jsxString = data.jsxRes;
+			this.cssString = data.cssRes;
+
+			this.genLoading = false;
+		} catch (error) {
+			this.genLoading = false;
+			Message.error('抱歉出错了，请稍后重试～');
+		}
 	};
 
 	handleDownload = async () => {
@@ -46,24 +53,29 @@ class Code extends Component {
 		const cacheData = JSON.parse(localStorage.getItem('cacheData'));
 		const { jsx, css } = renderJSONtoJSX(cacheData);
 
-		const { data } = await http.post('/download', {
-			contents: jsx,
-			css
-		});
+		try {
+			const { data } = await http.post('/download', {
+				contents: jsx,
+				css
+			});
 
-		const zip = new JSZip();
-		await zip.loadAsync(data, { base64: true });
-		const blob = await zip.generateAsync({ type: 'blob' });
-		const url = window.URL.createObjectURL(blob);
+			const zip = new JSZip();
+			await zip.loadAsync(data, { base64: true });
+			const blob = await zip.generateAsync({ type: 'blob' });
+			const url = window.URL.createObjectURL(blob);
 
-		const link = document.createElement('a');
-		link.setAttribute('href', url);
-		link.setAttribute('download', 'code.zip');
-		document.body.appendChild(link);
-		link.click();
-		link.remove();
+			const link = document.createElement('a');
+			link.setAttribute('href', url);
+			link.setAttribute('download', 'code.zip');
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
 
-		this.loading = false;
+			this.loading = false;
+		} catch (error) {
+			this.loading = false;
+			Message.error('抱歉出错了，请稍后重试～');
+		}
 	};
 
 	handleCopyJsx = () => {
