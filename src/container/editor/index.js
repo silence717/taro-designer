@@ -7,7 +7,7 @@ import Components, { CONFIGS } from '@components';
 import { parseStyles } from '@utils';
 
 import store from '../store';
-import TargetBox from './targetBox';
+import TargetBox from '../drag-drop/targetBox';
 
 import './style.less';
 
@@ -42,19 +42,29 @@ class Editor extends Component {
 			childs = childrens.map(child => this.renderContent(child));
 		}
 
+		const CommonComponent = () => {
+			return (
+				<CurrentComponet
+					key={id}
+					id={id}
+					style={parseStyles(styles)}
+					type={type}
+					{...finalProps}
+					onClick={event => this.handleClick({ id, type }, event)}>
+					{childs}
+				</CurrentComponet>
+			);
+		};
+
 		if (canPlace) {
 			return (
-				<TargetBox key={id} id={id} style={parseStyles(styles)} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
-					{childs}
+				<TargetBox id={id}>
+					<CommonComponent />
 				</TargetBox>
 			);
 		}
 
-		return (
-			<CurrentComponet key={id} id={id} style={parseStyles(styles)} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
-				{childs}
-			</CurrentComponet>
-		);
+		return <CommonComponent />;
 	}
 
 	handleReset = () => {

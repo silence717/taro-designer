@@ -1,4 +1,3 @@
-import React from 'react';
 import { DragSource } from 'react-dnd';
 
 const source = {
@@ -25,14 +24,9 @@ function collect(connect) {
 }
 
 function Box(props) {
-	const { connectDragSource, item } = props;
+	const { connectDragSource, children } = props;
 
-	return connectDragSource(
-		<span className="raw-item">
-			{item.name}&nbsp;&nbsp;&nbsp;{item.value}
-		</span>,
-		{ dropEffect: 'copy' }
-	);
+	return connectDragSource(children, { dropEffect: 'copy' });
 }
 
 export default DragSource('Card', source, collect)(Box);
