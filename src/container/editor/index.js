@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Button } from 'cloud-react';
+import { Button, Modal } from 'cloud-react';
 
 import Components, { CONFIGS } from '@components';
 import { parseStyles } from '@utils';
@@ -68,7 +68,13 @@ class Editor extends Component {
 	}
 
 	handleReset = () => {
-		store.reset();
+		Modal.confirm({
+			isShowIcon: false,
+			body: '确定清空当前页面吗？',
+			onOk: () => {
+				store.reset();
+			}
+		});
 	};
 
 	render() {
