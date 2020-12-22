@@ -11,14 +11,19 @@ const properties = [
 	'fontSize',
 	'fontWeight',
 	'textAlign',
+	'verticalAlign',
 	'color',
 	'background',
-	'border',
 	'boxShadow',
 	'borderRadius',
 	'flexDirection',
 	'alignItems',
-	'justifyContent'
+	'justifyContent',
+	'border',
+	'borderLeft',
+	'borderTop',
+	'borderRight',
+	'borderBottom'
 ];
 
 const styleConfigs = {
@@ -120,15 +125,41 @@ const styleConfigs = {
 	},
 	textAlign: {
 		key: 'textAlign',
-		label: '文本水平居中',
+		label: '文本水平布局',
 		type: 'Radio',
 		dataSource: ['left', 'center', 'right']
+	},
+	verticalAlign: {
+		key: 'verticalAlign',
+		label: '文本垂直布局',
+		type: 'Radio',
+		dataSource: ['baseline', 'top', 'bottom', 'middle', 'sub', 'super']
 	},
 	fontWeight: {
 		key: 'fontWeight',
 		label: '文本是否加粗',
 		type: 'Radio',
 		dataSource: ['normal', 'bold']
+	},
+	borderLeft: {
+		key: 'borderLeft',
+		label: '左边框',
+		type: 'Input'
+	},
+	borderTop: {
+		key: 'borderTop',
+		label: '上边框',
+		type: 'Input'
+	},
+	borderRight: {
+		key: 'borderRight',
+		label: '右边框',
+		type: 'Input'
+	},
+	borderBottom: {
+		key: 'borderBottom',
+		label: '下边框',
+		type: 'Input'
 	}
 };
 
