@@ -96,14 +96,14 @@ class Code extends Component {
 		return (
 			<section className="code">
 				<header>代码预览区</header>
-				<section>
+				<>
 					<Button type="link" loading={this.genLoading} onClick={this.handlePreview}>
 						生成代码
 					</Button>
 					<Button type="link" loading={this.loading} onClick={this.handleDownload}>
 						下载
 					</Button>
-				</section>
+				</>
 				<section>
 					<Tabs>
 						<Tabs.Panel tab="jsx" key="1">
