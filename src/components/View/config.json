@@ -8,8 +8,7 @@
 		"hoverStayTime": 400
 	},
 	"defaultStyles": {
-		"minHeight": "50px",
-		"padding": "5px"
+		"minHeight": "50px"
 	},
 	"config": [
 		{

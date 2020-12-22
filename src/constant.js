@@ -6,8 +6,7 @@ export const DEFAULT_VALUE = [
 		type: 'View',
 		props: {},
 		styles: {
-			minHeight: '100px',
-			padding: '10px'
+			minHeight: '100px'
 		},
 		childrens: []
 	}

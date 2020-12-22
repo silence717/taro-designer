@@ -2,7 +2,7 @@
 	"type": "Swiper",
 	"name": "滑块视图容器",
 	"canPlace": true,
-	"tips": "其中只可放置 swiper-item 组件，否则会导致未定义的行为。",
+	"tips": "其中只可放置 swiper-item 组件，否则会导致未定义的行为。默认增加20px内间距，否则无法选中配置，不需要请手动删除。",
 	"defaultProps": {
 		"indicatorDots": false,
 		"indicatorColor": "rgba(0, 0, 0, .3)",

@@ -16,8 +16,7 @@
 	},
 	"defaultStyles": {
 		"width": "auto",
-		"minHeight": "100px",
-		"padding": "10px"
+		"minHeight": "100px"
 	},
 	"config": [
 		{
