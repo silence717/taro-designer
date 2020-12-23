@@ -39,9 +39,9 @@ class Config extends Component {
 					<Button size="small" onClick={this.handleRemove}>
 						删除元素
 					</Button>
-					{/* <Button size="small" onClick={this.hanldeCopy} style={{ marginLeft: '10px', marginBottom: '10px' }}>
+					<Button size="small" onClick={this.hanldeCopy} style={{ marginLeft: '10px', marginBottom: '10px' }}>
 						复制元素
-					</Button> */}
+					</Button>
 					{store.currentType ? (
 						<>
 							{CONFIGS[store.currentType].tips && <Tips msg={CONFIGS[store.currentType].tips} type="major" />}

@@ -28,6 +28,28 @@ function findItem(dataList, id) {
 	return result;
 }
 
+// 递归处理chiils里面的id
+function getChilds(data, id) {
+	if (!data) return [];
+
+	function loop(newData, parentId) {
+		if (!newData) return [];
+
+		return newData.map((item, index) => {
+			const newId = `${parentId}-${index + 1}`;
+			const childs = loop(item.childrens, newId);
+
+			return {
+				...item,
+				id: newId,
+				childrens: childs
+			};
+		});
+	}
+
+	return loop(data, id);
+}
+
 class Store {
 	@observable
 	currentId = '';
@@ -120,16 +142,22 @@ class Store {
 		const parentId = this.currentId.substring(0, this.currentId.lastIndexOf('-'));
 		const parentItem = findItem(this.pageData, parentId);
 		const currentItem = findItem(this.pageData, this.currentId);
-		const { canPlace, type, childrens, props, styles } = currentItem;
 
-		parentItem.childrens.push({
-			id: `${parentId}-${parentItem.childrens.length + 1}`,
+		const newId = `${parentId}-${parentItem.childrens.length + 1}`;
+		const { canPlace = false, type, childrens, props, styles } = currentItem;
+
+		const childs = getChilds(childrens, newId);
+
+		const item = {
+			id: newId,
 			type,
 			canPlace,
-			childrens,
+			childrens: childs,
 			props,
 			styles
-		});
+		};
+
+		parentItem.childrens.push(item);
 
 		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
