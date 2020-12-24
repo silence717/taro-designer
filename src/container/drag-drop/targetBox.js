@@ -18,6 +18,11 @@ const target = {
 			return dropType === 'Swiper';
 		}
 
+		// Swiper 只可以放置 SwiperItem 子项
+		if (dropType === 'Swiper') {
+			return dragType === 'SwiperItem';
+		}
+
 		// 目标组件类型为 Label 时候，可放置的组件有 button, checkbox, radio, switch。
 		if (dropType === 'Label') {
 			const types = ['Button', 'Checkbox', 'Radio', 'Switch'];
