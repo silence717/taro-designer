@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { action, computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { Button, Modal } from 'cloud-react';
+import { Button, Modal, Message } from 'cloud-react';
 
 import Components, { CONFIGS } from '@components';
 import { parseStyles } from '@utils';
@@ -67,6 +67,7 @@ class Editor extends Component {
 			body: '确定清空当前页面吗？',
 			onOk: () => {
 				store.reset();
+				Message.success('清空工作区成功');
 			}
 		});
 	};

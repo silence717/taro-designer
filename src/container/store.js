@@ -125,8 +125,6 @@ class Store {
 
 	// 删除元素
 	removeElement() {
-		if (this.currentId === '1') return;
-
 		const parentId = this.currentId.substring(0, this.currentId.lastIndexOf('-'));
 		const item = findItem(this.pageData, parentId);
 		const index = item.childrens.findIndex(child => child.id === this.currentId);
@@ -137,8 +135,6 @@ class Store {
 
 	// 复制元素
 	copyElement() {
-		if (this.currentId === '1') return;
-
 		const parentId = this.currentId.substring(0, this.currentId.lastIndexOf('-'));
 		const parentItem = findItem(this.pageData, parentId);
 		const currentItem = findItem(this.pageData, this.currentId);
