@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
 import { DropTarget } from 'react-dnd';
+import Components from '@components';
 
 import './style.less';
 
@@ -48,21 +49,23 @@ function collect(connect, monitor) {
 
 class Box extends Component {
 	render() {
-		const { connectDropTarget, canDrop, isOver, className, children } = this.props;
+		const { connectDropTarget, canDrop, isOver, className, children, type, ...rest } = this.props;
+		const CurrentComponet = Components[type];
 		const classes = classnames('draggable', className, {
 			active: canDrop && isOver
 		});
 
 		return (
-			<div
+			<CurrentComponet
 				className={classes}
+				{...rest}
 				ref={instance => {
 					// eslint-disable-next-line
 					const node = findDOMNode(instance);
 					connectDropTarget(node);
 				}}>
 				{children}
-			</div>
+			</CurrentComponet>
 		);
 	}
 }

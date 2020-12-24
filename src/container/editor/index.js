@@ -46,29 +46,19 @@ class Editor extends Component {
 			childs = childrens.map(child => this.renderContent(child));
 		}
 
-		const CommonComponent = () => {
-			return (
-				<CurrentComponet
-					key={id}
-					id={id}
-					style={parseStyles(styles)}
-					type={type}
-					{...finalProps}
-					onClick={event => this.handleClick({ id, type }, event)}>
-					{childs}
-				</CurrentComponet>
-			);
-		};
-
 		if (canPlace) {
 			return (
-				<TargetBox id={id}>
-					<CommonComponent />
+				<TargetBox key={id} id={id} style={parseStyles(styles)} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
+					{childs}
 				</TargetBox>
 			);
 		}
 
-		return <CommonComponent />;
+		return (
+			<CurrentComponet key={id} id={id} style={parseStyles(styles)} type={type} {...finalProps} onClick={event => this.handleClick({ id, type }, event)}>
+				{childs}
+			</CurrentComponet>
+		);
 	}
 
 	handleReset = () => {

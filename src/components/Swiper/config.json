@@ -8,7 +8,6 @@
 		"indicatorColor": "rgba(0, 0, 0, .3)",
 		"indicatorActiveColor": "#000000",
 		"autoplay": false,
-		"current": 0,
 		"interval": 5000,
 		"duration": 500,
 		"circular": false,
@@ -41,11 +40,6 @@
 			"key": "autoplay",
 			"type": "Radio",
 			"label": "是否自动切换"
-		},
-		{
-			"key": "current",
-			"type": "InputNumber",
-			"label": "当前所在滑块的 index"
 		},
 		{
 			"key": "interval",

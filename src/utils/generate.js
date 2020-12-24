@@ -124,7 +124,9 @@ export default function renderJSONtoJSX(data) {
 
 	renderElementToJSX(data);
 
-	const targetTemplate = templateContent.replace('generateComponents', types).replace('JSONtoJsx', jsx);
+	const newTypes = Array.from(new Set(types)).join(', ');
+
+	const targetTemplate = templateContent.replace('generateComponents', newTypes).replace('JSONtoJsx', jsx);
 
 	return {
 		jsx: targetTemplate,
