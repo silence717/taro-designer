@@ -3,7 +3,6 @@
 	"name": "多选",
 	"canPlace": false,
 	"defaultProps": {
-		"value": "a",
 		"content": "a",
 		"disabled": false,
 		"checked": false,
@@ -11,11 +10,6 @@
 	},
 	"defaultStyles": {},
 	"config": [
-		{
-			"key": "value",
-			"label": "checkbox标识，选中时触发change事件",
-			"type": "Input"
-		},
 		{
 			"key": "content",
 			"label": "显示文本",
