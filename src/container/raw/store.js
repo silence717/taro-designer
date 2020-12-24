@@ -1,6 +1,7 @@
 export const groupData = [
 	{
 		text: '视图容器',
+		opened: true,
 		children: [
 			{
 				value: 'View',
@@ -22,6 +23,7 @@ export const groupData = [
 	},
 	{
 		text: '基础内容',
+		opened: true,
 		children: [
 			{
 				value: 'Icon',
@@ -39,6 +41,7 @@ export const groupData = [
 	},
 	{
 		text: '表单组件',
+		opened: true,
 		children: [
 			{
 				value: 'Button',
@@ -84,6 +87,7 @@ export const groupData = [
 	},
 	{
 		text: '媒体组件',
+		opened: true,
 		children: [
 			{
 				value: 'Image',
