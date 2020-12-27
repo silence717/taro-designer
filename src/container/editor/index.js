@@ -26,11 +26,11 @@ class Editor extends Component {
 
 	@action.bound
 	handleClick({ id, type }, event) {
+		event.stopPropagation();
 		document.querySelectorAll('.highlight').forEach(element => {
 			element.classList.remove('highlight');
 		});
 		document.getElementById(id).classList.add('highlight');
-		event.stopPropagation();
 		store.setCurrentData(id, type);
 	}
 

@@ -21,7 +21,7 @@ export default function Raw(props) {
 			Message.error('SwiperItem请手动拖拽到swiper中');
 			return;
 		}
-		store.add('1', type);
+		store.add(1, type);
 	};
 
 	return (
