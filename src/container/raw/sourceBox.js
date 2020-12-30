@@ -29,4 +29,4 @@ function Box(props) {
 	return connectDragSource(children, { dropEffect: 'copy' });
 }
 
-export default DragSource('Card', source, collect)(Box);
+export default DragSource('ITEM', source, collect)(Box);

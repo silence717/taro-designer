@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Icon, Message } from 'cloud-react';
-import SourceBox from '../drag-drop/sourceBox';
+import SourceBox from './sourceBox';
 import store from '../store';
 
 export default function Raw(props) {

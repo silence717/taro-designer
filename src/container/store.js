@@ -161,14 +161,23 @@ class Store {
 		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
 
-	// 删除元素
-	removeElement() {
-		const item = findItem(this.pageData, this.currentParentId);
-		const index = item.childrens.findIndex(child => child.id === this.currentId);
+	/**
+	 * 删除节点
+	 * @param {*} removeId 被删除节点 id
+	 * @param {*} parentId 被删除节点的父节点 id
+	 */
+	removeNode(removeId, parentId) {
+		const item = findItem(this.pageData, parentId);
+		const index = item.childrens.findIndex(child => child.id === removeId);
 
 		item.childrens.splice(index, 1);
-		this.clearCurrentData();
 		localStorage.setItem(KEY, JSON.stringify(this.pageData));
+	}
+
+	// 删除元素
+	removeElement() {
+		this.removeNode(this.currentId, this.currentParentId);
+		this.clearCurrentData();
 	}
 
 	// 复制元素
@@ -191,6 +200,43 @@ class Store {
 		};
 
 		parentItem.childrens.push(item);
+
+		localStorage.setItem(KEY, JSON.stringify(this.pageData));
+	}
+
+	move(dragItem, overItem) {
+		const { draggedId, dragParentId } = dragItem;
+		const { overId, overType, overParentId } = overItem;
+
+		const item = { ...findItem(this.pageData, draggedId) };
+		const target = findItem(this.pageData, overParentId);
+
+		// 目标元素是否为可放置元素
+		const { canPlace } = CONFIGS[overType];
+		// 如果是可放置元素，直接push到当前的 over元素中去
+		if (canPlace) {
+			const __overItem = findItem(this.pageData, overId);
+
+			item.parentId = overId;
+			// 如果当前杯拖动的元素正在编辑，需要更换它的父节点
+			if (draggedId === this.currentId) {
+				this.currentParentId = overId;
+			}
+
+			if (__overItem.childrens) {
+				__overItem.childrens.push(item);
+			} else {
+				__overItem.childrens = [item];
+			}
+			this.removeNode(draggedId, dragParentId);
+		} else {
+			const index = target.childrens.findIndex(v => v.id === overId);
+			if (dragParentId !== overParentId) {
+				item.parentId = overParentId;
+			}
+			this.removeNode(draggedId, dragParentId);
+			target.childrens.splice(index, 0, item);
+		}
 
 		localStorage.setItem(KEY, JSON.stringify(this.pageData));
 	}
