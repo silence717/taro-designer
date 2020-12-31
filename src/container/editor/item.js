@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
 import { observer } from 'mobx-react';
 import classnames from 'classnames';
 import { DragSource, DropTarget } from 'react-dnd';
@@ -31,8 +32,10 @@ const source = {
 
 	endDrag(props, monitor) {
 		const result = monitor.getDropResult();
-		const { dragItem, overItem } = result;
-		props.move(dragItem, overItem);
+		if (result.dragItem) {
+			const { dragItem, overItem } = result;
+			props.move(dragItem, overItem);
+		}
 	}
 };
 
@@ -72,7 +75,7 @@ const target = {
 		const { id: overId, parentId: overParentId, type: overType } = props.item;
 
 		if (draggedId) {
-			if (draggedId === overId || draggedId === overParentId || dragParentId === overId || overParentId === null) return false;
+			if (draggedId === overId || draggedId === overParentId || dragParentId === overId || overParentId === null) return undefined;
 			return {
 				dragItem: { draggedId, dragParentId },
 				overItem: { overId, overType, overParentId }
@@ -118,22 +121,25 @@ class Item extends Component {
 			active: canDrop && isOver
 		});
 
-		return connectDropTarget(
-			connectDragPreview(
-				connectDragSource(
-					<span>
-						<CurrentComponet
-							id={id}
-							className={classes}
-							type={type}
-							style={parseStyles(styles)}
-							{...finalProps}
-							onClick={event => this.handleClick({ id, type }, event)}>
-							{childrens && childrens.length ? <Tree parentId={id} items={childrens} move={move} /> : null}
-						</CurrentComponet>
-					</span>,
-					{ dropEffect: 'move' }
-				)
+		return connectDragPreview(
+			connectDragSource(
+				<span>
+					<CurrentComponet
+						id={id}
+						type={type}
+						className={classes}
+						style={parseStyles(styles)}
+						{...finalProps}
+						ref={instance => {
+							// eslint-disable-next-line
+							const node = findDOMNode(instance);
+							connectDropTarget(node);
+						}}
+						onClick={event => this.handleClick({ id, type }, event)}>
+						{childrens && childrens.length ? <Tree parentId={id} items={childrens} move={move} /> : null}
+					</CurrentComponet>
+				</span>,
+				{ dropEffect: 'move' }
 			)
 		);
 	}
