@@ -134,13 +134,13 @@ class Item extends Component {
 				type={type}
 				className={classes}
 				style={parseStyles(styles)}
-				{...finalProps}
 				ref={instance => {
 					// eslint-disable-next-line
 					const node = findDOMNode(instance);
 					connectDragSource(node);
 					connectDropTarget(node);
 				}}
+				{...finalProps}
 				onClick={event => this.handleClick({ id, parentId, type }, event)}>
 				{childrens && childrens.length ? <Tree parentId={id} items={childrens} move={move} /> : null}
 			</CurrentComponet>
