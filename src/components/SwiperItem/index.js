@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SwiperItem } from '@tarojs/components/dist-h5/react';
+import Tips from '../Tips';
 
 export default class SwiperItem1 extends Component {
 	render() {
@@ -8,7 +9,8 @@ export default class SwiperItem1 extends Component {
 
 		return (
 			<SwiperItem style={style} {...others}>
-				{children}
+				{children && children}
+				{!children && <Tips msg="SwiperItem滑块视图子项，可拖入其他组件。" />}
 			</SwiperItem>
 		);
 	}

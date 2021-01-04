@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView } from '@tarojs/components/dist-h5/react';
+import Tips from '../Tips';
 
 export default class ScrollView1 extends Component {
 	render() {
 		const { style, children, ...others } = this.props;
 		return (
 			<ScrollView style={style} {...others}>
-				{children}
+				{children && children}
+				{!children && <Tips msg="ScrollView可滚动视图容器，可拖入其他任意组件。" />}
 			</ScrollView>
 		);
 	}

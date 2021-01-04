@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toJS } from 'mobx';
 import { Swiper } from '@tarojs/components/dist-h5/react';
-import { noop } from '@utils';
+import Tips from '../Tips';
 
 export default class Swiper1 extends Component {
 	render() {
 		const { style, children, ...others } = this.props;
 		return (
 			<Swiper style={toJS(style)} {...others}>
-				{children}
+				{children && children}
+				{!children && <Tips msg="Swiper滑块视图容器，只可拖入SwiperItem组件。" />}
 			</Swiper>
 		);
 	}
@@ -27,8 +28,7 @@ Swiper1.propTypes = {
 	previousMargin: PropTypes.string,
 	nextMargin: PropTypes.string,
 	displayMultipleItems: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-	style: PropTypes.string,
-	onClick: PropTypes.func
+	style: PropTypes.string
 };
 
 Swiper1.defaultProps = {
@@ -43,6 +43,5 @@ Swiper1.defaultProps = {
 	previousMargin: '0px',
 	nextMargin: '0px',
 	displayMultipleItems: 1,
-	style: '',
-	onClick: noop
+	style: ''
 };

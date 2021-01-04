@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View } from '@tarojs/components/dist-h5/react';
+import Tips from '../Tips';
 
 export default class View1 extends Component {
 	render() {
 		const { style, children, ...others } = this.props;
+
 		return (
 			<View style={style} {...others}>
-				{children}
+				{children && children}
+				{!children && <Tips msg="View视图容器，可拖入任意其他组件。" />}
 			</View>
 		);
 	}

@@ -9,7 +9,7 @@ function getStringCodes() {
 	const componentsDir = path.join(__dirname, '../src/components');
 	const folders = fs.readdirSync(componentsDir);
 	// ignore file
-	const ignores = ['.DS_Store', 'index.js'];
+	const ignores = ['.DS_Store', 'index.js', 'Tips'];
 
 	let importString = '';
 	let requireString = '';

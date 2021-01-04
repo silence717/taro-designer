@@ -1,6 +1,7 @@
 {
 	"type": "Button",
 	"name": "按钮",
+	"canPlace": false,
 	"defaultProps": {
 		"content": "ok",
 		"size": "default",

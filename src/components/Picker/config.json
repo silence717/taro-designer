@@ -1,7 +1,7 @@
 {
 	"type": "Picker",
 	"name": "滚动选择器",
-	"canPlace": true,
+	"canPlace": false,
 	"tips": "从底部弹起的滚动选择器，只能配置选择器类型，其余数据需要在代码中编写，感觉很鸡肋，不推荐使用",
 	"defaultProps": {
 		"mode": "selector",
@@ -9,7 +9,6 @@
 	},
 	"defaultStyles": {
 		"display": "block",
-		"width": "70px",
 		"height": "20px"
 	},
 	"config": [
