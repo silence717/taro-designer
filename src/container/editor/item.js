@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 import { observer } from 'mobx-react';
+import { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
 import { DragSource, DropTarget } from 'react-dnd';
 import { action } from 'mobx';
@@ -38,6 +38,14 @@ const source = {
 		}
 	}
 };
+
+function sourceCollect(connect, monitor) {
+	return {
+		connectDragSource: connect.dragSource(),
+		connectDragPreview: connect.dragPreview(),
+		isDragging: monitor.isDragging()
+	};
+}
 
 const target = {
 	canDrop(props, monitor) {
@@ -85,16 +93,13 @@ const target = {
 	}
 };
 
-@DropTarget('ITEM', target, (connect, monitor) => ({
-	connectDropTarget: connect.dropTarget(),
-	isOver: monitor.isOver({ shallow: true }),
-	canDrop: monitor.canDrop()
-}))
-@DragSource('ITEM', source, (connect, monitor) => ({
-	connectDragSource: connect.dragSource(),
-	connectDragPreview: connect.dragPreview(),
-	isDragging: monitor.isDragging()
-}))
+function targetCollect(connect, monitor) {
+	return {
+		connectDropTarget: connect.dropTarget(),
+		isOver: monitor.isOver({ shallow: true }),
+		canDrop: monitor.canDrop()
+	};
+}
 @observer
 class Item extends Component {
 	@action.bound
@@ -108,7 +113,7 @@ class Item extends Component {
 	}
 
 	render() {
-		const { connectDropTarget, connectDragPreview, connectDragSource, canDrop, isOver, item, move } = this.props;
+		const { connectDropTarget, connectDragSource, canDrop, isOver, item, move } = this.props;
 
 		const { id, type, props, styles, childrens } = item;
 		const CurrentComponet = Components[type];
@@ -121,28 +126,24 @@ class Item extends Component {
 			active: canDrop && isOver
 		});
 
-		return connectDragPreview(
-			connectDragSource(
-				<span>
-					<CurrentComponet
-						id={id}
-						type={type}
-						className={classes}
-						style={parseStyles(styles)}
-						{...finalProps}
-						ref={instance => {
-							// eslint-disable-next-line
-							const node = findDOMNode(instance);
-							connectDropTarget(node);
-						}}
-						onClick={event => this.handleClick({ id, type }, event)}>
-						{childrens && childrens.length ? <Tree parentId={id} items={childrens} move={move} /> : null}
-					</CurrentComponet>
-				</span>,
-				{ dropEffect: 'move' }
-			)
+		return (
+			<CurrentComponet
+				id={id}
+				type={type}
+				className={classes}
+				style={parseStyles(styles)}
+				{...finalProps}
+				ref={instance => {
+					// eslint-disable-next-line
+					const node = findDOMNode(instance);
+					connectDragSource(node);
+					connectDropTarget(node);
+				}}
+				onClick={event => this.handleClick({ id, type }, event)}>
+				{childrens && childrens.length ? <Tree parentId={id} items={childrens} move={move} /> : null}
+			</CurrentComponet>
 		);
 	}
 }
 
-export default Item;
+export default DropTarget('ITEM', target, targetCollect)(DragSource('ITEM', source, sourceCollect)(Item));

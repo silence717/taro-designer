@@ -24,6 +24,21 @@ export default function Raw(props) {
 		store.add(1, type);
 	};
 
+	const Item = ({ item }) => {
+		return (
+			<SourceBox type={item.value} item={item} onEndDrag={handleDrag}>
+				<span
+					className="raw-item"
+					onClick={() => {
+						handleAddClick(item.value);
+					}}
+					title={item.value === 'SwiperItem' ? 'SwiperItem请手动拖拽到swiper中' : '单击添加组件，默认添加到最外层的view'}>
+					{item.name}&nbsp;&nbsp;&nbsp;{item.value}
+				</span>
+			</SourceBox>
+		);
+	};
+
 	return (
 		<section className="raw-group">
 			<div className="header" onClick={handleOpen}>
@@ -34,16 +49,7 @@ export default function Raw(props) {
 			{open && (
 				<div>
 					{childs.map((item, index) => (
-						<SourceBox key={index} type={item.value} item={item} onEndDrag={handleDrag}>
-							<span
-								className="raw-item"
-								onClick={() => {
-									handleAddClick(item.value);
-								}}
-								title={item.value === 'SwiperItem' ? 'SwiperItem请手动拖拽到swiper中' : '单击添加组件，默认添加到最外层的view'}>
-								{item.name}&nbsp;&nbsp;&nbsp;{item.value}
-							</span>
-						</SourceBox>
+						<Item key={index} item={item} />
 					))}
 				</div>
 			)}
