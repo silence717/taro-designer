@@ -3,12 +3,12 @@ import Item from './item';
 
 class Tree extends Component {
 	render() {
-		const { items, move } = this.props;
+		const { parentId, items, move } = this.props;
 
 		return (
 			<>
 				{items.map(item => {
-					return <Item key={item.id} item={item} move={move} />;
+					return <Item parentId={parentId} key={item.id} item={item} move={move} />;
 				})}
 			</>
 		);

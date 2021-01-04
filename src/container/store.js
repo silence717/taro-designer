@@ -41,26 +41,25 @@ function findItem(dataList, id) {
 }
 
 // 递归处理chiils里面的id
-function getChilds(data, id) {
+function getChilds(data) {
 	if (!data) return [];
 
-	function loop(newData, parentId) {
+	function loop(newData) {
 		if (!newData) return [];
 
 		return newData.map(item => {
 			const newId = generateId();
-			const childs = loop(item.childrens, newId);
+			const childs = loop(item.childrens);
 
 			return {
 				...item,
-				parentId,
 				id: newId,
 				childrens: childs
 			};
 		});
 	}
 
-	return loop(data, id);
+	return loop(data);
 }
 
 // 获取已有的id集合
@@ -105,10 +104,10 @@ class Store {
 		ids = getIds(this.pageData);
 	}
 
-	setCurrentData(id, type) {
+	setCurrentData(id, parentId, type) {
 		const item = findItem(this.pageData, id);
 		this.currentId = id;
-		this.currentParentId = item.parentId;
+		this.currentParentId = parentId;
 		this.currentType = type;
 		this.currentProps = item.props;
 		this.currentStyles = item.styles || {};
@@ -146,7 +145,6 @@ class Store {
 		const item = findItem(this.pageData, targetId);
 		const obj = {
 			id: generateId(),
-			parentId: targetId,
 			type,
 			props: CONFIGS[type].defaultProps || {},
 			styles: CONFIGS[type].defaultStyles || {}
@@ -188,11 +186,10 @@ class Store {
 		const { type, childrens, props, styles } = currentItem;
 		const newId = generateId();
 
-		const childs = getChilds(childrens, newId);
+		const childs = getChilds(childrens);
 
 		const item = {
 			id: newId,
-			parentId: this.currentParentId,
 			type,
 			childrens: childs,
 			props,
@@ -217,12 +214,6 @@ class Store {
 		if (canPlace) {
 			const __overItem = findItem(this.pageData, overId);
 
-			item.parentId = overId;
-			// 如果当前杯拖动的元素正在编辑，需要更换它的父节点
-			if (draggedId === this.currentId) {
-				this.currentParentId = overId;
-			}
-
 			if (__overItem.childrens) {
 				__overItem.childrens.push(item);
 			} else {
@@ -231,9 +222,6 @@ class Store {
 			this.removeNode(draggedId, dragParentId);
 		} else {
 			const index = target.childrens.findIndex(v => v.id === overId);
-			if (dragParentId !== overParentId) {
-				item.parentId = overParentId;
-			}
 			this.removeNode(draggedId, dragParentId);
 			target.childrens.splice(index, 0, item);
 		}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import { action } from 'mobx';
 import { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
 import { DragSource, DropTarget } from 'react-dnd';
-import { action } from 'mobx';
 import Components, { CONFIGS } from '@components';
 import { parseStyles } from '@utils';
 
@@ -12,7 +12,8 @@ import store from '../store';
 
 const source = {
 	beginDrag(props) {
-		const { id, parentId, type, childrens } = props.item;
+		const { parentId, item } = props;
+		const { id, type, childrens } = item;
 		return {
 			id,
 			parentId,
@@ -22,7 +23,7 @@ const source = {
 	},
 
 	canDrag(props) {
-		if (props.item.id === '1') return false;
+		if (props.item.id === 1) return false;
 		return true;
 	},
 
@@ -80,7 +81,8 @@ const target = {
 		}
 
 		const { id: draggedId, parentId: dragParentId } = monitor.getItem();
-		const { id: overId, parentId: overParentId, type: overType } = props.item;
+		const { parentId: overParentId } = props;
+		const { id: overId, type: overType } = props.item;
 
 		if (draggedId) {
 			if (draggedId === overId || draggedId === overParentId || dragParentId === overId || overParentId === null) return undefined;
@@ -103,17 +105,17 @@ function targetCollect(connect, monitor) {
 @observer
 class Item extends Component {
 	@action.bound
-	handleClick({ id, type }, event) {
+	handleClick({ id, parentId, type }, event) {
 		event.stopPropagation();
 		document.querySelectorAll('.highlight').forEach(element => {
 			element.classList.remove('highlight');
 		});
 		document.getElementById(id).classList.add('highlight');
-		store.setCurrentData(id, type);
+		store.setCurrentData(id, parentId, type);
 	}
 
 	render() {
-		const { connectDropTarget, connectDragSource, canDrop, isOver, item, move } = this.props;
+		const { connectDropTarget, connectDragSource, canDrop, isOver, parentId, item, move } = this.props;
 
 		const { id, type, props, styles, childrens } = item;
 		const CurrentComponet = Components[type];
@@ -139,7 +141,7 @@ class Item extends Component {
 					connectDragSource(node);
 					connectDropTarget(node);
 				}}
-				onClick={event => this.handleClick({ id, type }, event)}>
+				onClick={event => this.handleClick({ id, parentId, type }, event)}>
 				{childrens && childrens.length ? <Tree parentId={id} items={childrens} move={move} /> : null}
 			</CurrentComponet>
 		);
