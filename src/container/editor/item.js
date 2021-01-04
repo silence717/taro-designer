@@ -64,6 +64,10 @@ const target = {
 		if (dropType === 'Swiper') {
 			return dragType === 'SwiperItem';
 		}
+		// form 不可嵌套form
+		if (dragType === 'Form' && dropType === 'Form') {
+			return false;
+		}
 
 		// 目标组件类型为 Label 时候，可放置的组件有 button, checkbox, radio, switch。
 		if (dropType === 'Label') {
