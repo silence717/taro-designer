@@ -146,7 +146,7 @@ class Item extends Component {
 				}}
 				{...finalProps}
 				onClick={event => this.handleClick({ id, parentId, type }, event)}>
-				{childrens && childrens.length ? <Tree parentId={id} items={childrens} move={move} /> : null}
+				<Tree parentId={id} items={childrens} move={move} />
 			</CurrentComponet>
 		);
 	}
