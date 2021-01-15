@@ -18,7 +18,7 @@ Switch1.propTypes = {
 
 Switch1.defaultProps = {
 	checked: false,
-	type: 'swirch',
+	type: 'switch',
 	color: '#04BE02',
 	style: ''
 };

@@ -55,10 +55,10 @@ class Config extends Component {
 				</header>
 				<div className="config-area">
 					<Button size="small" onClick={this.handleRemove}>
-						删除元素
+						删除组件
 					</Button>
 					<Button size="small" onClick={this.hanldeCopy} style={{ marginLeft: '10px', marginBottom: '10px' }}>
-						复制元素
+						复制组件
 					</Button>
 					{store.currentType ? (
 						<>
