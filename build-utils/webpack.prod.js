@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const buildOutputDir = path.join(__dirname, '../taro-designer');
+const buildOutputDir = path.join(__dirname, '../docs');
 
 module.exports = () => ({
 	mode: 'production',

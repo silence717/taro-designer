@@ -4,7 +4,7 @@
 
 ### 访问地址
 
-[taro-designer](https://taro-designer.shuyun.com/#/)
+[taro-designer](https://silence717.github.io/taro-designer)
 
 ### 技术栈
 
@@ -91,8 +91,4 @@ webpack.config.js // webpack基础配置
 因为需要兼容多端，而 taro 每个组件 api 对平台的支持程度不一致，在当前项目中我们选取了兼容**微信小程序**和**h5**两个版本的属性可进行配置。
 
 ### 项目部署说明
-
-使用[jenkins](http://dev-jenkins-f2e.shuyun.com/view/ccms-tool-f2e/job/taro-designer/)进行部署，在 ccms-tool-fe/taro-designer 下进行发布。
-
-1、node 服务，在项目下使用 pm2 启动 server.js，如果 node 端代码有改动，需要登录服务器重启。  
-2、静态资源，使用 jenkins 发布后直接更新，不需要其余操作。
+node 服务，在项目下使用 pm2 启动 server.js，如果 node 端代码有改动，需要登录服务器重启。  

@@ -2,3 +2,4 @@
 /build-utils/**
 webpack.config.js
 /output/taro.jsx
+/docs/**
