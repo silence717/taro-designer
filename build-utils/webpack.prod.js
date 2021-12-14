@@ -23,7 +23,7 @@ module.exports = () => ({
 	},
 	output: {
 		filename: '[name]-[hash:20].js',
-		publicPath: '/',
+		publicPath: './',
 		path: buildOutputDir
 	},
 	optimization: {
