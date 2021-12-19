@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "c12f5a332c1cdf221a47" + ".js"
+/******/ 		return __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "ec61abe6d960eb5ee237" + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -9718,7 +9718,7 @@ var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_)
  */
 
 var http = external_axios_default.a.create({
-  baseURL: 'http://ec2-18-217-104-59.us-east-2.compute.amazonaws.com:1234/taro-designer-api/',
+  baseURL: 'https://ec2-18-217-104-59.us-east-2.compute.amazonaws.com:1234/taro-designer-api/',
   headers: {
     'Cache-Control': 'no-cache'
   }
